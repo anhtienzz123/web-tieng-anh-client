@@ -6,6 +6,7 @@ const globalSlice = createSlice({
   name: KEY,
   initialState: {
     isLoading: false,
+    isLogin: false,
   },
 
   reducers: {
@@ -13,11 +14,14 @@ const globalSlice = createSlice({
     setLoading: (state, action) => {
       state.isLoading = action.payload;
     },
+    setLogin: (state, action) => {
+      state.isLogin = action.payload;
+    },
   },
   // xu ly api roi thay doi state
   extraReducers: {},
 });
 
 const { reducer, actions } = globalSlice;
-export const { setLoading } = actions;
+export const { setLoading, setLogin } = actions;
 export default reducer;

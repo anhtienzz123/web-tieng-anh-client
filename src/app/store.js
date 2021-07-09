@@ -1,10 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 import global from "./globalSlice";
-import personManager from "features/PersonManager/personManagerSlice";
+import me from "features/Me/meSlice";
+import login from "features/Login/loginSlice";
+import home from "features/Home/homeSlice";
 
 const rootReducer = {
   global,
-  personManager,
+  me,
+  login,
+  home,
 };
 
 const store = configureStore({
