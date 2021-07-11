@@ -6,6 +6,7 @@ import ProtectedRoute from "components/ProtectedRoute";
 import Home from "features/Home";
 import Login from "features/Login";
 import Me from "features/Me";
+import OnlineExam from "features/OnlineExam";
 import Translate from "features/Translate";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -29,8 +30,8 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route path="/login" component={Login} />
           <Route path="/translate" component={Translate} />
+          <Route path="/exams" component={OnlineExam} />
           <ProtectedRoute path="/me" component={Me} />
-
           <Route component={NotFoundPage} />
         </Switch>
 
