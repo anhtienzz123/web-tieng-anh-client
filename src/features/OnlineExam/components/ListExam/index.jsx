@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import './style.scss';
 import { Row, Col, Slider } from 'antd';
 import ExamCard from 'features/OnlineExam/components/ExamCard'
+import { useHistory, useRouteMatch } from "react-router-dom";
 ListExam.propTypes = {
     listExam: PropTypes.array
 };
@@ -11,7 +12,19 @@ ListExam.defaultProps = {
     listExam: []
 }
 
+
+
 function ListExam(props) {
+    const history = useHistory();
+    const match = useRouteMatch();
+    const { url } = match;
+
+    function onClickExam(test, idSetTest) {
+        console.log(test);
+        history.push(`${url}/checkin/${idSetTest}/${test.id}`)
+    }
+
+
     const { listExam } = props;
     console.log(listExam)
 
@@ -30,9 +43,9 @@ function ListExam(props) {
                     </div>
 
                     <Row gutter={[16, 16]}>
-                       
-                            <ExamCard listTest={exam.listTest} />
-                        
+
+                        <ExamCard listTest={exam.listTest} idSetTest={exam.id} onClickExam={onClickExam} />
+
                     </Row>
 
                 </div>
