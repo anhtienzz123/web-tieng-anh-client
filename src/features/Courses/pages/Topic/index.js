@@ -1,6 +1,5 @@
 import { FileTextOutlined, UpOutlined } from "@ant-design/icons";
 import { Affix, BackTop, Col, Divider, Pagination, Row, Tooltip } from "antd";
-import Title from "antd/lib/skeleton/Title";
 import { setLoading } from "app/globalSlice";
 import WordCard from "features/Courses/components/WordCard";
 import React, { useEffect } from "react";
@@ -34,11 +33,13 @@ function Topic(props) {
 					</div>
 				</div>
 			</Row>
-			<Affix onChange={(affixed) => console.log(affixed)}>
+
+			<Affix>
 				<Row justify="center" className="pagination-top">
 					<Pagination total={25} showQuickJumper />
 				</Row>
 			</Affix>
+
 			<Divider orientation="left" style={{ fontSize: 32 }}>
 				{title}
 			</Divider>
