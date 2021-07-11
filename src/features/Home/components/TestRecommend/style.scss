@@ -1,0 +1,20 @@
+.test_recommend {
+    padding: 0 1rem;
+    &--info {
+        span:first-child {
+            font-weight: bold;
+            display: block;
+            font-size: 4rem;
+        }
+        span:last-child {
+            display: block;
+            font-size: 1.5rem;
+            color: rgb(102, 102, 102);
+        }
+    }
+
+    &--button > #button {
+        display: block;
+        margin: 10px auto;
+    }
+}

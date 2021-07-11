@@ -1,0 +1,49 @@
+#banner_wrapper {
+}
+
+$color-white: #fff;
+.banner {
+    background: linear-gradient(to right, #8e2de2, #4a00e0);
+
+    &_container {
+        max-width: 1200px;
+        margin: 0 auto;
+
+        height: 80vh;
+    }
+    &_overlay {
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    &_right {
+        &--img > img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    }
+    &_left {
+        margin: auto 0;
+        &--title {
+            font-size: 4rem;
+            font-weight: 700;
+            color: $color-white;
+        }
+        &--sub-title {
+            font-size: 1.5rem;
+            color: $color-white;
+        }
+
+        &--button {
+            padding: 12px;
+            border-radius: 10px;
+            outline: none;
+            border: none;
+
+            font-size: 1.8rem;
+            color: #fff;
+            background: linear-gradient(to bottom, #ff4495 0%, #ff6d6d 100%);
+            margin-top: 1rem;
+            cursor: pointer;
+        }
+    }
+}
