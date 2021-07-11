@@ -10,7 +10,7 @@ function CourseList(props) {
 	return (
 		<Row justify="start" gutter={[36, 24]}>
 			{courses.map((course) => (
-				<Col key={course.title} xs={24} sm={12} md={8} lg={6}>
+				<Col key={course.id} xs={24} sm={12} md={8} lg={6}>
 					<CourseCard course={course} />
 				</Col>
 			))}

@@ -35,7 +35,11 @@ function CourseCard(props) {
 			() =>
 				history.push({
 					pathname: `${url}/topic`,
-					state: { wordsets: list === undefined ? [] : list, course: course },
+					state: {
+						wordsets: list === undefined ? [] : list,
+
+						course: course,
+					},
 				}),
 			300
 		);
