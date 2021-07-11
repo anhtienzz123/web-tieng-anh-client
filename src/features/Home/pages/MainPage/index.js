@@ -1,17 +1,17 @@
-import React from "react";
-import PropTypes from "prop-types";
 import Landing from "features/Home/components/Landing";
-import Banner from "components/Banner/Banner";
-import Header from "components/Header";
+import React from "react";
+import { useSelector } from "react-redux";
 
 
-MainPage.propTypes = {};
+function MainPage() {
 
-function MainPage(props) {
+  const listVideoRecommend = useSelector(state => state.home.listVideoRecommend);
+  const listTestRecommend = useSelector(state => state.home.listTestRecommend);
+  console.log(listTestRecommend);
+
   return (
     <div id="landing_page">
-      <Landing />
-    
+      <Landing listTestRecommend={listTestRecommend} listVideoRecommend={listVideoRecommend} />
     </div>
   );
 }

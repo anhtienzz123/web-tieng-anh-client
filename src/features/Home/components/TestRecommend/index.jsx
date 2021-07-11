@@ -5,10 +5,19 @@ import TestCard from 'features/Home/components/TestCard';
 import { DownCircleOutlined } from '@ant-design/icons';
 import './style.scss';
 TestRecommend.propTypes = {
-
+    listTestRecommend: PropTypes.array,
 };
 
+TestRecommend.defaultProps = {
+    listTestRecommend: [],
+};
+
+
+
 function TestRecommend(props) {
+
+    const { listTestRecommend } = props;
+    console.log('check', listTestRecommend);
     return (
         <div className="test_recommend">
             <div className='test_recommend--info'>
@@ -18,20 +27,11 @@ function TestRecommend(props) {
 
             <div className="test_recommend--content">
                 <Row gutter={[16, 16]}>
-                    <Col span={6} >
-                        <TestCard />
-                    </Col>
-                    <Col span={6} >
-                        <TestCard />
-                    </Col>
 
-                    <Col span={6} >
-                        <TestCard />
-                    </Col>
+                    {listTestRecommend.map(test => (
+                        <TestCard test={test} />
+                    ))}
 
-                    <Col span={6} >
-                        <TestCard />
-                    </Col>
                 </Row>
             </div>
 

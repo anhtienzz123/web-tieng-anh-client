@@ -4,31 +4,43 @@ import Image from 'constant/image';
 import './style.scss'
 import { Row, Col, Slider } from 'antd';
 TestCard.propTypes = {
-
+    test: PropTypes.object,
 };
 
+TestCard.defaultProps = {
+    test: {}
+}
+
 function TestCard(props) {
+    const { test } = props;
+    const { id, img, titleSetTest, titleTest, view } = test;
+
     return (
 
 
-        <div className='testcard'>
 
-            <div className="testcard_img">
-                <img src={Image.TEST_CARD} alt="" />
-                <div className="testcard_overlay" />
-            </div>
+        <Col span={6} >
+            <div div className='testcard' >
 
-
-            <div className='testcard_info'>
-                <div className='testcard_info--title'>
-                    <span>ETS 2021 - TEST 3</span>
+                <div className="testcard_img">
+                    <img src={img} alt="image" />
+                    <div className="testcard_overlay" />
                 </div>
-                <div className='testcard_info--view'>
-                    <span>500</span>
-                </div>
-            </div>
 
-        </div>
+
+                <div className='testcard_info'>
+                    <div className='testcard_info--title'>
+                        <span>{titleTest} - {titleSetTest}</span>
+                    </div>
+                    <div className='testcard_info--view'>
+                        <span>view</span>
+                    </div>
+                </div>
+
+            </div >
+        </Col>
+
+
 
 
 

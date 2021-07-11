@@ -2,35 +2,66 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './style.scss';
 import { PlayCircleOutlined } from '@ant-design/icons';
+import { Row, Col, Button } from 'antd';
 import Image from 'constant/image';
 VideoCard.propTypes = {
     height: PropTypes.string,
+    video: PropTypes.object,
 };
 
 VideoCard.defaultProps = {
-    height: ''
+    height: '',
+    video: {}
 }
 // 650 350
 function VideoCard(props) {
-    const { height } = props;
+    const { height, video } = props;
+    const { thumbnail, titleVideo, view } = video;
 
     return (
-        <div className='videocard'>
+        <>
+            {height ? <Col span={12} >
 
-            <img className="videocard_img" style={{ height: height }} src={Image.TEST_VIDEO} alt="" />
+                <div className='videocard'>
 
-            <div className="videocard_title">
-                <span>Dậy sớm để thành công</span>
-            </div>
-            <div className="videocard_overlay">
-                <div className='videocard_overlay--play'>
-                    <PlayCircleOutlined />
+                    <img className="videocard_img" style={{ height: height }} src={thumbnail} alt="image" />
+
+                    <div className="videocard_title">
+                        <span>{titleVideo}</span>
+                    </div>
+                    <div className="videocard_overlay">
+                        <div className='videocard_overlay--play'>
+                            <PlayCircleOutlined />
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </Col> :
+                <div className='videocard'>
+
+                    <img className="videocard_img" style={{ height: height }} src={thumbnail} alt="image" />
+
+                    <div className="videocard_title">
+                        <span>{titleVideo}</span>
+                    </div>
+                    <div className="videocard_overlay">
+                        <div className='videocard_overlay--play'>
+                            <PlayCircleOutlined />
+                        </div>
+
+                    </div>
+
+
                 </div>
 
-            </div>
+            }
+        </>
 
 
-        </div>
+
+
     );
 }
 

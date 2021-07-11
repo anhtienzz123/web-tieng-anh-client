@@ -3,16 +3,24 @@ import Banner from 'components/Banner/Banner';
 import TestRecommend from 'features/Home/components/TestRecommend';
 import React from 'react';
 import VideoRecommend from '../VideoRecommend';
-import { Divider } from 'antd';
+import PropTypes from 'prop-types';
 
 
 Landing.propTypes = {
-
+    listTestRecommend: PropTypes.array,
+    listVideoRecommend: PropTypes.array,
 };
 
-const { Content, Footer, Sider } = Layout;
+Landing.defaultProps = {
+    listTestRecommend: [],
+    listVideoRecommend: [],
+}
+
+const { Content, Footer } = Layout;
 
 function Landing(props) {
+    const { listTestRecommend, listVideoRecommend } = props;
+
 
     return (
 
@@ -21,8 +29,8 @@ function Landing(props) {
             <Layout >
                 <Content>
                     <Banner />
-                    <TestRecommend />
-                    <VideoRecommend />
+                    <TestRecommend listTestRecommend={listTestRecommend} />
+                    <VideoRecommend listVideoRecommend={listVideoRecommend} />
                 </Content>
             </Layout>
             <Footer>footer</Footer>
