@@ -26,23 +26,7 @@ const listTest = [
         reading_time: 75
     },
     {
-        id: 4,
-        nameTest: "Test 4",
-        subjectName: 'ETS 2020',
-        listening_tiem: 45,
-        reading_time: 75
-    },
-    {
-        id: 5,
-        nameTest: "Test 5",
-        subjectName: 'ETS 2020',
-        listening_tiem: 45,
-        reading_time: 75
-    },
-    {
-        id: 6,
-        nameTest: "Test 6",
-        subjectName: 'ETS 2020',
+        git branch --delete  <branch_name>    
         listening_tiem: 45,
         reading_time: 75
     },

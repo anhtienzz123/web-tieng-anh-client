@@ -47,7 +47,7 @@ function CheckInExam(props) {
 
                 <div className="checkin-exam_button">
                     <Button type="primary" block shape="round" className="checkin-exam_button--width">
-                        Start
+                        START
                     </Button>
                 </div>
             </Space>
