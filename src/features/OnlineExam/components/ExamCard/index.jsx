@@ -4,37 +4,37 @@ import './style.scss';
 import { Row, Col, Slider } from 'antd';
 ExamCard.propTypes = {
     listTest: PropTypes.array,
-    onClickExam: PropTypes.func,
-    idSetTest: PropTypes.string,
+    onClick: PropTypes.func,
+
 };
 
 ExamCard.defaultProps = {
     listTest: [],
-    onClickExam: null,
-    idSetTest: "",
+    onClick: null,
+
 }
 
 
 
 function ExamCard(props) {
-    const { listTest, onClickExam, idSetTest } = props;
+    const { listTest, onClick } = props;
 
-    function handleClick(test, idSetTest) {
-        if (onClickExam) {
-            onClickExam(test, idSetTest);
+    function handleClick(test) {
+        if (onClick) {
+            onClick(test);
         }
     }
     return (
         <>
             {listTest.map((test, index) => (
-                <Col span={6} key={test.id}>
-                    <div className="exam_card" onClick={() => handleClick(test, idSetTest)}>
+                <Col span={6} key={index}>
+                    <div className="exam_card" onClick={() => handleClick(test)}>
                         <div className="exam_card_count">
                             <span>{index + 1}</span>
                         </div>
                         <div className="exam_card_subject">
-                            <div className="exam_card_subject--set">{test.subjectName}</div>
-                            <div className="exam_card_subject--name">{test.nameTest}</div>
+                            <div className="exam_card_subject--name">{test.name}</div>
+
                         </div>
                     </div>
                 </Col>

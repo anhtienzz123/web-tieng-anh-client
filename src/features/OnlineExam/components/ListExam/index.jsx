@@ -4,47 +4,49 @@ import './style.scss';
 import { Row, Col, Slider } from 'antd';
 import ExamCard from 'features/OnlineExam/components/ExamCard'
 import { useHistory, useRouteMatch } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { setExamSelected } from 'features/OnlineExam/onlineExamSlice';
 ListExam.propTypes = {
-    listExam: PropTypes.array
+    examList: PropTypes.array
 };
 
 ListExam.defaultProps = {
-    listExam: []
+    examList: []
 }
 
 
 
 function ListExam(props) {
     const history = useHistory();
-    const match = useRouteMatch();
-    const { url } = match;
+    const dispatch = useDispatch();
 
-    function onClickExam(test, idSetTest) {
-        console.log(test);
-        history.push(`${url}/checkin/${idSetTest}/${test.id}`)
+
+    function handleClick(test) {
+        dispatch(setExamSelected(test.name));
+        history.push(`/exams/${test.slug}/checkin`)
     }
 
 
-    const { listExam } = props;
-    console.log(listExam)
+    const { examList } = props;
+    console.log(examList);
 
     return (
 
         <>
-            {listExam.map(exam => (
-                <div className='list_exam' key={exam.id}>
+            {examList.map((exam, index) => (
+                <div className='list_exam' key={index}>
                     <div className="list_exam--head">
                         <div className='list_exam--head-img' >
-                            <img src={exam.image_exam} alt="image_exam" />
+                            <img src={exam.image} alt="image_exam" />
                         </div>
                         <div className='list_exam--head-title'>
-                            <span>{exam.subjectTest}</span>
+                            <span>{exam.name}</span>
                         </div>
                     </div>
 
                     <Row gutter={[16, 16]}>
 
-                        <ExamCard listTest={exam.listTest} idSetTest={exam.id} onClickExam={onClickExam} />
+                        <ExamCard listTest={exam.tests} onClick={handleClick} />
 
                     </Row>
 

@@ -4,6 +4,7 @@ import { Switch, Route, useRouteMatch } from "react-router-dom";
 import MainPage from './pages/MainPage';
 import NotFoundPage from "components/NotFoundPage";
 import CheckInExam from "./pages/CheckInExam";
+import Examining from './pages/Examining';
 OnlineExam.propTypes = {
 
 };
@@ -15,9 +16,11 @@ function OnlineExam(props) {
         <div>
             <Switch>
 
-                <Route path={`${url}/checkin/:setTestId/:testId`} component={CheckInExam} />
+                <Route path={`${url}/:testId/checkin`} component={CheckInExam} />
+                <Route path={`${url}/:testId/examining`} component={Examining} />
                 <Route exact path={url} component={MainPage} />
                 <Route component={NotFoundPage} />
+
             </Switch>
         </div>
     );

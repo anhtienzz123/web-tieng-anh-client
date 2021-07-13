@@ -1,0 +1,12 @@
+.countdown_timer {
+    font-size: 3rem;
+    font-weight: bold;
+    span {
+        font-size: 2rem;
+        font-weight: normal;
+    }
+
+    &--icon {
+        font-size: 3rem;
+    }
+}

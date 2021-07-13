@@ -2,16 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from "react-redux";
 import ListExam from 'features/OnlineExam/components/ListExam';
+import { useHistory, useRouteMatch } from 'react-router-dom';
 MainPage.propTypes = {
 
 };
 
 function MainPage(props) {
-    const listTest = useSelector(state => state.exam);
-   
+    const { setExam } = useSelector(state => state.exam);
+    // const history = useHistory();
+    // const match = useRouteMatch();
+    // const { url } = match;
+
+    // console.log(url)
+
     return (
         <div>
-            <ListExam listExam={listTest} />
+            <ListExam examList={setExam} />
         </div>
     );
 }
