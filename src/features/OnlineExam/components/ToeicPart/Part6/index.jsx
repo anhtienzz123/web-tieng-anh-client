@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-ListQuestion.propTypes = {
+Part6.propTypes = {
     
 };
 
-function ListQuestion(props) {
+function Part6(props) {
     return (
         <div>
-            List question
+             Part 6
         </div>
     );
 }
 
-export default ListQuestion;
+export default Part6;

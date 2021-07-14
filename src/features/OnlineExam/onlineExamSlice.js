@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import image_exam from 'assets/image/toeic_exam.jpg';
 import { answers } from 'constants/ToeicSheet';
+import { test } from 'constants/ToeicQuestion';
 const KEY = 'exam';
 const tests = [
 
@@ -78,11 +79,34 @@ const examSlice = createSlice({
         ],
         examSelected: '',
         answers: answers,
+        questions: test,
+        examCheckin: '',
+        scrollId: 'top',
     }
     ,
     reducers: {
         setExamSelected: (state, action) => {
             state.examSelected = action.payload
+        },
+
+        setExamCheckin: (state, action) => {
+            state.examCheckin = action.payload;
+        },
+        writeAnswerSheet: (state, action) => {
+            const { question, selected } = action.payload;
+
+            state.answers.map(answer => {
+                if (answer.stt == question) {
+                    answer.selected = selected;
+                    answer.status = 'selected';
+                }
+            })
+        },
+        setScrollId: (state, action) => {
+            state.scrollId = action.payload;
+        },
+        setAnswerAfterRefresh: (state, action) => {
+            state.answers = action.payload;
         }
     },
     extraReducers: {
@@ -91,5 +115,5 @@ const examSlice = createSlice({
 });
 
 const { reducer, actions } = examSlice;
-export const { setExamSelected } = actions;
+export const { setExamSelected, writeAnswerSheet, setScrollId, setExamCheckin, setAnswerAfterRefresh } = actions;
 export default reducer;

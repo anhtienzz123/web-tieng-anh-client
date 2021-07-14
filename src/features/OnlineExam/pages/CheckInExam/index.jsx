@@ -1,9 +1,10 @@
 import { CheckSquareTwoTone, ClockCircleOutlined } from '@ant-design/icons';
 import { Button, Space } from 'antd';
 import React from 'react';
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useParams } from 'react-router-dom';
 import './style.scss';
+import { setExamSelected } from 'features/OnlineExam/onlineExamSlice';
 CheckInExam.propTypes = {
 
 };
@@ -11,11 +12,14 @@ CheckInExam.propTypes = {
 function CheckInExam(props) {
     let { testId } = useParams();
 
-    const { examSelected } = useSelector(state => state.exam);
-
+    const { examCheckin } = useSelector(state => state.exam);
+    const dispatch = useDispatch();
     const history = useHistory();
 
+
     function handleOnClick() {
+        dispatch(setExamSelected(1));
+        localStorage.clear();
         history.replace(`/exams/${testId}/examining`);
     }
 
@@ -23,7 +27,7 @@ function CheckInExam(props) {
         <div className="checkin-exam" >
             <Space direction="vertical" size='large' >
                 <div className="checkin-exam_title">
-                    <span>{examSelected}</span>
+                    <span>{examCheckin}</span>
                 </div>
 
                 <div className="checkin-exam_info">

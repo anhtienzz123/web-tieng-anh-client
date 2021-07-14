@@ -7,7 +7,7 @@ const answers = [
     {
         stt: 2,
         selected: '',
-        status: '',
+        status: 'yet',
     },
     {
         stt: 3,
@@ -1008,6 +1008,7 @@ const titlEachPart = {
     PART6: 'Part VI: Incomplete Sentences',
     PART7: 'Part VII: Reading Comprehension',
 }
+
 
 export { titlEachPart, answers };
 

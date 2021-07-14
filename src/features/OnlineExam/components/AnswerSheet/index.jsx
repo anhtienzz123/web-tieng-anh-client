@@ -6,7 +6,11 @@ import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import SubAnswer from 'features/OnlineExam/components/SubAnswer';
 import { titlEachPart } from 'constants/ToeicSheet';
-
+import useWindowUnloadEffect from 'utils/useWindowUnloadEffect';
+import { useEffect, useRef } from 'react';
+import { useDispatch } from 'react-redux';
+import { setAnswerAfterRefresh } from 'features/OnlineExam/onlineExamSlice';
+import useLoadDataAfterRefresh from 'utils/useLoadDataAfterRefresh';
 
 AnswerSheet.propTypes = {
 
@@ -14,15 +18,11 @@ AnswerSheet.propTypes = {
 
 function AnswerSheet(props) {
 
-
-
-
+    useLoadDataAfterRefresh();
     const [expandIconPosition, setExpandIconPosition] = useState('left');
-
     const { Panel } = Collapse;
 
     const { answers } = useSelector(state => state.exam);
-
     const answers_part1 = answers.filter(answer => answer.stt <= 6);
     const answers_part2 = answers.filter(answer => answer.stt > 6 && answer.stt <= 31);
     const answers_part3 = answers.filter(answer => answer.stt > 31 && answer.stt <= 70);
@@ -32,6 +32,13 @@ function AnswerSheet(props) {
     const answers_part7 = answers.filter(answer => answer.stt > 146 && answer.stt <= 200);
 
 
+    useWindowUnloadEffect(() => {
+        localStorage.setItem('answers', JSON.stringify(answers));
+    }, true);
+
+
+
+
     function callback(key) {
         console.log(key);
     }
@@ -39,7 +46,7 @@ function AnswerSheet(props) {
 
     return (
         <div>
-            <Affix offsetTop={10} >
+            <Affix offsetTop={60} >
                 <Collapse accordion defaultActiveKey={['1']} onChange={callback} expandIconPosition={expandIconPosition} >
 
                     <Panel header="Part 1" key="1" extra={<SoundOutlined />}>

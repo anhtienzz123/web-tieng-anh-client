@@ -5,7 +5,7 @@ import { Row, Col, Slider } from 'antd';
 import ExamCard from 'features/OnlineExam/components/ExamCard'
 import { useHistory, useRouteMatch } from "react-router-dom";
 import { useDispatch } from 'react-redux';
-import { setExamSelected } from 'features/OnlineExam/onlineExamSlice';
+import { setExamCheckin } from 'features/OnlineExam/onlineExamSlice';
 ListExam.propTypes = {
     examList: PropTypes.array
 };
@@ -22,8 +22,8 @@ function ListExam(props) {
 
 
     function handleClick(test) {
-        dispatch(setExamSelected(test.name));
-        history.push(`/exams/${test.slug}/checkin`)
+        dispatch(setExamCheckin(test.name));
+        history.push(`/exams/${test.slug}/checkin`);
     }
 
 

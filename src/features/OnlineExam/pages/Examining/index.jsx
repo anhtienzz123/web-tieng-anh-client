@@ -1,85 +1,39 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Timer from 'features/OnlineExam/components/Timer';
-import ListQuestion from 'features/OnlineExam/components/ListQuestion';
+import { Col, Row } from 'antd';
 import AnswerSheet from 'features/OnlineExam/components/AnswerSheet';
-import { Row, Col, Slider } from 'antd';
+import Timer from 'features/OnlineExam/components/Timer';
+import ToeicPart from 'features/OnlineExam/components/ToeicPart';
+import React from 'react';
+import { useRouteMatch } from "react-router-dom";
+import './style.scss';
 
-import './style.scss'
 
-Examining.propTypes = {
 
-};
 
 function Examining(props) {
-    return (
-        <div className='examining'>
 
+
+
+    return (
+        <>
             <Row gutter={[16, 16]}>
                 <Col span={24} >
                     <Timer />
                 </Col>
             </Row>
+            <div className='examining'>
+                <Row gutter={[16, 16]}>
+                    <Col span={17} >
+                        <ToeicPart />
 
-            <Row gutter={[16, 16]}>
-                <Col span={18} >
-                    <ListQuestion />
-                </Col>
-                <Col span={6} >
-                    <AnswerSheet />
-                </Col>
-            </Row>
+                    </Col>
+                    <Col span={7} >
+                        <AnswerSheet />
+                    </Col>
+                </Row>
 
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
+            </div>
 
-
-
-
-        </div>
+        </>
     );
 }
 
