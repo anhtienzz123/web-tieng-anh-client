@@ -1,58 +1,55 @@
 import { Button } from "antd";
 import { setLoading } from "app/globalSlice";
-import { WORD_SET } from "features/Courses/constants/global";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useHistory, useRouteMatch } from "react-router-dom";
+import { Link, useHistory, useRouteMatch } from "react-router-dom";
 import "./style.scss";
 
 function CourseCard(props) {
 	const { course, maxCharacterCount } = props;
+
+	console.log(course);
 	const { url } = useRouteMatch();
-	const { id, image, title, description, wordCount } = course;
+	const { image, slug, name, description, wordNumber, personNumber } = course;
 	const history = useHistory();
 	const dispatch = useDispatch();
 
 	const [isTruncated, setIsTruncated] = useState(true);
 
+	console.log(course);
+
 	const shortDescription = isTruncated
 		? description.slice(0, maxCharacterCount) + "..."
 		: description;
 
-	const listWord = WORD_SET;
+	// function handleOnClick() {
+	// 	dispatch(setLoading(true));
 
-	function handleOnClick() {
-		dispatch(setLoading(true));
+	// 	setTimeout(
+	// 		() =>
+	// 			history.push({
+	// 				pathname: `${url}${slug}`,
+	// 				// state: {
+	// 				// 	wordsets: list === undefined ? [] : list,
 
-		const list = listWord.filter((item) => {
-			if (item.id === id) {
-				return item.wordsets;
-			}
-		});
-
-		setTimeout(
-			() =>
-				history.push({
-					pathname: `${url}/topic`,
-					state: {
-						wordsets: list === undefined ? [] : list,
-
-						course: course,
-					},
-				}),
-			300
-		);
-	}
+	// 				// 	course: course,
+	// 				// },
+	// 			}),
+	// 		300
+	// 	);
+	// }
 
 	return (
 		<div className="course-card">
 			<div className="course-card__image">
-				<img onClick={handleOnClick} src={image} alt="Oops ... Not found" />
+				<Link to={`${url}/${slug}`}>
+					<img src={image} alt="Oops ... Not found" />
+				</Link>
 			</div>
 			<div className="course-card__content">
 				<div className="course-card__title">
-					<a onClick={handleOnClick}>{title}</a>
+					<Link to={`${url}/${slug}`}>{name}</Link>
 				</div>
 
 				{description.length > maxCharacterCount ? (
@@ -67,7 +64,7 @@ function CourseCard(props) {
 				) : (
 					<div className="course-card__description">{description}</div>
 				)}
-				<div className="course-card__words">{wordCount}</div>
+				<div className="course-card__words">{`${wordNumber} words`}</div>
 			</div>
 		</div>
 	);

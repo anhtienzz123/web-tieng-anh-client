@@ -16,7 +16,7 @@ function Course(props) {
 			<div>
 				<Switch>
 					<Route exact path={url} component={MainPage} />
-					<Route path={`${url}/topic`} component={Topic} />
+					<Route path={`${url}/:slug`} component={Topic} />
 
 					<Route component={NotFoundPage} />
 				</Switch>

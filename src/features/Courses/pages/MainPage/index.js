@@ -5,35 +5,49 @@ import {
 	Divider,
 	Dropdown,
 	Menu,
-	message,
 	Pagination,
 	Radio,
 	Row,
 	Space,
 } from "antd";
-import { COURSE_LIST } from "features/Courses/constants/global";
 import CourseList from "features/Courses/components/CourseList";
-import React, { useState } from "react";
+import { fetchCourses, fetchTopics } from "features/Courses/courseSlice";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "./style.scss";
 
 function MainPage(props) {
 	const [courseSelected, setCourseSelected] = useState("All");
-	const courses = COURSE_LIST;
+	const dispatch = useDispatch();
+	const { courses, topics } = useSelector((state) => state.course);
+	const { data = [], size = 1, pageMax = 1 } = courses;
+	const filterSelected = courseSelected !== "All" ? courseSelected : "";
+
 	function handleOnChange(e) {
 		const courseSelected = e.target.value;
 		setCourseSelected(courseSelected);
-		message.info(courseSelected);
+		courseSelected === "All"
+			? dispatch(fetchCourses({ page: 0 }))
+			: dispatch(fetchCourses({ topicSlug: courseSelected }));
 	}
+	function handleOnPageChange(page) {
+		dispatch(fetchCourses({ topicSlug: filterSelected, page: page - 1 }));
+	}
+
+	useEffect(() => {
+		dispatch(fetchCourses({ page: 0, topicSlug: filterSelected }));
+		dispatch(fetchTopics());
+	}, []);
+
 	const menu = (
 		<Menu>
 			<Menu.Item key="1">
 				<Radio.Group onChange={handleOnChange} defaultValue={courseSelected}>
 					<Space direction="vertical">
 						<Radio value={"All"}>All</Radio>
-						<Radio value={"Communication"}>Communication</Radio>
-						<Radio value={"Specialized"}>Specialized</Radio>
-						<Radio value={"Test preparation"}>Test preparation</Radio>
-						<Radio value={"School"}>School</Radio>
+						{topics.map((topic, index) => (
+							<Radio value={topic.slug}>{topic.name}</Radio>
+						))}
 					</Space>
 				</Radio.Group>
 			</Menu.Item>
@@ -55,11 +69,19 @@ function MainPage(props) {
 
 			<Divider />
 
-			<CourseList courses={courses} />
+			<CourseList courses={data} />
 
-			<Row justify="center">
-				<Pagination total={25} showQuickJumper />
-			</Row>
+			{pageMax > 1 && (
+				<Row justify="center">
+					<Pagination
+						total={pageMax * size}
+						showQuickJumper
+						pageSize={size}
+						onChange={handleOnPageChange}
+						showSizeChanger={false}
+					/>
+				</Row>
+			)}
 		</div>
 	);
 }

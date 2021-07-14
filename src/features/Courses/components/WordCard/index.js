@@ -1,69 +1,28 @@
-import {
-	PlusOutlined,
-	SoundFilled,
-	SoundOutlined,
-	YoutubeOutlined,
-} from "@ant-design/icons";
+import { PlusOutlined, YoutubeOutlined } from "@ant-design/icons";
 import { Button, Space, Tooltip, Typography } from "antd";
+import AudioButton from "components/AudioButton";
 import PropTypes from "prop-types";
-import React, { useState } from "react";
-import { useRouteMatch } from "react-router-dom";
+import React from "react";
 import "./style.scss";
 function WordCard(props) {
-	const { course, word } = props;
+	const { word } = props;
 
-	const [isActive, setIsActive] = useState(false);
-	const { url } = useRouteMatch();
-	const {
-		audioUrl,
-		imageUrl,
-		vocabulary,
-		type,
-		pronounce,
-		definition,
-		example,
-		translate,
-	} = word;
+	const { sound, image, name, type, pronounce, definition, example, mean } =
+		word;
 	const { Title } = Typography;
-
-	function handleSoundClick() {
-		setIsActive(true);
-		const sound = new Audio(audioUrl);
-		sound.play();
-		sound.onended = () => {
-			setIsActive(false);
-		};
-	}
 
 	return (
 		<div className="word-card">
 			<div className="word-card__image">
-				<img src={imageUrl} alt="Oops ... Not found" />
+				<img src={image} alt="Oops ... Not found" />
 			</div>
 			<div className="word-card__content">
 				<div className="header">
 					<div className="header__left">
 						<Title level={2}>
 							<Space>
-								<Tooltip title="Listen">
-									<Button
-										type="link"
-										onClick={handleSoundClick}
-										icon={
-											isActive ? (
-												<SoundFilled
-													style={{ color: "#28a745", fontSize: "24px" }}
-												/>
-											) : (
-												<SoundOutlined
-													style={{ color: "#28a745", fontSize: "24px" }}
-												/>
-											)
-										}
-										size="small"
-									/>
-								</Tooltip>
-								<span>{vocabulary}</span>
+								<AudioButton audioUrl={sound} color={"#28a745"} />
+								<span>{name}</span>
 							</Space>
 						</Title>
 					</div>
@@ -102,9 +61,9 @@ function WordCard(props) {
 
 				<div className="box">
 					<div className="box__title">Translated by Google</div>
-					{translate.length > 0 && (
+					{mean.length > 0 && (
 						<div className="box__detail">
-							<div className="text-box--fat">{translate}</div>
+							<div className="text-box--fat">{mean}</div>
 						</div>
 					)}
 				</div>

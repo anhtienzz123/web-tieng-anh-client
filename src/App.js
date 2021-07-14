@@ -8,7 +8,7 @@ import Home from "features/Home";
 import Login from "features/Login";
 import Me from "features/Me";
 import Translate from "features/Translate";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.css";

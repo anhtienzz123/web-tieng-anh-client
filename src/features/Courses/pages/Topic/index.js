@@ -1,94 +1,75 @@
-import { FileTextOutlined, UpOutlined } from "@ant-design/icons";
-import { Affix, BackTop, Col, Divider, Pagination, Row, Tooltip } from "antd";
-import { setLoading } from "app/globalSlice";
+import { FileTextOutlined } from "@ant-design/icons";
+import { Affix, Col, Divider, Pagination, Row } from "antd";
+import BackToTopButton from "components/BackToTopButton";
 import WordCard from "features/Courses/components/WordCard";
+import {
+	fetchCourseDetail,
+	fetchCourseWords,
+} from "features/Courses/courseSlice";
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import "./style.scss";
 
 function Topic(props) {
-	const location = useLocation();
-	const course = location.state.course;
-	const temp = location.state.wordsets;
-	const words = temp.length > 0 ? temp[0].wordsets : [];
-	const { id, image, title, description, wordCount } = course;
+	const { slug } = useParams();
+	const { courseWords, courseDetail } = useSelector((state) => state.course);
+	const { image, name, description, wordNumber } = courseDetail;
+
+	const { data = [], size = 1, pageMax = 1 } = courseWords;
 
 	const dispatch = useDispatch();
+
+	function handleOnPageChange(page) {
+		dispatch(fetchCourseWords({ courseSlug: slug, page: page - 1 }));
+	}
+
 	useEffect(() => {
-		dispatch(setLoading(false));
+		dispatch(fetchCourseWords({ courseSlug: slug }));
+		dispatch(fetchCourseDetail({ slug }));
 	}, []);
 
 	return (
 		<div id="topic-page">
 			<Row justify="center" className="topic-thumbnail">
-				<img src={image} alt={title} />
+				<img src={image} alt={name} />
 				<div className="topic-thumbnail__overlay">
-					<div className="topic-thumbnail__title">{title}</div>
+					<div className="topic-thumbnail__title">{name}</div>
 					<div className="topic-thumbnail__description">{description}</div>
 					<div className="topic-thumbnail__word-count">
 						<FileTextOutlined />
 						&nbsp;&nbsp;
-						{wordCount}
+						{wordNumber} words
 					</div>
 				</div>
 			</Row>
 
 			<Affix>
 				<Row justify="center" className="pagination-top">
-					<Pagination total={25} showQuickJumper />
+					<Pagination
+						total={pageMax * size}
+						showQuickJumper
+						pageSize={size}
+						onChange={handleOnPageChange}
+						showSizeChanger={false}
+					/>
 				</Row>
 			</Affix>
 
 			<Divider orientation="left" style={{ fontSize: 32 }}>
-				{title}
+				{name}
 			</Divider>
 			<div className="topic-page__content">
 				<Row justify="start" gutter={[36, 24]}>
-					{words.map((word) => (
-						<Col key={words.word} xs={24} sm={24} md={12} lg={12}>
-							<WordCard word={word} />
-						</Col>
-					))}
-					<br />.
-					<br />.
-					<br />.
-					<br />.
-					<br />.
-					<br />.
-					<br />.
-					<br />.
-					<br />.
-					<br />.
-					<br />.
-					<br />.
-					<br />.
-					<br />.
-					<br />.
-					<br />.
-					<br />.
-					<br />.
-					<br />.
-					<br />.
-					<br />.
-					<br />.
-					<br />.
-					<br />.
-					<br />.
-					<br />.
-					<br />.
-					<br />.
-					<br />.
-					<br />.
-					<br />.
-					<Tooltip title="Back to top">
-						<BackTop>
-							<div className="back-top">
-								<UpOutlined />
-							</div>
-						</BackTop>
-					</Tooltip>
+					{courseWords &&
+						Object.keys(courseWords).length !== 0 &&
+						data.map((word, index) => (
+							<Col key={index} xs={24} sm={24} md={12} lg={12}>
+								<WordCard word={word} />
+							</Col>
+						))}
 				</Row>
+				<BackToTopButton />
 			</div>
 		</div>
 	);
