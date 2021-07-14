@@ -3,16 +3,20 @@ import global from "./globalSlice";
 import me from "features/Me/meSlice";
 import login from "features/Login/loginSlice";
 import home from "features/Home/homeSlice";
+import course from "features/Courses/courseSlice";
+import translate from "features/Translate/translateSlice";
 
 const rootReducer = {
-  global,
-  me,
-  login,
-  home,
+	global,
+	me,
+	login,
+	home,
+	course,
+	translate,
 };
 
 const store = configureStore({
-  reducer: rootReducer,
+	reducer: rootReducer,
 });
 
 export default store;
