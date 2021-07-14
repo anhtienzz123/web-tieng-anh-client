@@ -1,5 +1,4 @@
 import { Button } from "antd";
-import { setLoading } from "app/globalSlice";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -29,7 +28,7 @@ function CourseCard(props) {
 	// 	setTimeout(
 	// 		() =>
 	// 			history.push({
-	// 				pathname: `${url}${slug}`,
+	// 				pathname: `${url}/${slug}`,
 	// 				// state: {
 	// 				// 	wordsets: list === undefined ? [] : list,
 

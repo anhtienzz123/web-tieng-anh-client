@@ -6,7 +6,7 @@ import {
 	fetchCourseDetail,
 	fetchCourseWords,
 } from "features/Courses/courseSlice";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import "./style.scss";
@@ -14,17 +14,19 @@ import "./style.scss";
 function Topic(props) {
 	const { slug } = useParams();
 	const { courseWords, courseDetail } = useSelector((state) => state.course);
-	const { image, name, description, wordNumber } = courseDetail;
 
-	const { data = [], size = 1, pageMax = 1 } = courseWords;
+	const { image, name, description, wordNumber } = courseDetail;
+	const { data = [], page = 1, size = 1, pageMax = 1 } = courseWords;
 
 	const dispatch = useDispatch();
 
-	function handleOnPageChange(page) {
+	const handleOnPageChange = (page) => {
+		// window.scrollTo(0, 0);
 		dispatch(fetchCourseWords({ courseSlug: slug, page: page - 1 }));
-	}
+	};
 
 	useEffect(() => {
+		// window.scrollTo(0, 0);
 		dispatch(fetchCourseWords({ courseSlug: slug }));
 		dispatch(fetchCourseDetail({ slug }));
 	}, []);
@@ -52,6 +54,7 @@ function Topic(props) {
 						pageSize={size}
 						onChange={handleOnPageChange}
 						showSizeChanger={false}
+						current={page + 1}
 					/>
 				</Row>
 			</Affix>

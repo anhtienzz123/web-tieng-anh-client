@@ -18,8 +18,6 @@ function MainPage(props) {
 			fetchTranslates({
 				wordToTranslate: value,
 			})
-
-			
 		);
 	};
 

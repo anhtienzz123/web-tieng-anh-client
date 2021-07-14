@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import courseApi from "api/courseApi";
-import { initialCourseDetail } from "./constants/global";
 
 const KEY = "course";
 

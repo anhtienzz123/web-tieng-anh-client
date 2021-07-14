@@ -1,5 +1,4 @@
-import { UpOutlined } from "@ant-design/icons";
-import { BackTop, Col, Row, Tooltip } from "antd";
+import { Col, Row } from "antd";
 import BackToTopButton from "components/BackToTopButton";
 import PropTypes from "prop-types";
 import React from "react";
@@ -20,6 +19,7 @@ function CourseList(props) {
 		</Row>
 	);
 }
+
 CourseList.propTypes = {
 	courses: PropTypes.array,
 };

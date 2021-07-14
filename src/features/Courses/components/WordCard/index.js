@@ -68,8 +68,6 @@ function WordCard(props) {
 					)}
 				</div>
 			</div>
-			{/* </Col>
-			</Row> */}
 		</div>
 	);
 }
@@ -79,18 +77,7 @@ WordCard.propTypes = {
 	maxCharacterCount: PropTypes.number,
 };
 WordCard.defaultProps = {
-	word: {
-		audioUrl: "",
-		imageUrl: "https://cdn.ejoy.io/ea/wordSet/42e.jpg?v=0",
-		vocabulary: "website",
-		type: "noun",
-		pronounce: "/ˈwebˌsɑɪt/",
-		definition:
-			"a place on the Internet with one or more pages of information about a subject",
-		example:
-			"His fans created a website, giving every detail of his private life.",
-		translate: "Trang mạng",
-	},
+	word: {},
 	maxCharacterCount: 140,
 };
 

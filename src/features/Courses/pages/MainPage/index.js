@@ -18,23 +18,28 @@ import "./style.scss";
 
 function MainPage(props) {
 	const [courseSelected, setCourseSelected] = useState("All");
+
 	const dispatch = useDispatch();
 	const { courses, topics } = useSelector((state) => state.course);
-	const { data = [], size = 1, pageMax = 1 } = courses;
+
+	const { data = [], page = 1, size = 1, pageMax = 1 } = courses;
 	const filterSelected = courseSelected !== "All" ? courseSelected : "";
 
-	function handleOnChange(e) {
+	const handleOnChange = (e) => {
 		const courseSelected = e.target.value;
 		setCourseSelected(courseSelected);
 		courseSelected === "All"
 			? dispatch(fetchCourses({ page: 0 }))
 			: dispatch(fetchCourses({ topicSlug: courseSelected }));
-	}
-	function handleOnPageChange(page) {
+	};
+
+	const handleOnPageChange = (page) => {
+		// window.scrollTo(0, 0);
 		dispatch(fetchCourses({ topicSlug: filterSelected, page: page - 1 }));
-	}
+	};
 
 	useEffect(() => {
+		// window.scrollTo(0, 0);
 		dispatch(fetchCourses({ page: 0, topicSlug: filterSelected }));
 		dispatch(fetchTopics());
 	}, []);
@@ -79,6 +84,7 @@ function MainPage(props) {
 						pageSize={size}
 						onChange={handleOnPageChange}
 						showSizeChanger={false}
+						current={page + 1}
 					/>
 				</Row>
 			)}

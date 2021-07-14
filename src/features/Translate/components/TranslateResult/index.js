@@ -2,7 +2,7 @@ import { Result, Space, Tabs, Typography } from "antd";
 import AudioButton from "components/AudioButton";
 import BackToTopButton from "components/BackToTopButton";
 import PropTypes from "prop-types";
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import GeneralResult from "../GeneralResult";
 import RelateResult from "../RelateResult";

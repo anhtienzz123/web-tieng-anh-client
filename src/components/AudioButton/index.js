@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import { Button, Tooltip } from "antd";
 import { SoundFilled, SoundOutlined } from "@ant-design/icons";
+import { Button, Tooltip } from "antd";
+import PropTypes from "prop-types";
+import React, { useState } from "react";
 
 function AudioButton(props) {
 	const { toolTip, audioUrl, color, title, size } = props;
