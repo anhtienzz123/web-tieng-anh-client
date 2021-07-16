@@ -3,7 +3,7 @@ import { Col, Row } from 'antd';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setExamSelected, setScrollId } from 'features/OnlineExam/onlineExamSlice';
+import { setExamSelected, setScrollId, setsubPartSelected } from 'features/OnlineExam/onlineExamSlice';
 import './style.scss';
 
 SubAnswer.propTypes = {
@@ -17,6 +17,9 @@ SubAnswer.defaultProps = {
 
 function SubAnswer(props) {
     const { title, data } = props;
+    const { questions } = useSelector(state => state.exam);
+    const { part3, part4, part6, part7 } = questions;
+
     const dispatch = useDispatch();
 
     function handleOnClick(stt, e) {
@@ -27,7 +30,13 @@ function SubAnswer(props) {
             dispatch(setExamSelected(2));
 
         } else if (stt <= 70) {
+            let subPart = part3.findIndex((element) => {
+                let temp = element.questions.findIndex(e => e.stt == stt);
+                return temp != -1;
+
+            })
             dispatch(setExamSelected(3));
+            dispatch(setsubPartSelected(subPart));
 
         } else if (stt <= 100) {
             dispatch(setExamSelected(4));
@@ -54,7 +63,7 @@ function SubAnswer(props) {
                 {data.map((sub, index) => (
                     <Col span={3} key={index}>
 
-
+                        {/* móc ra subpart */}
                         <a href={`#${sub.stt}`} onClick={(e) => handleOnClick(sub.stt, e)}>
                             <div className='sub_answer--block' >
                                 <div className='sub_answer--status'>

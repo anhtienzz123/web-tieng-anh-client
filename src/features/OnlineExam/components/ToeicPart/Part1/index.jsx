@@ -4,22 +4,23 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import './style.scss';
+
 
 Part1.propTypes = {
-    data: PropTypes.object,
+    data: PropTypes.array,
     onAnswerSheetClick: PropTypes.func,
+    longAudio: PropTypes.string
 };
 
 Part1.defaultProps = {
-    data: {},
+    data: [],
     onAnswerSheetClick: null,
+    longAudio: null
 }
 
 function Part1(props) {
 
-    const { data, onAnswerSheetClick } = props;
-    const { audio, questions } = data;
+    const { data, onAnswerSheetClick, longAudio } = props;
     const { answers, scrollId } = useSelector(state => state.exam);
 
     useEffect(() => {
@@ -52,20 +53,27 @@ function Part1(props) {
                 <Divider />
                 <p>Please refrain from replaying the audio, you can only listen one time when in real exam.</p>
 
+                {longAudio &&
+                    <div className="content_part--audio">
+                        <CustomAudioControl audio={longAudio} />
+                    </div>
+                }
 
-                <div className="content_part--audio">
-                    <CustomAudioControl audio={audio} />
-                </div>
 
                 {
-                    questions.map((question, index) => (
+                    data.map((question, index) => (
 
                         <div className="question" key={index}>
 
                             <Space direction="vertical">
+                                {
+                                        longAudio == null
+                                        ? <CustomAudioControl audio={question.audio} onPlay={false} />
+                                        : ''
+                                }
 
                                 <div className="question--img" id={question.stt}>
-                                    <img src={question.contents} alt="" />
+                                    <img src={question.content} alt="" />
                                 </div>
                                 <p >{question.stt} : Select the answer</p>
 

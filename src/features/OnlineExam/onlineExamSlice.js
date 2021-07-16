@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import image_exam from 'assets/image/toeic_exam.jpg';
 import { answers } from 'constants/ToeicSheet';
 import { test } from 'constants/ToeicQuestion';
+import testExam from 'constants/QuestionTemp';
 const KEY = 'exam';
 const tests = [
 
@@ -79,14 +80,25 @@ const examSlice = createSlice({
         ],
         examSelected: '',
         answers: answers,
-        questions: test,
+        questions: testExam,
         examCheckin: '',
         scrollId: 'top',
+        subPartSelected: 0,
+        part3MaxPage: 12,
+        part4MaxPage: 9,
+        part6MaxPage: 3,
+        part7MaxPage: 14,
+        oldPart: 0
     }
     ,
     reducers: {
         setExamSelected: (state, action) => {
+            let oldPart = state.examSelected;
             state.examSelected = action.payload
+            state.oldPart = oldPart;
+            // if (state.examSelected < oldPart) {
+            //     state.subPartSelected = 0;
+            // }
         },
 
         setExamCheckin: (state, action) => {
@@ -107,6 +119,12 @@ const examSlice = createSlice({
         },
         setAnswerAfterRefresh: (state, action) => {
             state.answers = action.payload;
+        },
+        setMaxPartSelected: (state, action) => {
+            state.maxPartSelected = action.payload;
+        },
+        setsubPartSelected: (state, action) => {
+            state.subPartSelected = action.payload;
         }
     },
     extraReducers: {
@@ -115,5 +133,5 @@ const examSlice = createSlice({
 });
 
 const { reducer, actions } = examSlice;
-export const { setExamSelected, writeAnswerSheet, setScrollId, setExamCheckin, setAnswerAfterRefresh } = actions;
+export const { setExamSelected, writeAnswerSheet, setsubPartSelected, setMaxPartSelected, setScrollId, setExamCheckin, setAnswerAfterRefresh } = actions;
 export default reducer;

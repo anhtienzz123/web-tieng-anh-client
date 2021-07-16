@@ -5,23 +5,27 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 Part2.propTypes = {
-    data: PropTypes.object,
+    data: PropTypes.array,
     onAnswerSheetClick: PropTypes.func,
+    longAudio: PropTypes.string
 };
 Part2.defaultProps = {
-    data: {},
+    data: [],
     onAnswerSheetClick: null,
+    longAudio: null
 }
 
+
 function Part2(props) {
-    const { data, onAnswerSheetClick } = props;
-    const { audio, questions } = data;
+    const { data, onAnswerSheetClick, longAudio } = props;
     const { answers, scrollId } = useSelector(state => state.exam);
+
+
 
     useEffect(() => {
         console.log('effect', scrollId);
         document.getElementById(`${scrollId}`).scrollIntoView();
-    }, [scrollId])
+    }, [scrollId]);
 
     function handleSelected(question, e) {
         const answer = {
@@ -33,6 +37,8 @@ function Part2(props) {
         }
 
     }
+
+    console.log('data part 1', data);
     return (
         <div id='top'>
             <Space direction="vertical" size='large' style={{ width: '100%' }} >
@@ -40,22 +46,26 @@ function Part2(props) {
                 <Divider />
                 <p>Please refrain from replaying the audio, you can only listen one time when in real exam.</p>
 
-                <div className="content_part--audio">
-                    <CustomAudioControl audio={audio} />
-                </div>
+                {
+                    longAudio != null
+                        ? <CustomAudioControl audio={longAudio} />
+                        : ''
+                }
 
 
                 {
-                    questions.map((question, index) => (
+                    data.map((question, index) => (
 
-                        <div className="question" key={index}>
+                        <div className="question" key={index} id={question.stt} >
 
                             <Space direction="vertical">
+                                {
+                                    longAudio == null
+                                        ? <CustomAudioControl audio={question.audio} onPlay={false} />
+                                        : ''
+                                }
 
-                                <div className="question--img" id={question.stt}>
-                                    <img src={question.contents} alt="" />
-                                </div>
-                                <p >{question.stt} : Select the answer</p>
+                                <p  >{question.stt} : Select the answer</p>
 
                                 <Radio.Group onChange={(e) => handleSelected(question.stt, e)} value={answers[question.stt - 1].selected}>
 
