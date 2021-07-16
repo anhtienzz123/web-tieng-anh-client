@@ -688,10 +688,657 @@ const test = {
 
     ],
     part4: [
+        {
+            paragraph: audio,
+            image: "",
+
+            questions: [
+
+                {
+                    stt: 71,
+                    content: 'Who is Mr. Benson?',
+                    a: 'An assistant',
+                    b: 'A client',
+                    c: ' A project manager',
+                    d: 'A shipping coordinator'
+
+                },
+
+                {
+                    stt: 72,
+                    content: 'Who is Mr. Benson?',
+                    a: 'An assistant',
+                    b: 'A client',
+                    c: ' A project manager',
+                    d: 'A shipping coordinator'
+
+                }
+                ,
+                {
+                    stt: 73,
+                    content: 'Who is Mr. Benson?',
+                    a: 'An assistant',
+                    b: 'A client',
+                    c: ' A project manager',
+                    d: 'A shipping coordinator'
+
+                }
+
+            ]
+        },
+        {
+            paragraph: audio,
+            image: "",
+
+            questions: [
+
+                {
+                    stt: 74,
+                    content: 'Who is Mr. Benson?',
+                    a: 'An assistant',
+                    b: 'A client',
+                    c: ' A project manager',
+                    d: 'A shipping coordinator'
+
+                },
+
+                {
+                    stt: 75,
+                    content: 'Who is Mr. Benson?',
+                    a: 'An assistant',
+                    b: 'A client',
+                    c: ' A project manager',
+                    d: 'A shipping coordinator'
+
+                }
+                ,
+                {
+                    stt: 76,
+                    content: 'Who is Mr. Benson?',
+                    a: 'An assistant',
+                    b: 'A client',
+                    c: ' A project manager',
+                    d: 'A shipping coordinator'
+
+                }
+
+            ]
+        }
+        ,
+        {
+            paragraph: audio,
+            image: '',
+
+            questions: [
+
+                {
+                    stt: 77,
+                    content: 'Who is Mr. Benson?',
+                    a: 'An assistant',
+                    b: 'A client',
+                    c: ' A project manager',
+                    d: 'A shipping coordinator'
+
+                },
+
+                {
+                    stt: 78,
+                    content: 'Who is Mr. Benson?',
+                    a: 'An assistant',
+                    b: 'A client',
+                    c: ' A project manager',
+                    d: 'A shipping coordinator'
+
+                }
+                ,
+                {
+                    stt: 79,
+                    content: 'Who is Mr. Benson?',
+                    a: 'An assistant',
+                    b: 'A client',
+                    c: ' A project manager',
+                    d: 'A shipping coordinator'
+
+                }
+
+            ]
+        }
+        ,
+        {
+            paragraph: audio,
+            image: '',
+
+            questions: [
+
+                {
+                    stt: 80,
+                    content: 'Who is Mr. Benson?',
+                    a: 'An assistant',
+                    b: 'A client',
+                    c: ' A project manager',
+                    d: 'A shipping coordinator'
+
+                },
+
+                {
+                    stt: 81,
+                    content: 'Who is Mr. Benson?',
+                    a: 'An assistant',
+                    b: 'A client',
+                    c: ' A project manager',
+                    d: 'A shipping coordinator'
+
+                }
+                ,
+                {
+                    stt: 82,
+                    content: 'Who is Mr. Benson?',
+                    a: 'An assistant',
+                    b: 'A client',
+                    c: ' A project manager',
+                    d: 'A shipping coordinator'
+
+                }
+
+            ]
+        }
+        ,
+        {
+            paragraph: audio,
+            image: '',
+
+            questions: [
+
+                {
+                    stt: 83,
+                    content: 'Who is Mr. Benson?',
+                    a: 'An assistant',
+                    b: 'A client',
+                    c: ' A project manager',
+                    d: 'A shipping coordinator'
+
+                },
+
+                {
+                    stt: 84,
+                    content: 'Who is Mr. Benson?',
+                    a: 'An assistant',
+                    b: 'A client',
+                    c: ' A project manager',
+                    d: 'A shipping coordinator'
+
+                }
+                ,
+                {
+                    stt: 85,
+                    content: 'Who is Mr. Benson?',
+                    a: 'An assistant',
+                    b: 'A client',
+                    c: ' A project manager',
+                    d: 'A shipping coordinator'
+
+                }
+
+            ]
+        }
+        ,
+        {
+            paragraph: audio,
+            image: '',
+
+            questions: [
+
+                {
+                    stt: 86,
+                    content: 'Who is Mr. Benson?',
+                    a: 'An assistant',
+                    b: 'A client',
+                    c: ' A project manager',
+                    d: 'A shipping coordinator'
+
+                },
+
+                {
+                    stt: 87,
+                    content: 'Who is Mr. Benson?',
+                    a: 'An assistant',
+                    b: 'A client',
+                    c: ' A project manager',
+                    d: 'A shipping coordinator'
+
+                }
+                ,
+                {
+                    stt: 88,
+                    content: 'Who is Mr. Benson?',
+                    a: 'An assistant',
+                    b: 'A client',
+                    c: ' A project manager',
+                    d: 'A shipping coordinator'
+
+                }
+
+            ]
+        }
+        ,
+        {
+            paragraph: audio,
+            image: '',
+
+            questions: [
+
+                {
+                    stt: 89,
+                    content: 'Who is Mr. Benson?',
+                    a: 'An assistant',
+                    b: 'A client',
+                    c: ' A project manager',
+                    d: 'A shipping coordinator'
+
+                },
+
+                {
+                    stt: 90,
+                    content: 'Who is Mr. Benson?',
+                    a: 'An assistant',
+                    b: 'A client',
+                    c: ' A project manager',
+                    d: 'A shipping coordinator'
+
+                }
+                ,
+                {
+                    stt: 91,
+                    content: 'Who is Mr. Benson?',
+                    a: 'An assistant',
+                    b: 'A client',
+                    c: ' A project manager',
+                    d: 'A shipping coordinator'
+
+                }
+
+            ]
+        }
+        ,
+        {
+            paragraph: audio,
+            image: imagePart34,
+
+            questions: [
+
+                {
+                    stt: 92,
+                    content: 'Who is Mr. Benson?',
+                    a: 'An assistant',
+                    b: 'A client',
+                    c: ' A project manager',
+                    d: 'A shipping coordinator'
+
+                },
+
+                {
+                    stt: 93,
+                    content: 'Who is Mr. Benson?',
+                    a: 'An assistant',
+                    b: 'A client',
+                    c: ' A project manager',
+                    d: 'A shipping coordinator'
+
+                }
+                ,
+                {
+                    stt: 94,
+                    content: 'Who is Mr. Benson?',
+                    a: 'An assistant',
+                    b: 'A client',
+                    c: ' A project manager',
+                    d: 'A shipping coordinator'
+
+                }
+
+            ]
+        }
+        ,
+        {
+            paragraph: audio,
+            image: imagePart34,
+
+            questions: [
+
+                {
+                    stt: 96,
+                    content: 'Who is Mr. Benson?',
+                    a: 'An assistant',
+                    b: 'A client',
+                    c: ' A project manager',
+                    d: 'A shipping coordinator'
+
+                },
+
+                {
+                    stt: 96,
+                    content: 'Who is Mr. Benson?',
+                    a: 'An assistant',
+                    b: 'A client',
+                    c: ' A project manager',
+                    d: 'A shipping coordinator'
+
+                }
+                ,
+                {
+                    stt: 97,
+                    content: 'Who is Mr. Benson?',
+                    a: 'An assistant',
+                    b: 'A client',
+                    c: ' A project manager',
+                    d: 'A shipping coordinator'
+
+                }
+
+            ]
+        }
+        ,
+        {
+            paragraph: audio,
+            image: imagePart34,
+
+            questions: [
+
+                {
+                    stt: 98,
+                    content: 'Who is Mr. Benson?',
+                    a: 'An assistant',
+                    b: 'A client',
+                    c: ' A project manager',
+                    d: 'A shipping coordinator'
+
+                },
+
+                {
+                    stt: 99,
+                    content: 'Who is Mr. Benson?',
+                    a: 'An assistant',
+                    b: 'A client',
+                    c: ' A project manager',
+                    d: 'A shipping coordinator'
+
+                }
+                ,
+                {
+                    stt: 100,
+                    content: 'Who is Mr. Benson?',
+                    a: 'An assistant',
+                    b: 'A client',
+                    c: ' A project manager',
+                    d: 'A shipping coordinator'
+
+                }
+
+            ]
+        }
+
+
+
 
     ]
     ,
     part5: [
+        {
+            stt: 101,
+            content: 'The event planner determined that Tuesday’s forum will require ..... chairs.',
+            a: 'addition',
+            b: 'additions',
+            c: 'additional',
+            d: 'additionally',
+        },
+
+        {
+            stt: 102,
+            content: 'Beginning on August 1, patients will be asked to complete a short survey ..... each visit.',
+            a: 'inside',
+            b: 'after',
+            c: 'where',
+            d: 'whenever',
+        },
+        {
+            stt: 103,
+            content: 'The event planner determined that Tuesday’s forum will require ..... chairs.',
+            a: 'addition',
+            b: 'additions',
+            c: 'additional',
+            d: 'additionally',
+        },
+
+        {
+            stt: 104,
+            content: 'Beginning on August 1, patients will be asked to complete a short survey ..... each visit.',
+            a: 'inside',
+            b: 'after',
+            c: 'where',
+            d: 'whenever',
+        },
+        {
+            stt: 105,
+            content: 'The event planner determined that Tuesday’s forum will require ..... chairs.',
+            a: 'addition',
+            b: 'additions',
+            c: 'additional',
+            d: 'additionally',
+        },
+
+        {
+            stt: 106,
+            content: 'Beginning on August 1, patients will be asked to complete a short survey ..... each visit.',
+            a: 'inside',
+            b: 'after',
+            c: 'where',
+            d: 'whenever',
+        },
+        {
+            stt: 107,
+            content: 'The event planner determined that Tuesday’s forum will require ..... chairs.',
+            a: 'addition',
+            b: 'additions',
+            c: 'additional',
+            d: 'additionally',
+        },
+
+        {
+            stt: 108,
+            content: 'Beginning on August 1, patients will be asked to complete a short survey ..... each visit.',
+            a: 'inside',
+            b: 'after',
+            c: 'where',
+            d: 'whenever',
+        },
+        {
+            stt: 109,
+            content: 'The event planner determined that Tuesday’s forum will require ..... chairs.',
+            a: 'addition',
+            b: 'additions',
+            c: 'additional',
+            d: 'additionally',
+        },
+
+        {
+            stt: 110,
+            content: 'Beginning on August 1, patients will be asked to complete a short survey ..... each visit.',
+            a: 'inside',
+            b: 'after',
+            c: 'where',
+            d: 'whenever',
+        },
+        {
+            stt: 111,
+            content: 'The event planner determined that Tuesday’s forum will require ..... chairs.',
+            a: 'addition',
+            b: 'additions',
+            c: 'additional',
+            d: 'additionally',
+        },
+
+        {
+            stt: 112,
+            content: 'Beginning on August 1, patients will be asked to complete a short survey ..... each visit.',
+            a: 'inside',
+            b: 'after',
+            c: 'where',
+            d: 'whenever',
+        },
+        {
+            stt: 113,
+            content: 'The event planner determined that Tuesday’s forum will require ..... chairs.',
+            a: 'addition',
+            b: 'additions',
+            c: 'additional',
+            d: 'additionally',
+        },
+
+        {
+            stt: 114,
+            content: 'Beginning on August 1, patients will be asked to complete a short survey ..... each visit.',
+            a: 'inside',
+            b: 'after',
+            c: 'where',
+            d: 'whenever',
+        },
+        {
+            stt: 115,
+            content: 'The event planner determined that Tuesday’s forum will require ..... chairs.',
+            a: 'addition',
+            b: 'additions',
+            c: 'additional',
+            d: 'additionally',
+        },
+
+        {
+            stt: 116,
+            content: 'Beginning on August 1, patients will be asked to complete a short survey ..... each visit.',
+            a: 'inside',
+            b: 'after',
+            c: 'where',
+            d: 'whenever',
+        },
+        {
+            stt: 117,
+            content: 'The event planner determined that Tuesday’s forum will require ..... chairs.',
+            a: 'addition',
+            b: 'additions',
+            c: 'additional',
+            d: 'additionally',
+        },
+
+        {
+            stt: 118,
+            content: 'Beginning on August 1, patients will be asked to complete a short survey ..... each visit.',
+            a: 'inside',
+            b: 'after',
+            c: 'where',
+            d: 'whenever',
+        },
+        {
+            stt: 119,
+            content: 'The event planner determined that Tuesday’s forum will require ..... chairs.',
+            a: 'addition',
+            b: 'additions',
+            c: 'additional',
+            d: 'additionally',
+        },
+
+        {
+            stt: 120,
+            content: 'Beginning on August 1, patients will be asked to complete a short survey ..... each visit.',
+            a: 'inside',
+            b: 'after',
+            c: 'where',
+            d: 'whenever',
+        },
+        {
+            stt: 121,
+            content: 'The event planner determined that Tuesday’s forum will require ..... chairs.',
+            a: 'addition',
+            b: 'additions',
+            c: 'additional',
+            d: 'additionally',
+        },
+
+        {
+            stt: 122,
+            content: 'Beginning on August 1, patients will be asked to complete a short survey ..... each visit.',
+            a: 'inside',
+            b: 'after',
+            c: 'where',
+            d: 'whenever',
+        },
+        {
+            stt: 123,
+            content: 'The event planner determined that Tuesday’s forum will require ..... chairs.',
+            a: 'addition',
+            b: 'additions',
+            c: 'additional',
+            d: 'additionally',
+        },
+
+        {
+            stt: 124,
+            content: 'Beginning on August 1, patients will be asked to complete a short survey ..... each visit.',
+            a: 'inside',
+            b: 'after',
+            c: 'where',
+            d: 'whenever',
+        },
+        {
+            stt: 125,
+            content: 'The event planner determined that Tuesday’s forum will require ..... chairs.',
+            a: 'addition',
+            b: 'additions',
+            c: 'additional',
+            d: 'additionally',
+        },
+
+        {
+            stt: 126,
+            content: 'Beginning on August 1, patients will be asked to complete a short survey ..... each visit.',
+            a: 'inside',
+            b: 'after',
+            c: 'where',
+            d: 'whenever',
+        },
+        {
+            stt: 127,
+            content: 'Beginning on August 1, patients will be asked to complete a short survey ..... each visit.',
+            a: 'inside',
+            b: 'after',
+            c: 'where',
+            d: 'whenever',
+        },
+        {
+            stt: 128,
+            content: 'The event planner determined that Tuesday’s forum will require ..... chairs.',
+            a: 'addition',
+            b: 'additions',
+            c: 'additional',
+            d: 'additionally',
+        },
+
+        {
+            stt: 129,
+            content: 'Beginning on August 1, patients will be asked to complete a short survey ..... each visit.',
+            a: 'inside',
+            b: 'after',
+            c: 'where',
+            d: 'whenever',
+        },
+        {
+            stt: 130,
+            content: 'The event planner determined that Tuesday’s forum will require ..... chairs.',
+            a: 'addition',
+            b: 'additions',
+            c: 'additional',
+            d: 'additionally',
+        }
+
+
 
     ],
     part6: [

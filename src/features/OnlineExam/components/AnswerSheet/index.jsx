@@ -1,16 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Collapse, Affix } from 'antd';
 import { ReadOutlined, SoundOutlined } from '@ant-design/icons';
-import { useSelector } from 'react-redux';
-import { useState } from 'react';
-import SubAnswer from 'features/OnlineExam/components/SubAnswer';
+import { Affix, Collapse } from 'antd';
 import { titlEachPart } from 'constants/ToeicSheet';
-import useWindowUnloadEffect from 'utils/useWindowUnloadEffect';
-import { useEffect, useRef } from 'react';
-import { useDispatch } from 'react-redux';
-import { setAnswerAfterRefresh } from 'features/OnlineExam/onlineExamSlice';
+import SubAnswer from 'features/OnlineExam/components/SubAnswer';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import useLoadDataAfterRefresh from 'utils/useLoadDataAfterRefresh';
+import useWindowUnloadEffect from 'utils/useWindowUnloadEffect';
 
 AnswerSheet.propTypes = {
 
@@ -21,6 +16,17 @@ function AnswerSheet(props) {
     useLoadDataAfterRefresh();
     const [expandIconPosition, setExpandIconPosition] = useState('left');
     const { Panel } = Collapse;
+    const { examSelected } = useSelector(state => state.exam);
+    const [activeKey, setActiveKey] = useState(examSelected.toString());
+    useEffect(() => {
+        setActiveKey(examSelected.toString())
+    }, [examSelected])
+
+
+
+
+
+
 
     const { answers } = useSelector(state => state.exam);
     const answers_part1 = answers.filter(answer => answer.stt <= 6);
@@ -40,14 +46,15 @@ function AnswerSheet(props) {
 
 
     function callback(key) {
-        console.log(key);
+        console.log(key)
+        setActiveKey(key);
     }
 
 
     return (
         <div>
             <Affix offsetTop={60} >
-                <Collapse accordion defaultActiveKey={['1']} onChange={callback} expandIconPosition={expandIconPosition} >
+                <Collapse accordion activeKey={activeKey} onChange={callback} expandIconPosition={expandIconPosition} >
 
                     <Panel header="Part 1" key="1" extra={<SoundOutlined />}>
                         <SubAnswer title={titlEachPart.PART1} data={answers_part1} />

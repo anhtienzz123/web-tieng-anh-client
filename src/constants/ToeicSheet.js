@@ -438,7 +438,7 @@ const answers = [
         status: '',
     },
     {
-        stt: 91,
+        stt: 90,
         selected: '',
         status: '',
     }, {

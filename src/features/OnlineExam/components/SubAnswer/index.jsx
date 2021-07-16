@@ -39,8 +39,13 @@ function SubAnswer(props) {
             dispatch(setsubPartSelected(subPart));
 
         } else if (stt <= 100) {
-            dispatch(setExamSelected(4));
+            let subPart = part4.findIndex((element) => {
+                let temp = element.questions.findIndex(e => e.stt == stt);
+                return temp != -1;
 
+            })
+            dispatch(setExamSelected(4));
+            dispatch(setsubPartSelected(subPart));
         } else if (stt <= 130) {
             dispatch(setExamSelected(5));
 

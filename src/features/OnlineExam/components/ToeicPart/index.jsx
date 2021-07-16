@@ -29,7 +29,7 @@ function ToeicPart(props) {
     console.log('Selected - exam: ', examSelected);
 
     if (examSelected < 3) {
-        
+
     }
 
     function handlePreviousClick() {
@@ -44,17 +44,21 @@ function ToeicPart(props) {
             dispatch(setScrollId('top'));
             if (examSelected == 4) {
                 dispatch(setsubPartSelected(part3MaxPage));
+                dispatch(setScrollId('top'));
             }
             if (examSelected == 5) {
                 dispatch(setsubPartSelected(part4MaxPage));
+                dispatch(setScrollId('top'));
             }
             if (examSelected == 7) {
                 dispatch(setsubPartSelected(part6MaxPage));
+                dispatch(setScrollId('top'));
             }
             return;
         }
 
         dispatch(setsubPartSelected(subPartSelected - 1));
+        dispatch(setScrollId('top'));
 
 
 
@@ -101,9 +105,9 @@ function ToeicPart(props) {
             case 3:
                 return <Part3 data={part3} longAudio={part3Audio} onAnswerSheetClick={handleSelected} />;
             case 4:
-                return <Part4 data={part4} />;
+                return <Part4 data={part4} longAudio={part4Audio} onAnswerSheetClick={handleSelected} />;
             case 5:
-                return <Part5 data={part5} />;
+                return <Part5 data={part5} onAnswerSheetClick={handleSelected} />;
             case 6:
                 return <Part6 data={part6} />;
             case 7:

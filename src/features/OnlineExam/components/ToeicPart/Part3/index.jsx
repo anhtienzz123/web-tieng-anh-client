@@ -1,10 +1,9 @@
-import React from 'react';
+import { setMaxPartSelected } from 'features/OnlineExam/onlineExamSlice';
 import PropTypes from 'prop-types';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import LongPart from '../LongPart';
 import ShortPart from '../ShortPart';
-import { setMaxPartSelected } from 'features/OnlineExam/onlineExamSlice';
-import { useEffect } from 'react';
 
 Part3.propTypes = {
     data: PropTypes.array,
