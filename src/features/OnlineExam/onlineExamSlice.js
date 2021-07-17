@@ -108,7 +108,7 @@ const examSlice = createSlice({
             const { question, selected } = action.payload;
 
             state.answers.map(answer => {
-                if (answer.stt == question) {
+                if (answer.stt === question) {
                     answer.selected = selected;
                     answer.status = 'selected';
                 }
@@ -121,19 +121,19 @@ const examSlice = createSlice({
             state.answers = action.payload;
         },
         setMaxPartSelected: (state, action) => {
-            if (action.payload.name == 'part3') {
+            if (action.payload.name === 'part3') {
                 state.part3MaxPage = action.payload.amount;
             }
 
-            if (action.payload.name == 'part4') {
+            if (action.payload.name === 'part4') {
                 state.part4MaxPage = action.payload.amount;
             }
 
-            if (action.payload.name == 'part6') {
+            if (action.payload.name === 'part6') {
                 state.part6MaxPage = action.payload.amount;
             }
 
-            if (action.payload.name == 'part7') {
+            if (action.payload.name === 'part7') {
                 state.part7MaxPage = action.payload.amount;
             }
 

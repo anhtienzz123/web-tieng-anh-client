@@ -31,8 +31,8 @@ function SubAnswer(props) {
 
         } else if (stt <= 70) {
             let subPart = part3.findIndex((element) => {
-                let temp = element.questions.findIndex(e => e.stt == stt);
-                return temp != -1;
+                let temp = element.questions.findIndex(e => e.stt === stt);
+                return temp !== -1;
 
             })
             dispatch(setExamSelected(3));
@@ -40,8 +40,8 @@ function SubAnswer(props) {
 
         } else if (stt <= 100) {
             let subPart = part4.findIndex((element) => {
-                let temp = element.questions.findIndex(e => e.stt == stt);
-                return temp != -1;
+                let temp = element.questions.findIndex(e => e.stt === stt);
+                return temp !== -1;
 
             })
             dispatch(setExamSelected(4));
@@ -51,8 +51,8 @@ function SubAnswer(props) {
 
         } else if (stt <= 146) {
             let subPart = part6.findIndex((element) => {
-                let temp = element.questions.findIndex(e => e.stt == stt);
-                return temp != -1;
+                let temp = element.questions.findIndex(e => e.stt === stt);
+                return temp !== -1;
 
             })
             dispatch(setExamSelected(6));
@@ -60,8 +60,8 @@ function SubAnswer(props) {
 
         } else {
             let subPart = part7.findIndex((element) => {
-                let temp = element.questions.findIndex(e => e.stt == stt);
-                return temp != -1;
+                let temp = element.questions.findIndex(e => e.stt === stt);
+                return temp !== -1;
 
             })
             dispatch(setExamSelected(7));
@@ -84,8 +84,8 @@ function SubAnswer(props) {
                         <a href={`#${sub.stt}`} onClick={(e) => handleOnClick(sub.stt, e)}>
                             <div className='sub_answer--block' >
                                 <div className='sub_answer--status'>
-                                    {sub.status == 'selected' && <CheckSquareTwoTone />}
-                                    {sub.status == 'yet' && <CloseSquareTwoTone twoToneColor="#eb2f96" />}
+                                    {sub.status === 'selected' && <CheckSquareTwoTone />}
+                                    {sub.status === 'yet' && <CloseSquareTwoTone twoToneColor="#eb2f96" />}
                                 </div>
                                 {sub.stt}
                             </div>

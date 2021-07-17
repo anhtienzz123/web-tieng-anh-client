@@ -36,24 +36,24 @@ function ToeicPart(props) {
 
 
     function handlePreviousClick() {
-        if (examSelected == 2) {
+        if (examSelected === 2) {
             dispatch(setExamSelected(examSelected - 1));
             dispatch(setScrollId('top'));
             return;
         }
 
-        if (subPartSelected == 0) {
+        if (subPartSelected === 0) {
             dispatch(setExamSelected(examSelected - 1));
             dispatch(setScrollId('top'));
-            if (examSelected == 4) {
+            if (examSelected === 4) {
                 dispatch(setsubPartSelected(part3MaxPage));
                 dispatch(setScrollId('top'));
             }
-            if (examSelected == 5) {
+            if (examSelected === 5) {
                 dispatch(setsubPartSelected(part4MaxPage));
                 dispatch(setScrollId('top'));
             }
-            if (examSelected == 7) {
+            if (examSelected === 7) {
                 dispatch(setsubPartSelected(part6MaxPage));
                 dispatch(setScrollId('top'));
             }
@@ -68,7 +68,7 @@ function ToeicPart(props) {
 
     }
     function handleNextClick() {
-        if (examSelected == 1 || examSelected == 2 || examSelected == 5) {
+        if (examSelected === 1 || examSelected === 2 || examSelected === 5) {
             console.log("Next");
             dispatch(setExamSelected(examSelected + 1));
             dispatch(setsubPartSelected(0));
@@ -76,10 +76,10 @@ function ToeicPart(props) {
             return;
 
         }
-        if ((examSelected == 3 && subPartSelected == part3MaxPage) ||
-            (examSelected == 4 && subPartSelected == part4MaxPage) ||
-            (examSelected == 6 && subPartSelected == part6MaxPage) ||
-            (examSelected == 7 && subPartSelected == part7MaxPage)
+        if ((examSelected === 3 && subPartSelected === part3MaxPage) ||
+            (examSelected === 4 && subPartSelected === part4MaxPage) ||
+            (examSelected === 6 && subPartSelected === part6MaxPage) ||
+            (examSelected === 7 && subPartSelected === part7MaxPage)
 
         ) {
 
