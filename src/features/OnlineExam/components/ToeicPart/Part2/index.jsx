@@ -65,7 +65,7 @@ function Part2(props) {
                                         : ''
                                 }
 
-                                <p  >{question.stt} : Select the answer</p>
+                                <p className='title_question' >{question.stt} : Select the answer</p>
 
                                 <Radio.Group onChange={(e) => handleSelected(question.stt, e)} value={answers[question.stt - 1].selected}>
 

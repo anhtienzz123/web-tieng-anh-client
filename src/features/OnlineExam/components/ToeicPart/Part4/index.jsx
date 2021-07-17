@@ -9,21 +9,25 @@ import ShortPart from '../ShortPart';
 Part4.propTypes = {
     data: PropTypes.array,
     onAnswerSheetClick: PropTypes.func,
-    longAudio: PropTypes.string
+    longAudio: PropTypes.string,
+    name: PropTypes.string,
 };
 
 Part4.defaultProps = {
     data: [],
     onAnswerSheetClick: null,
-    longAudio: null
+    longAudio: null,
+    name: ''
 }
 
 function Part4(props) {
-    const { data, onAnswerSheetClick, longAudio } = props;
+    const { data, onAnswerSheetClick, longAudio, name } = props;
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(setMaxPartSelected(data.length - 1));
+        const object = { amount: data.length - 1, name: name };
+
+        dispatch(setMaxPartSelected(object));
         return () => {
         };
     }, []);

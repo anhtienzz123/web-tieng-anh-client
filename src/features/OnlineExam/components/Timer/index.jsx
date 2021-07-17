@@ -79,7 +79,7 @@ function Timer(props) {
                     </Col>
                     <Col span={4}>
                         <Button size='large' block>
-                            <b>SUBMIT</b>
+                            <b>Checkout</b>
                         </Button>
                     </Col>
                 </Row>

@@ -1342,9 +1342,873 @@ const test = {
 
     ],
     part6: [
+        {
+            paragraph: "Philadelphia's PH11—TV invites you to download our new traffic app for your mobile device. The app (1).......... the station's traffic coverage. Use it to get traffic news if you are away from your television and are unable to watch our traffic reports. (2)........... Plus, you can program your daily commute into the app to receive personalized alerts (3).......... on your mobile device when any traffic—related event occurs along your route. Avoid traffic delays by downloading the PH11—TV traffic app today, (4).......... tune in to our live broadcast beginning at 5:00 A.M. and 4:00 P.M. daily.",
+            image: '',
+
+            questions: [
+
+                {
+                    stt: 131,
+                    content: '__(1)__',
+                    a: 'displaces',
+                    b: 'observes',
+                    c: 'commands',
+                    d: 'supplements'
+
+                },
+
+                {
+                    stt: 132,
+                    content: '__(2)__',
+                    a: 'Our city is substantial in size.',
+                    b: 'Text messages are subject to servicefees.',
+                    c: 'We send our newscasters to all areas of the city.',
+                    d: 'The app features frequent updates'
+
+                }
+                ,
+                {
+                    stt: 133,
+                    content: '__(3)__',
+                    a: 'direction',
+                    b: 'directly',
+                    c: 'directing',
+                    d: 'directs'
+
+                },
+                {
+                    stt: 134,
+                    content: '__(4)__',
+                    a: 'or',
+                    b: 'well',
+                    c: 'quick',
+                    d: 'only'
+
+                }
+
+            ]
+        },
+        {
+            paragraph: "Philadelphia's PH11—TV invites you to download our new traffic app for your mobile device. The app (1).......... the station's traffic coverage. Use it to get traffic news if you are away from your television and are unable to watch our traffic reports. (2)........... Plus, you can program your daily commute into the app to receive personalized alerts (3).......... on your mobile device when any traffic—related event occurs along your route. Avoid traffic delays by downloading the PH11—TV traffic app today, (4).......... tune in to our live broadcast beginning at 5:00 A.M. and 4:00 P.M. daily.",
+            image: '',
+
+            questions: [
+
+                {
+                    stt: 135,
+                    content: '__(1)__',
+                    a: 'displaces',
+                    b: 'observes',
+                    c: 'commands',
+                    d: 'supplements'
+
+                },
+
+                {
+                    stt: 136,
+                    content: '__(2)__',
+                    a: 'Our city is substantial in size.',
+                    b: 'Text messages are subject to servicefees.',
+                    c: 'We send our newscasters to all areas of the city.',
+                    d: 'The app features frequent updates'
+
+                }
+                ,
+                {
+                    stt: 137,
+                    content: '__(3)__',
+                    a: 'direction',
+                    b: 'directly',
+                    c: 'directing',
+                    d: 'directs'
+
+                },
+                {
+                    stt: 138,
+                    content: '__(4)__',
+                    a: 'or',
+                    b: 'well',
+                    c: 'quick',
+                    d: 'only'
+
+                }
+
+            ]
+        },
+        {
+            paragraph: "Philadelphia's PH11—TV invites you to download our new traffic app for your mobile device. The app (1).......... the station's traffic coverage. Use it to get traffic news if you are away from your television and are unable to watch our traffic reports. (2)........... Plus, you can program your daily commute into the app to receive personalized alerts (3).......... on your mobile device when any traffic—related event occurs along your route. Avoid traffic delays by downloading the PH11—TV traffic app today, (4).......... tune in to our live broadcast beginning at 5:00 A.M. and 4:00 P.M. daily.",
+            image: imagePart34,
+
+            questions: [
+
+                {
+                    stt: 139,
+                    content: '__(1)__',
+                    a: 'displaces',
+                    b: 'observes',
+                    c: 'commands',
+                    d: 'supplements'
+
+                },
+
+                {
+                    stt: 140,
+                    content: '__(2)__',
+                    a: 'Our city is substantial in size.',
+                    b: 'Text messages are subject to servicefees.',
+                    c: 'We send our newscasters to all areas of the city.',
+                    d: 'The app features frequent updates'
+
+                }
+                ,
+                {
+                    stt: 141,
+                    content: '__(3)__',
+                    a: 'direction',
+                    b: 'directly',
+                    c: 'directing',
+                    d: 'directs'
+
+                },
+                {
+                    stt: 142,
+                    content: '__(4)__',
+                    a: 'or',
+                    b: 'well',
+                    c: 'quick',
+                    d: 'only'
+
+                }
+
+            ]
+        },
+        {
+            paragraph: "Philadelphia's PH11—TV invites you to download our new traffic app for your mobile device. The app (1).......... the station's traffic coverage. Use it to get traffic news if you are away from your television and are unable to watch our traffic reports. (2)........... Plus, you can program your daily commute into the app to receive personalized alerts (3).......... on your mobile device when any traffic—related event occurs along your route. Avoid traffic delays by downloading the PH11—TV traffic app today, (4).......... tune in to our live broadcast beginning at 5:00 A.M. and 4:00 P.M. daily.",
+            image: imagePart34,
+
+            questions: [
+
+                {
+                    stt: 143,
+                    content: '__(1)__',
+                    a: 'displaces',
+                    b: 'observes',
+                    c: 'commands',
+                    d: 'supplements'
+
+                },
+
+                {
+                    stt: 144,
+                    content: '__(2)__',
+                    a: 'Our city is substantial in size.',
+                    b: 'Text messages are subject to servicefees.',
+                    c: 'We send our newscasters to all areas of the city.',
+                    d: 'The app features frequent updates'
+
+                }
+                ,
+                {
+                    stt: 145,
+                    content: '__(3)__',
+                    a: 'direction',
+                    b: 'directly',
+                    c: 'directing',
+                    d: 'directs'
+
+                },
+                {
+                    stt: 146,
+                    content: '__(4)__',
+                    a: 'or',
+                    b: 'well',
+                    c: 'quick',
+                    d: 'only'
+
+                }
+
+            ]
+        }
 
     ],
     part7: [
+        {
+            paragraph: "",
+            image: imagePart34,
+
+            questions: [
+
+                {
+                    stt: 147,
+                    content: 'What is true about the ticket?',
+                    a: 'displaces',
+                    b: 'observes',
+                    c: 'commands',
+                    d: 'supplements'
+
+                },
+
+                {
+                    stt: 148,
+                    content: '__(2)__',
+                    a: 'Our city is substantial in size.',
+                    b: 'Text messages are subject to servicefees.',
+                    c: 'We send our newscasters to all areas of the city.',
+                    d: 'The app features frequent updates'
+
+                }
+
+            ]
+        },
+        {
+            paragraph: "The Zachary Township Floral Garden (ZTFG) is seeking a creative and career—oriented person to join our dynamic team. Duties include helping to design, publicize, and market ZTFG activities to schools and media outlets in the surrounding community. Qualifications include proficiency in office and design software and previous experience in a graphic design firm. Flexible work schedule. To apply, email a cover letter, resume, and two professional references to jobs@ztfg.org by May 5. To learn more, stop by any morning Monday through Friday for a tour of the garden.",
+            image: '',
+
+            questions: [
+
+                {
+                    stt: 149,
+                    content: 'What is true about the ticket?',
+                    a: 'displaces',
+                    b: 'observes',
+                    c: 'commands',
+                    d: 'supplements'
+
+                },
+
+                {
+                    stt: 150,
+                    content: '__(2)__',
+                    a: 'Our city is substantial in size.',
+                    b: 'Text messages are subject to servicefees.',
+                    c: 'We send our newscasters to all areas of the city.',
+                    d: 'The app features frequent updates'
+
+                }
+
+            ]
+        },
+        {
+            paragraph: "*MEMO To: All Employees From: Don Wunder, Director of Facilities  Subject: Chanti Workspaces Date: February 11 In a special partnership with Chanti Workspaces, five standing desks will be available to employees on a trial basis from February 20 to March 15. Standing desks allow you to stand comfortably while working. We will use the new Chanti B45 model, which is adjustable, so you can alternate between sitting and standing at the perfect height for you. Research suggests that standing desks can negate some of the harmful physical effects of sitting too much. They may also improve mood and overall health. Those wishing to take advantage of this opportunity should contact me. If we have more interest than desks, the recipients will be those who contact me ﬁrst. Those using the desks will be asked to take a survey about their experience to help us determine whether we should make standing desks available to all employees.",
+            image: '',
+
+            questions: [
+
+                {
+                    stt: 153,
+                    content: 'What is true about the ticket?',
+                    a: 'displaces',
+                    b: 'observes',
+                    c: 'commands',
+                    d: 'supplements'
+
+                },
+
+                {
+                    stt: 154,
+                    content: 'What is indicated about the Chanti B45 model ?',
+                    a: 'Our city is substantial in size.',
+                    b: 'Text messages are subject to servicefees.',
+                    c: 'We send our newscasters to all areas of the city.',
+                    d: 'The app features frequent updates'
+
+                }
+
+            ]
+        },
+
+        {
+            paragraph: "*MEMO To: All Employees From: Don Wunder, Director of Facilities  Subject: Chanti Workspaces Date: February 11 In a special partnership with Chanti Workspaces, five standing desks will be available to employees on a trial basis from February 20 to March 15. Standing desks allow you to stand comfortably while working. We will use the new Chanti B45 model, which is adjustable, so you can alternate between sitting and standing at the perfect height for you. Research suggests that standing desks can negate some of the harmful physical effects of sitting too much. They may also improve mood and overall health. Those wishing to take advantage of this opportunity should contact me. If we have more interest than desks, the recipients will be those who contact me ﬁrst. Those using the desks will be asked to take a survey about their experience to help us determine whether we should make standing desks available to all employees.",
+            image: '',
+
+            questions: [
+
+                {
+                    stt: 151,
+                    content: 'What is true about the ticket?',
+                    a: 'displaces',
+                    b: 'observes',
+                    c: 'commands',
+                    d: 'supplements'
+
+                },
+
+                {
+                    stt: 152,
+                    content: 'What is indicated about the Chanti B45 model ?',
+                    a: 'Our city is substantial in size.',
+                    b: 'Text messages are subject to servicefees.',
+                    c: 'We send our newscasters to all areas of the city.',
+                    d: 'The app features frequent updates'
+
+                }
+
+            ]
+        },
+        {
+            paragraph: 'Ideal for a new business! This recently constructed property contains nearly 2,000 square metres of office space, with an additional 1,000 square metres of storage space and a 3,000—square—metre car garage. — [1] —. Easily accessible from downtown Cloverdale, the property is within 500 metres of several restaurants and a brand—new shopping centre. — [2] —. The sleek, modern design features floor-to—ceiling windows that provide an abundance of natural light. — [3] —. The standard lease is for twelve months with monthly payments and a security deposit. — [4] —. For a lease application or to view the property in person, call Danna Pulley at (519) 555-0139.',
+            image: '',
+
+            questions: [
+
+                {
+                    stt: 155,
+                    content: 'What is true about the ticket?',
+                    a: 'displaces',
+                    b: 'observes',
+                    c: 'commands',
+                    d: 'supplements'
+
+                },
+
+                {
+                    stt: 156,
+                    content: 'What is indicated about the Chanti B45 model ?',
+                    a: 'Our city is substantial in size.',
+                    b: 'Text messages are subject to servicefees.',
+                    c: 'We send our newscasters to all areas of the city.',
+                    d: 'The app features frequent updates'
+
+                }
+                ,
+                {
+                    stt: 157,
+                    content: 'What is indicated about the Chanti B45 model ?',
+                    a: 'Our city is substantial in size.',
+                    b: 'Text messages are subject to servicefees.',
+                    c: 'We send our newscasters to all areas of the city.',
+                    d: 'The app features frequent updates'
+
+                }
+
+            ]
+        },
+
+        {
+            paragraph: 'Ideal for a new business! This recently constructed property contains nearly 2,000 square metres of office space, with an additional 1,000 square metres of storage space and a 3,000—square—metre car garage. — [1] —. Easily accessible from downtown Cloverdale, the property is within 500 metres of several restaurants and a brand—new shopping centre. — [2] —. The sleek, modern design features floor-to—ceiling windows that provide an abundance of natural light. — [3] —. The standard lease is for twelve months with monthly payments and a security deposit. — [4] —. For a lease application or to view the property in person, call Danna Pulley at (519) 555-0139.',
+            image: '',
+
+            questions: [
+
+                {
+                    stt: 158,
+                    content: 'What is true about the ticket?',
+                    a: 'displaces',
+                    b: 'observes',
+                    c: 'commands',
+                    d: 'supplements'
+
+                },
+
+                {
+                    stt: 159,
+                    content: 'What is indicated about the Chanti B45 model ?',
+                    a: 'Our city is substantial in size.',
+                    b: 'Text messages are subject to servicefees.',
+                    c: 'We send our newscasters to all areas of the city.',
+                    d: 'The app features frequent updates'
+
+                }
+                ,
+                {
+                    stt: 160,
+                    content: 'What is indicated about the Chanti B45 model ?',
+                    a: 'Our city is substantial in size.',
+                    b: 'Text messages are subject to servicefees.',
+                    c: 'We send our newscasters to all areas of the city.',
+                    d: 'The app features frequent updates'
+
+                }
+
+            ]
+        },
+        {
+            paragraph: 'Ideal for a new business! This recently constructed property contains nearly 2,000 square metres of office space, with an additional 1,000 square metres of storage space and a 3,000—square—metre car garage. — [1] —. Easily accessible from downtown Cloverdale, the property is within 500 metres of several restaurants and a brand—new shopping centre. — [2] —. The sleek, modern design features floor-to—ceiling windows that provide an abundance of natural light. — [3] —. The standard lease is for twelve months with monthly payments and a security deposit. — [4] —. For a lease application or to view the property in person, call Danna Pulley at (519) 555-0139.',
+            image: '',
+
+            questions: [
+
+                {
+                    stt: 161,
+                    content: 'What is true about the ticket?',
+                    a: 'displaces',
+                    b: 'observes',
+                    c: 'commands',
+                    d: 'supplements'
+
+                },
+
+                {
+                    stt: 162,
+                    content: 'What is indicated about the Chanti B45 model ?',
+                    a: 'Our city is substantial in size.',
+                    b: 'Text messages are subject to servicefees.',
+                    c: 'We send our newscasters to all areas of the city.',
+                    d: 'The app features frequent updates'
+
+                }
+                ,
+                {
+                    stt: 163,
+                    content: 'What is indicated about the Chanti B45 model ?',
+                    a: 'Our city is substantial in size.',
+                    b: 'Text messages are subject to servicefees.',
+                    c: 'We send our newscasters to all areas of the city.',
+                    d: 'The app features frequent updates'
+
+                }
+
+            ]
+        },
+
+        {
+            paragraph: 'Ideal for a new business! This recently constructed property contains nearly 2,000 square metres of office space, with an additional 1,000 square metres of storage space and a 3,000—square—metre car garage. — [1] —. Easily accessible from downtown Cloverdale, the property is within 500 metres of several restaurants and a brand—new shopping centre. — [2] —. The sleek, modern design features floor-to—ceiling windows that provide an abundance of natural light. — [3] —. The standard lease is for twelve months with monthly payments and a security deposit. — [4] —. For a lease application or to view the property in person, call Danna Pulley at (519) 555-0139.',
+            image: '',
+
+            questions: [
+
+                {
+                    stt: 164,
+                    content: 'What is true about the ticket?',
+                    a: 'displaces',
+                    b: 'observes',
+                    c: 'commands',
+                    d: 'supplements'
+
+                },
+
+                {
+                    stt: 165,
+                    content: 'What is indicated about the Chanti B45 model ?',
+                    a: 'Our city is substantial in size.',
+                    b: 'Text messages are subject to servicefees.',
+                    c: 'We send our newscasters to all areas of the city.',
+                    d: 'The app features frequent updates'
+
+                }
+                ,
+                {
+                    stt: 166,
+                    content: 'What is indicated about the Chanti B45 model ?',
+                    a: 'Our city is substantial in size.',
+                    b: 'Text messages are subject to servicefees.',
+                    c: 'We send our newscasters to all areas of the city.',
+                    d: 'The app features frequent updates'
+
+                },
+                {
+                    stt: 167,
+                    content: 'What is indicated about the Chanti B45 model ?',
+                    a: 'Our city is substantial in size.',
+                    b: 'Text messages are subject to servicefees.',
+                    c: 'We send our newscasters to all areas of the city.',
+                    d: 'The app features frequent updates'
+
+                }
+
+            ]
+        },
+        {
+            paragraph: 'Ideal for a new business! This recently constructed property contains nearly 2,000 square metres of office space, with an additional 1,000 square metres of storage space and a 3,000—square—metre car garage. — [1] —. Easily accessible from downtown Cloverdale, the property is within 500 metres of several restaurants and a brand—new shopping centre. — [2] —. The sleek, modern design features floor-to—ceiling windows that provide an abundance of natural light. — [3] —. The standard lease is for twelve months with monthly payments and a security deposit. — [4] —. For a lease application or to view the property in person, call Danna Pulley at (519) 555-0139.',
+            image: '',
+
+            questions: [
+
+                {
+                    stt: 168,
+                    content: 'What is true about the ticket?',
+                    a: 'displaces',
+                    b: 'observes',
+                    c: 'commands',
+                    d: 'supplements'
+
+                },
+
+                {
+                    stt: 169,
+                    content: 'What is indicated about the Chanti B45 model ?',
+                    a: 'Our city is substantial in size.',
+                    b: 'Text messages are subject to servicefees.',
+                    c: 'We send our newscasters to all areas of the city.',
+                    d: 'The app features frequent updates'
+
+                }
+                ,
+                {
+                    stt: 170,
+                    content: 'What is indicated about the Chanti B45 model ?',
+                    a: 'Our city is substantial in size.',
+                    b: 'Text messages are subject to servicefees.',
+                    c: 'We send our newscasters to all areas of the city.',
+                    d: 'The app features frequent updates'
+
+                },
+                {
+                    stt: 171,
+                    content: 'What is indicated about the Chanti B45 model ?',
+                    a: 'Our city is substantial in size.',
+                    b: 'Text messages are subject to servicefees.',
+                    c: 'We send our newscasters to all areas of the city.',
+                    d: 'The app features frequent updates'
+
+                }
+
+            ]
+        },
+
+        {
+            paragraph: 'Ideal for a new business! This recently constructed property contains nearly 2,000 square metres of office space, with an additional 1,000 square metres of storage space and a 3,000—square—metre car garage. — [1] —. Easily accessible from downtown Cloverdale, the property is within 500 metres of several restaurants and a brand—new shopping centre. — [2] —. The sleek, modern design features floor-to—ceiling windows that provide an abundance of natural light. — [3] —. The standard lease is for twelve months with monthly payments and a security deposit. — [4] —. For a lease application or to view the property in person, call Danna Pulley at (519) 555-0139.',
+            image: '',
+
+            questions: [
+
+                {
+                    stt: 172,
+                    content: 'What is true about the ticket?',
+                    a: 'displaces',
+                    b: 'observes',
+                    c: 'commands',
+                    d: 'supplements'
+
+                },
+
+                {
+                    stt: 173,
+                    content: 'What is indicated about the Chanti B45 model ?',
+                    a: 'Our city is substantial in size.',
+                    b: 'Text messages are subject to servicefees.',
+                    c: 'We send our newscasters to all areas of the city.',
+                    d: 'The app features frequent updates'
+
+                }
+                ,
+                {
+                    stt: 174,
+                    content: 'What is indicated about the Chanti B45 model ?',
+                    a: 'Our city is substantial in size.',
+                    b: 'Text messages are subject to servicefees.',
+                    c: 'We send our newscasters to all areas of the city.',
+                    d: 'The app features frequent updates'
+
+                },
+                {
+                    stt: 175,
+                    content: 'What is indicated about the Chanti B45 model ?',
+                    a: 'Our city is substantial in size.',
+                    b: 'Text messages are subject to servicefees.',
+                    c: 'We send our newscasters to all areas of the city.',
+                    d: 'The app features frequent updates'
+
+                }
+
+            ]
+        },
+
+        {
+            paragraph: 'Ideal for a new business! This recently constructed property contains nearly 2,000 square metres of office space, with an additional 1,000 square metres of storage space and a 3,000—square—metre car garage. — [1] —. Easily accessible from downtown Cloverdale, the property is within 500 metres of several restaurants and a brand—new shopping centre. — [2] —. The sleek, modern design features floor-to—ceiling windows that provide an abundance of natural light. — [3] —. The standard lease is for twelve months with monthly payments and a security deposit. — [4] —. For a lease application or to view the property in person, call Danna Pulley at (519) 555-0139.',
+            image: '',
+
+            questions: [
+
+                {
+                    stt: 176,
+                    content: 'What is true about the ticket?',
+                    a: 'displaces',
+                    b: 'observes',
+                    c: 'commands',
+                    d: 'supplements'
+
+                },
+
+                {
+                    stt: 177,
+                    content: 'What is indicated about the Chanti B45 model ?',
+                    a: 'Our city is substantial in size.',
+                    b: 'Text messages are subject to servicefees.',
+                    c: 'We send our newscasters to all areas of the city.',
+                    d: 'The app features frequent updates'
+
+                }
+                ,
+                {
+                    stt: 178,
+                    content: 'What is indicated about the Chanti B45 model ?',
+                    a: 'Our city is substantial in size.',
+                    b: 'Text messages are subject to servicefees.',
+                    c: 'We send our newscasters to all areas of the city.',
+                    d: 'The app features frequent updates'
+
+                },
+                {
+                    stt: 179,
+                    content: 'What is indicated about the Chanti B45 model ?',
+                    a: 'Our city is substantial in size.',
+                    b: 'Text messages are subject to servicefees.',
+                    c: 'We send our newscasters to all areas of the city.',
+                    d: 'The app features frequent updates'
+
+                },
+
+                {
+                    stt: 180,
+                    content: 'What is indicated about the Chanti B45 model ?',
+                    a: 'Our city is substantial in size.',
+                    b: 'Text messages are subject to servicefees.',
+                    c: 'We send our newscasters to all areas of the city.',
+                    d: 'The app features frequent updates'
+
+                }
+
+            ]
+        },
+
+
+        {
+            paragraph: 'Ideal for a new business! This recently constructed property contains nearly 2,000 square metres of office space, with an additional 1,000 square metres of storage space and a 3,000—square—metre car garage. — [1] —. Easily accessible from downtown Cloverdale, the property is within 500 metres of several restaurants and a brand—new shopping centre. — [2] —. The sleek, modern design features floor-to—ceiling windows that provide an abundance of natural light. — [3] —. The standard lease is for twelve months with monthly payments and a security deposit. — [4] —. For a lease application or to view the property in person, call Danna Pulley at (519) 555-0139.',
+            image: imagePart34,
+
+            questions: [
+
+                {
+                    stt: 181,
+                    content: 'What is true about the ticket?',
+                    a: 'displaces',
+                    b: 'observes',
+                    c: 'commands',
+                    d: 'supplements'
+
+                },
+
+                {
+                    stt: 182,
+                    content: 'What is indicated about the Chanti B45 model ?',
+                    a: 'Our city is substantial in size.',
+                    b: 'Text messages are subject to servicefees.',
+                    c: 'We send our newscasters to all areas of the city.',
+                    d: 'The app features frequent updates'
+
+                }
+                ,
+                {
+                    stt: 183,
+                    content: 'What is indicated about the Chanti B45 model ?',
+                    a: 'Our city is substantial in size.',
+                    b: 'Text messages are subject to servicefees.',
+                    c: 'We send our newscasters to all areas of the city.',
+                    d: 'The app features frequent updates'
+
+                },
+                {
+                    stt: 184,
+                    content: 'What is indicated about the Chanti B45 model ?',
+                    a: 'Our city is substantial in size.',
+                    b: 'Text messages are subject to servicefees.',
+                    c: 'We send our newscasters to all areas of the city.',
+                    d: 'The app features frequent updates'
+
+                },
+
+                {
+                    stt: 185,
+                    content: 'What is indicated about the Chanti B45 model ?',
+                    a: 'Our city is substantial in size.',
+                    b: 'Text messages are subject to servicefees.',
+                    c: 'We send our newscasters to all areas of the city.',
+                    d: 'The app features frequent updates'
+
+                }
+
+            ]
+        },
+
+        {
+            paragraph: 'Ideal for a new business! This recently constructed property contains nearly 2,000 square metres of office space, with an additional 1,000 square metres of storage space and a 3,000—square—metre car garage. — [1] —. Easily accessible from downtown Cloverdale, the property is within 500 metres of several restaurants and a brand—new shopping centre. — [2] —. The sleek, modern design features floor-to—ceiling windows that provide an abundance of natural light. — [3] —. The standard lease is for twelve months with monthly payments and a security deposit. — [4] —. For a lease application or to view the property in person, call Danna Pulley at (519) 555-0139.',
+            image: imagePart34,
+
+            questions: [
+
+                {
+                    stt: 186,
+                    content: 'What is true about the ticket?',
+                    a: 'displaces',
+                    b: 'observes',
+                    c: 'commands',
+                    d: 'supplements'
+
+                },
+
+                {
+                    stt: 187,
+                    content: 'What is indicated about the Chanti B45 model ?',
+                    a: 'Our city is substantial in size.',
+                    b: 'Text messages are subject to servicefees.',
+                    c: 'We send our newscasters to all areas of the city.',
+                    d: 'The app features frequent updates'
+
+                }
+                ,
+                {
+                    stt: 188,
+                    content: 'What is indicated about the Chanti B45 model ?',
+                    a: 'Our city is substantial in size.',
+                    b: 'Text messages are subject to servicefees.',
+                    c: 'We send our newscasters to all areas of the city.',
+                    d: 'The app features frequent updates'
+
+                },
+                {
+                    stt: 189,
+                    content: 'What is indicated about the Chanti B45 model ?',
+                    a: 'Our city is substantial in size.',
+                    b: 'Text messages are subject to servicefees.',
+                    c: 'We send our newscasters to all areas of the city.',
+                    d: 'The app features frequent updates'
+
+                },
+
+                {
+                    stt: 190,
+                    content: 'What is indicated about the Chanti B45 model ?',
+                    a: 'Our city is substantial in size.',
+                    b: 'Text messages are subject to servicefees.',
+                    c: 'We send our newscasters to all areas of the city.',
+                    d: 'The app features frequent updates'
+
+                }
+
+            ]
+        },
+
+
+        {
+            paragraph: 'Ideal for a new business! This recently constructed property contains nearly 2,000 square metres of office space, with an additional 1,000 square metres of storage space and a 3,000—square—metre car garage. — [1] —. Easily accessible from downtown Cloverdale, the property is within 500 metres of several restaurants and a brand—new shopping centre. — [2] —. The sleek, modern design features floor-to—ceiling windows that provide an abundance of natural light. — [3] —. The standard lease is for twelve months with monthly payments and a security deposit. — [4] —. For a lease application or to view the property in person, call Danna Pulley at (519) 555-0139.',
+            image: imagePart34,
+
+            questions: [
+
+                {
+                    stt: 191,
+                    content: 'What is true about the ticket?',
+                    a: 'displaces',
+                    b: 'observes',
+                    c: 'commands',
+                    d: 'supplements'
+
+                },
+
+                {
+                    stt: 192,
+                    content: 'What is indicated about the Chanti B45 model ?',
+                    a: 'Our city is substantial in size.',
+                    b: 'Text messages are subject to servicefees.',
+                    c: 'We send our newscasters to all areas of the city.',
+                    d: 'The app features frequent updates'
+
+                }
+                ,
+                {
+                    stt: 193,
+                    content: 'What is indicated about the Chanti B45 model ?',
+                    a: 'Our city is substantial in size.',
+                    b: 'Text messages are subject to servicefees.',
+                    c: 'We send our newscasters to all areas of the city.',
+                    d: 'The app features frequent updates'
+
+                },
+                {
+                    stt: 194,
+                    content: 'What is indicated about the Chanti B45 model ?',
+                    a: 'Our city is substantial in size.',
+                    b: 'Text messages are subject to servicefees.',
+                    c: 'We send our newscasters to all areas of the city.',
+                    d: 'The app features frequent updates'
+
+                },
+
+                {
+                    stt: 195,
+                    content: 'What is indicated about the Chanti B45 model ?',
+                    a: 'Our city is substantial in size.',
+                    b: 'Text messages are subject to servicefees.',
+                    c: 'We send our newscasters to all areas of the city.',
+                    d: 'The app features frequent updates'
+
+                }
+
+            ]
+        },
+
+        {
+            paragraph: 'Ideal for a new business! This recently constructed property contains nearly 2,000 square metres of office space, with an additional 1,000 square metres of storage space and a 3,000—square—metre car garage. — [1] —. Easily accessible from downtown Cloverdale, the property is within 500 metres of several restaurants and a brand—new shopping centre. — [2] —. The sleek, modern design features floor-to—ceiling windows that provide an abundance of natural light. — [3] —. The standard lease is for twelve months with monthly payments and a security deposit. — [4] —. For a lease application or to view the property in person, call Danna Pulley at (519) 555-0139.',
+            image: imagePart34,
+
+            questions: [
+
+                {
+                    stt: 196,
+                    content: 'What is true about the ticket?',
+                    a: 'displaces',
+                    b: 'observes',
+                    c: 'commands',
+                    d: 'supplements'
+
+                },
+
+                {
+                    stt: 197,
+                    content: 'What is indicated about the Chanti B45 model ?',
+                    a: 'Our city is substantial in size.',
+                    b: 'Text messages are subject to servicefees.',
+                    c: 'We send our newscasters to all areas of the city.',
+                    d: 'The app features frequent updates'
+
+                }
+                ,
+                {
+                    stt: 198,
+                    content: 'What is indicated about the Chanti B45 model ?',
+                    a: 'Our city is substantial in size.',
+                    b: 'Text messages are subject to servicefees.',
+                    c: 'We send our newscasters to all areas of the city.',
+                    d: 'The app features frequent updates'
+
+                },
+                {
+                    stt: 199,
+                    content: 'What is indicated about the Chanti B45 model ?',
+                    a: 'Our city is substantial in size.',
+                    b: 'Text messages are subject to servicefees.',
+                    c: 'We send our newscasters to all areas of the city.',
+                    d: 'The app features frequent updates'
+
+                },
+
+                {
+                    stt: 200,
+                    content: 'What is indicated about the Chanti B45 model ?',
+                    a: 'Our city is substantial in size.',
+                    b: 'Text messages are subject to servicefees.',
+                    c: 'We send our newscasters to all areas of the city.',
+                    d: 'The app features frequent updates'
+
+                }
+
+            ]
+        },
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     ]
 

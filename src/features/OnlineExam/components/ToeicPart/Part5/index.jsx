@@ -49,7 +49,7 @@ function Part5(props) {
 
                             <Space direction="vertical">
 
-                                <p id={question.stt} >{question.stt} : {question.content}</p>
+                                <p className='title_question' id={question.stt} >{question.stt} : {question.content}</p>
 
                                 <Radio.Group onChange={(e) => handleSelected(question.stt, e)} value={answers[question.stt - 1].selected}>
 

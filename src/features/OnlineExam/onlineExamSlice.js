@@ -121,7 +121,22 @@ const examSlice = createSlice({
             state.answers = action.payload;
         },
         setMaxPartSelected: (state, action) => {
-            state.maxPartSelected = action.payload;
+            if (action.payload.name == 'part3') {
+                state.part3MaxPage = action.payload.amount;
+            }
+
+            if (action.payload.name == 'part4') {
+                state.part4MaxPage = action.payload.amount;
+            }
+
+            if (action.payload.name == 'part6') {
+                state.part6MaxPage = action.payload.amount;
+            }
+
+            if (action.payload.name == 'part7') {
+                state.part7MaxPage = action.payload.amount;
+            }
+
         },
         setsubPartSelected: (state, action) => {
             state.subPartSelected = action.payload;

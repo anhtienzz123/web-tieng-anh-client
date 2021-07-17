@@ -4,30 +4,27 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import LongPart from '../LongPart';
 import ShortPart from '../ShortPart';
+import useWindowUnloadEffect from 'utils/useWindowUnloadEffect';
 
 Part3.propTypes = {
     data: PropTypes.array,
     onAnswerSheetClick: PropTypes.func,
-    longAudio: PropTypes.string
+    longAudio: PropTypes.string,
+    name: PropTypes.string,
 };
 
 Part3.defaultProps = {
     data: [],
     onAnswerSheetClick: null,
-    longAudio: null
+    longAudio: null,
+    name: ''
 }
 
 function Part3(props) {
-    const { data, onAnswerSheetClick, longAudio } = props;
+    const { data, onAnswerSheetClick, longAudio, name } = props;
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        
-        dispatch(setMaxPartSelected(data.length - 1));
-        return () => {
-           
-        };
-    }, []);
+
     let flag = 0;
 
     data.forEach(element => {
@@ -38,6 +35,13 @@ function Part3(props) {
 
     let checkShortAudio = data.length / flag;
     let typePart = checkShortAudio == 1 ? 'short' : 'long';
+
+    const saveLocal = data.length - 1
+    useWindowUnloadEffect(() => {
+        localStorage.setItem('maxPartSelected', saveLocal);
+
+    }, true);
+
 
 
 

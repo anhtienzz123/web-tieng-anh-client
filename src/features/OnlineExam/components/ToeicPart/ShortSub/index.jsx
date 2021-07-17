@@ -12,22 +12,29 @@ ShortSub.propTypes = {
     data: PropTypes.array,
     onAnswerSheetClick: PropTypes.func,
     image: PropTypes.string,
-    audio: PropTypes.string
+    audio: PropTypes.string,
+    checkPart: PropTypes.bool,
+    para: PropTypes.string,
+
 };
 
 ShortSub.defaultProps = {
     data: [],
     onAnswerSheetClick: null,
     image: '',
-    audio: ''
+    audio: null,
+    checkPart: true,
+    para: ''
 }
 
 
 
 
 function ShortSub(props) {
-    const { data, onAnswerSheetClick, image, audio } = props;
+    const { data, onAnswerSheetClick, image, audio, checkPart, para } = props;
     const { answers, scrollId } = useSelector(state => state.exam);
+
+
 
 
     useEffect(() => {
@@ -47,18 +54,30 @@ function ShortSub(props) {
 
     }
 
+    
+    console.log('checkPart~~~~', checkPart)
+
+
+
+
     return (
         <div className="short_part">
             <Space direction="vertical" style={{ width: "100%" }} size="large">
                 {image && <img src={image} alt="error picture" />}
-                {audio && <CustomAudioControl audio={audio} onPlay={false} />}
+
+                {checkPart && <CustomAudioControl audio={audio} onPlay={false} />}
+
+                {checkPart ? '' :
+                    <p>{audio}</p>
+
+                }
 
                 {
                     data.map((element, index) => (
 
                         <Space direction="vertical" key={index}>
 
-                            <div id={element.stt} >{element.stt}. {element.content}</div>
+                            <div id={element.stt} className='title_question' >{element.stt}. {element.content}</div>
                             {/* onChange={(e) => handleSelected(element.stt, e)} value={answers[element.stt - 1].selected} */}
                             <Radio.Group onChange={(e) => handleSelected(element.stt, e)} value={answers[element.stt - 1].selected}>
                                 <Space direction="vertical" >

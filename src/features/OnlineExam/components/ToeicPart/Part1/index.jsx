@@ -67,7 +67,7 @@ function Part1(props) {
 
                             <Space direction="vertical">
                                 {
-                                        longAudio == null
+                                    longAudio == null
                                         ? <CustomAudioControl audio={question.audio} onPlay={false} />
                                         : ''
                                 }
@@ -75,7 +75,7 @@ function Part1(props) {
                                 <div className="question--img" id={question.stt}>
                                     <img src={question.content} alt="" />
                                 </div>
-                                <p >{question.stt} : Select the answer</p>
+                                <p className='title_question'>{question.stt} : Select the answer</p>
 
                                 <Radio.Group onChange={(e) => handleSelected(question.stt, e)} value={answers[question.stt - 1].selected}>
 

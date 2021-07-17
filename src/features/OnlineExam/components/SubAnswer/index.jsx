@@ -50,10 +50,22 @@ function SubAnswer(props) {
             dispatch(setExamSelected(5));
 
         } else if (stt <= 146) {
+            let subPart = part6.findIndex((element) => {
+                let temp = element.questions.findIndex(e => e.stt == stt);
+                return temp != -1;
+
+            })
             dispatch(setExamSelected(6));
+            dispatch(setsubPartSelected(subPart));
 
         } else {
+            let subPart = part7.findIndex((element) => {
+                let temp = element.questions.findIndex(e => e.stt == stt);
+                return temp != -1;
+
+            })
             dispatch(setExamSelected(7));
+            dispatch(setsubPartSelected(subPart));
         };
         dispatch(setScrollId(stt));
 

@@ -1,7 +1,7 @@
 import { CaretLeftFilled, CaretRightFilled } from '@ant-design/icons';
 import { Button, Col, Row } from 'antd';
-import { setExamSelected, setScrollId, writeAnswerSheet, setsubPartSelected } from 'features/OnlineExam/onlineExamSlice';
-import React from 'react';
+import { setExamSelected, setScrollId, setsubPartSelected, writeAnswerSheet } from 'features/OnlineExam/onlineExamSlice';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import useLoadExamSelectedAfterRefresh from 'utils/useLoadExamSelectedAfterRefresh';
 import useWindowUnloadEffect from 'utils/useWindowUnloadEffect';
@@ -21,19 +21,22 @@ ToeicPart.propTypes = {
 function ToeicPart(props) {
     useLoadExamSelectedAfterRefresh();
 
-    const { questions, examSelected, oldPart } = useSelector(state => state.exam);
+    const { questions, examSelected, scrollId } = useSelector(state => state.exam);
     const { part1, part2, part3, part4, part5, part6, part7, part3Audio, part1Audio, part2Audio, part4Audio } = questions;
     const { subPartSelected, part3MaxPage, part4MaxPage, part6MaxPage, part7MaxPage } = useSelector(state => state.exam);
 
     const dispatch = useDispatch();
     console.log('Selected - exam: ', examSelected);
 
-    if (examSelected < 3) {
+    useEffect(() => {
+        console.log('effect', scrollId);
+        document.getElementById(`${scrollId}`).scrollIntoView();
+    }, [subPartSelected])
 
-    }
+
 
     function handlePreviousClick() {
-        if (examSelected == 2 || examSelected == 6) {
+        if (examSelected == 2) {
             dispatch(setExamSelected(examSelected - 1));
             dispatch(setScrollId('top'));
             return;
@@ -103,15 +106,15 @@ function ToeicPart(props) {
             case 2:
                 return <Part2 data={part2} longAudio={part2Audio} onAnswerSheetClick={handleSelected} />;
             case 3:
-                return <Part3 data={part3} longAudio={part3Audio} onAnswerSheetClick={handleSelected} />;
+                return <Part3 data={part3} longAudio={part3Audio} onAnswerSheetClick={handleSelected} name='part3' />;
             case 4:
-                return <Part4 data={part4} longAudio={part4Audio} onAnswerSheetClick={handleSelected} />;
+                return <Part4 data={part4} longAudio={part4Audio} onAnswerSheetClick={handleSelected} name='part4' />;
             case 5:
                 return <Part5 data={part5} onAnswerSheetClick={handleSelected} />;
             case 6:
-                return <Part6 data={part6} />;
+                return <Part6 data={part6} onAnswerSheetClick={handleSelected} name='part6' />;
             case 7:
-                return <Part7 data={part7} />;
+                return <Part7 data={part7} onAnswerSheetClick={handleSelected} name='part7' />;
             default:
                 break;
         }
@@ -121,10 +124,12 @@ function ToeicPart(props) {
         localStorage.setItem('partSelected', examSelected);
     }, true);
 
+    const disabled = examSelected == 1 ? true : false;
+
 
 
     return (
-        <div className="toeic_part">
+        <div id='top' className="toeic_part">
             <div className="toeic_part_content">
 
                 {renderSwitch(examSelected)}
@@ -135,7 +140,9 @@ function ToeicPart(props) {
 
                 <Row justify="space-around">
                     <Col span={4}>
-                        <Button type="primary" block onClick={handlePreviousClick} >
+
+
+                        <Button type="primary" block onClick={handlePreviousClick} disabled = {disabled}>
                             <CaretLeftFilled />
                             <b>Previous</b>
                         </Button>
