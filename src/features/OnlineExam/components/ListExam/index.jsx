@@ -1,11 +1,12 @@
-import React from 'react';
+import { Row } from 'antd';
+import ExamCard from 'features/OnlineExam/components/ExamCard';
+import { fetchBooks, setExamCheckin } from 'features/OnlineExam/onlineExamSlice';
 import PropTypes from 'prop-types';
-import './style.scss';
-import { Row, Col, Slider } from 'antd';
-import ExamCard from 'features/OnlineExam/components/ExamCard'
-import { useHistory, useRouteMatch } from "react-router-dom";
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { setExamCheckin } from 'features/OnlineExam/onlineExamSlice';
+import { useHistory } from "react-router-dom";
+import './style.scss';
+
 ListExam.propTypes = {
     examList: PropTypes.array
 };
@@ -19,6 +20,11 @@ ListExam.defaultProps = {
 function ListExam(props) {
     const history = useHistory();
     const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(fetchBooks());
+        
+
+    }, []);
 
 
     function handleClick(test) {
@@ -46,7 +52,7 @@ function ListExam(props) {
 
                     <Row gutter={[16, 16]}>
 
-                        <ExamCard listTest={exam.tests} onClick={handleClick} />
+                        <ExamCard listTest={exam.exams} onClick={handleClick} />
 
                     </Row>
 

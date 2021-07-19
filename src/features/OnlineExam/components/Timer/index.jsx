@@ -71,7 +71,6 @@ function Timer(props) {
     const { testId } = param;
 
     const handleOnClick = () => {
-        console.log(testId);
         history.push(`/exams/${testId}/checkout`);
     }
 
@@ -85,8 +84,6 @@ function Timer(props) {
                 <Row justify="center" align="middle">
 
                     {
-
-
 
                         page !== 'checkout' ?
 

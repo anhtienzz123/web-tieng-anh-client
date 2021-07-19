@@ -1,8 +1,9 @@
 import { CaretLeftFilled, CaretRightFilled } from '@ant-design/icons';
 import { Button, Col, Row } from 'antd';
-import { setExamSelected, setScrollId, setsubPartSelected, writeAnswerSheet } from 'features/OnlineExam/onlineExamSlice';
+import { fetchExam, setExamSelected, setScrollId, setsubPartSelected, writeAnswerSheet } from 'features/OnlineExam/onlineExamSlice';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory, useParams } from 'react-router-dom';
 import useLoadExamSelectedAfterRefresh from 'utils/useLoadExamSelectedAfterRefresh';
 import useWindowUnloadEffect from 'utils/useWindowUnloadEffect';
 import Part1 from './Part1';
@@ -19,14 +20,33 @@ ToeicPart.propTypes = {
 };
 
 function ToeicPart(props) {
-    useLoadExamSelectedAfterRefresh();
 
+
+
+
+    useLoadExamSelectedAfterRefresh();
     const { questions, examSelected, scrollId } = useSelector(state => state.exam);
     const { part1, part2, part3, part4, part5, part6, part7, part3Audio, part1Audio, part2Audio, part4Audio } = questions;
     const { subPartSelected, part3MaxPage, part4MaxPage, part6MaxPage, part7MaxPage } = useSelector(state => state.exam);
+    const history = useHistory();
+    const { testId } = useParams();
 
     const dispatch = useDispatch();
-    console.log('Selected - exam: ', examSelected);
+
+    useEffect(() => {
+        if (examSelected === 8) {
+            history.push(`/exams/${testId}/checkout`);
+        }
+    }, [examSelected]);
+
+    useEffect(() => {
+        dispatch(fetchExam({
+            slug: testId
+        }))
+    }, []);
+
+
+
 
     useEffect(() => {
         console.log('effect', scrollId);
@@ -68,6 +88,10 @@ function ToeicPart(props) {
 
     }
     function handleNextClick() {
+        // if (examSelected == 7) {
+        //     history.push(`/exams/${testId}/checkout`);
+        // }
+
         if (examSelected === 1 || examSelected === 2 || examSelected === 5) {
             console.log("Next");
             dispatch(setExamSelected(examSelected + 1));
@@ -142,7 +166,7 @@ function ToeicPart(props) {
                     <Col span={4}>
 
 
-                        <Button type="primary" block onClick={handlePreviousClick} disabled = {disabled}>
+                        <Button type="primary" block onClick={handlePreviousClick} disabled={disabled}>
                             <CaretLeftFilled />
                             <b>Previous</b>
                         </Button>

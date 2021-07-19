@@ -1,14 +1,23 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { useSelector } from "react-redux";
+import { Spin } from 'antd';
 import ListExam from 'features/OnlineExam/components/ListExam';
-import { useHistory, useRouteMatch } from 'react-router-dom';
+import { fetchBooks } from 'features/OnlineExam/onlineExamSlice';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux";
 MainPage.propTypes = {
+
 
 };
 
 function MainPage(props) {
-    const { setExam } = useSelector(state => state.exam);
+    const { setExam, isLoading } = useSelector(state => state.exam);
+
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(fetchBooks());
+
+
+    }, []);
+
     // const history = useHistory();
     // const match = useRouteMatch();
     // const { url } = match;
@@ -16,9 +25,13 @@ function MainPage(props) {
     // console.log(url)
 
     return (
-        <div>
-            <ListExam examList={setExam} />
-        </div>
+
+        <Spin spinning={isLoading}>
+            <div>
+                <ListExam examList={setExam} />
+            </div>
+        </Spin>
+    
     );
 }
 

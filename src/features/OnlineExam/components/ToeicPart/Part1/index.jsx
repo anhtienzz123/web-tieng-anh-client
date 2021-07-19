@@ -24,7 +24,6 @@ function Part1(props) {
     const { answers, scrollId } = useSelector(state => state.exam);
 
     useEffect(() => {
-        console.log('effect', scrollId);
         document.getElementById(`${scrollId}`).scrollIntoView();
     }, [scrollId])
 

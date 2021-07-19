@@ -45,8 +45,7 @@ function AnswerSheet(props) {
 
 
 
-    function callback(key) {
-        console.log(key)
+    function handleChange(key) {
         setActiveKey(key);
     }
 
@@ -54,7 +53,7 @@ function AnswerSheet(props) {
     return (
         <div>
             <Affix offsetTop={60} >
-                <Collapse accordion activeKey={activeKey} onChange={callback} expandIconPosition={expandIconPosition} >
+                <Collapse accordion activeKey={activeKey} onChange={handleChange} expandIconPosition={expandIconPosition} >
 
                     <Panel header="Part 1" key="1" extra={<SoundOutlined />}>
                         <SubAnswer title={titlEachPart.PART1} data={answers_part1} />

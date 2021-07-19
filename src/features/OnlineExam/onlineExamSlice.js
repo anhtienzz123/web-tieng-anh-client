@@ -1,104 +1,59 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import image_exam from 'assets/image/toeic_exam.jpg';
 import { answers } from 'constants/ToeicSheet';
 import { test } from 'constants/ToeicQuestion';
 import testExam from 'constants/QuestionTemp';
+import bookApi from 'api/bookApi';
+import examApi from 'api/examApi';
+
 const KEY = 'exam';
-const tests = [
 
-    {
-        slug: 1,
-        name: "ETS 2020 - Test 03",
+export const fetchBooks = createAsyncThunk("fetchBook", async (params, thunkApi) => {
 
-    },
-    {
-        slug: 2,
-        name: "ETS 2020 - Test 03",
+    const data = await bookApi.fetchBooks();
+
+    return data;
+});
 
 
-    },
-    {
-        slug: 3,
-        name: "ETS 2020 - Test 03",
+export const fetchExam = createAsyncThunk("fetchExam", async (params, thunkApi) => {
+    const { slug } = params;
+    const data = await examApi.fetchExamBySlug(slug);
+    console.log('data exam', data)
+    return data;
+});
 
-    },
-    {
-        slug: 4,
-        name: "ETS 2020 - Test 03",
-
-    },
-    {
-        slug: 5,
-        name: "ETS 2020 - Test 03",
-
-    },
-    {
-        slug: 6,
-        name: "ETS 2020 - Test 03",
-
-    },
-    {
-        slug: 7,
-        name: "ETS 2020 - Test 03",
-
-    },
-    {
-        slug: 8,
-        name: "ETS 2020 - Test 03",
-
-    },
-    {
-        slug: 9,
-        name: "ETS 2020 - Test 03",
-
-    },
-    {
-        slug: 10,
-        name: "ETS 2020 - Test 030",
-
-    },
-];
+export const fetchResult = createAsyncThunk('fetchResult', async (params, thunkApi) => {
+    const { slug, answers } = params;
+    const data = await examApi.fetchResultBySlug(slug, answers);
+    console.log(data);
+    return data;
+})
 
 
-
-const subjectTest = 'ETS 2020';
 const examSlice = createSlice({
     name: KEY,
     initialState: {
-        setExam: [
-            {
-                tests: tests,
-                name: subjectTest,
-                image: image_exam
-            },
-            {
-
-                tests: tests,
-                name: subjectTest,
-                image: image_exam
-            }
-        ],
+        isLoading: false,
+        setExam: [],
         examSelected: '',
         answers: answers,
-        questions: testExam,
+        questions: {},
         examCheckin: '',
         scrollId: 'top',
         subPartSelected: 0,
-        part3MaxPage: 12,
-        part4MaxPage: 9,
-        part6MaxPage: 3,
-        part7MaxPage: 14,
-        oldPart: 0
+        part3MaxPage: 0,
+        part4MaxPage: 0,
+        part6MaxPage: 0,
+        part7MaxPage: 0,
+        result: {}
+
     }
     ,
     reducers: {
         setExamSelected: (state, action) => {
-            let oldPart = state.examSelected;
             state.examSelected = action.payload
-            state.oldPart = oldPart;
-            // if (state.examSelected < oldPart) {
-            //     state.subPartSelected = 0;
-            // }
+
         },
 
         setExamCheckin: (state, action) => {
@@ -113,6 +68,10 @@ const examSlice = createSlice({
                     answer.status = 'selected';
                 }
             })
+        },
+
+        setStatus: (state, action) => {
+            state.answers[action.payload].status = 'yet';
         },
         setScrollId: (state, action) => {
             state.scrollId = action.payload;
@@ -144,9 +103,32 @@ const examSlice = createSlice({
     },
     extraReducers: {
 
+        [fetchBooks.fulfilled]: (state, action) => {
+            state.setExam = action.payload;
+            state.isLoading = false;
+        },
+        [fetchBooks.pending]: (state, action) => {
+            state.isLoading = true;
+        },
+        [fetchBooks.rejected]: (state, action) => {
+        },
+
+        [fetchExam.fulfilled]: (state, action) => {
+            state.questions = action.payload;
+            const { part3, part4, part6, part7 } = action.payload;
+            state.part3MaxPage = part3.length - 1;
+            state.part4MaxPage = part4.length - 1;
+            state.part6MaxPage = part6.length - 1;
+            state.part7MaxPage = part7.length - 1;
+        },
+
+        [fetchResult.fulfilled]: (state, action) => {
+            state.result = action.payload;
+        }
+
     }
 });
 
 const { reducer, actions } = examSlice;
-export const { setExamSelected, writeAnswerSheet, setsubPartSelected, setMaxPartSelected, setScrollId, setExamCheckin, setAnswerAfterRefresh } = actions;
+export const { setExamSelected, setStatus, writeAnswerSheet, setsubPartSelected, setMaxPartSelected, setScrollId, setExamCheckin, setAnswerAfterRefresh } = actions;
 export default reducer;

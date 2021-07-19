@@ -18,14 +18,8 @@ Part6.defaultProps = {
 
 function Part6(props) {
     const { data, onAnswerSheetClick, name } = props;
-    const dispatch = useDispatch();
-    useEffect(() => {
+    console.log("check data part 6",data);
 
-        dispatch(setMaxPartSelected(data.length - 1));
-        return () => {
-
-        };
-    }, []);
     return (
         <div id='top'>
             <ShortPart data={data} onAnswerSheetClick={onAnswerSheetClick} name={name} /> :

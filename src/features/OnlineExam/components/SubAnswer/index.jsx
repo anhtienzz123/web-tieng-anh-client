@@ -1,4 +1,4 @@
-import { CheckSquareTwoTone, CloseSquareTwoTone } from '@ant-design/icons';
+import { CheckSquareTwoTone, CloseSquareTwoTone, WarningTwoTone } from '@ant-design/icons';
 import { Col, Row } from 'antd';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -85,7 +85,9 @@ function SubAnswer(props) {
                             <div className='sub_answer--block' >
                                 <div className='sub_answer--status'>
                                     {sub.status === 'selected' && <CheckSquareTwoTone />}
-                                    {sub.status === 'yet' && <CloseSquareTwoTone twoToneColor="#eb2f96" />}
+                                    {/* {sub.status === 'yet' && <CloseSquareTwoTone twoToneColor="#eb2f96" />} */}
+                                    {sub.status === 'yet' && < WarningTwoTone twoToneColor="#ec8d22" />}
+
                                 </div>
                                 {sub.stt}
                             </div>

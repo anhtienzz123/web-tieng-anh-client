@@ -1,10 +1,7 @@
-import { setMaxPartSelected } from 'features/OnlineExam/onlineExamSlice';
 import PropTypes from 'prop-types';
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
 import LongPart from '../LongPart';
 import ShortPart from '../ShortPart';
-import useWindowUnloadEffect from 'utils/useWindowUnloadEffect';
 
 Part3.propTypes = {
     data: PropTypes.array,
@@ -22,13 +19,13 @@ Part3.defaultProps = {
 
 function Part3(props) {
     const { data, onAnswerSheetClick, longAudio, name } = props;
-    const dispatch = useDispatch();
-
+ 
+    console.log("check data part 3",data);
 
     let flag = 0;
 
     data.forEach(element => {
-        if (element.paragraph !== null && element.paragraph != '') {
+        if (element.pharagraph !== null && element.pharagraph != '') {
             flag += 1;
         }
     });
@@ -36,11 +33,11 @@ function Part3(props) {
     let checkShortAudio = data.length / flag;
     let typePart = checkShortAudio == 1 ? 'short' : 'long';
 
-    const saveLocal = data.length - 1
-    useWindowUnloadEffect(() => {
-        localStorage.setItem('maxPartSelected', saveLocal);
+    // const saveLocal = data.length - 1
+    // useWindowUnloadEffect(() => {
+    //     localStorage.setItem('maxPartSelected', saveLocal);
 
-    }, true);
+    // }, true);
 
 
 

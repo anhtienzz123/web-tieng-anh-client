@@ -96,7 +96,7 @@ const answers = [
     {
         stt: 20,
         selected: 'C',
-        status: 'selectedet',
+        status: 'selected',
     }, {
         stt: 21,
         selected: 'C',
@@ -146,7 +146,8 @@ const answers = [
         stt: 30,
         selected: 'C',
         status: 'selected',
-    }, {
+    },
+    {
         stt: 31,
         selected: '',
         status: '',

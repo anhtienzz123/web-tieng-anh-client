@@ -24,8 +24,16 @@ function ShortPart(props) {
     let tempData = data[subPartSelected];
 
 
+    console.log("subpart check", subPartSelected);
+    console.log("data check", data);
+    console.log("tempData check", tempData);
+
+
     const from = 0;
-    const to = tempData.questions.length - 1;
+    // const to = tempData.questions.length - 1;
+    const to = tempData ? tempData.questions.length - 1 : 0;
+
+
     let checkPart;
 
     if (name === 'part6' || name === 'part7') {
@@ -49,25 +57,26 @@ function ShortPart(props) {
 
     return (
         <div>
-            <Space direction="vertical" size='large' style={{ width: '100%' }} >
-                <b>Question {tempData.questions[from].stt} - {tempData.questions[to].stt} {name ? ' refer to following conversation:' : 'refer to following paragraph:'}: </b>
-                <Divider />
-                {name ? <p>Please refrain from replaying the audio, you can only listen one time when in real exam.</p> : ''}
+            {tempData &&
+                <Space direction="vertical" size='large' style={{ width: '100%' }} >
+                    <b>Question {tempData.questions[from].stt} - {tempData.questions[to].stt} {name ? ' refer to following conversation:' : 'refer to following paragraph:'}: </b>
+                    <Divider />
+                    {name ? <p>Please refrain from replaying the audio, you can only listen one time when in real exam.</p> : ''}
+
+                    {
+
+                        <div className="question" >
+                            <Space direction="vertical" style={{ width: "100%" }}>
+                                <ShortSub audio={tempData.pharagraph} image={tempData.image} data={tempData.questions} onAnswerSheetClick={onAnswerSheetClick} checkPart={checkPart} />
+                            </Space>
+                        </div>
 
 
-                {
+                    }
+                </Space>
 
-                    <div className="question" >
-                        <Space direction="vertical" style={{ width: "100%" }}>
-                            <ShortSub audio={tempData.paragraph} image={tempData.image} data={tempData.questions} onAnswerSheetClick={onAnswerSheetClick} checkPart={checkPart} />
-                        </Space>
-                    </div>
+            }
 
-
-                }
-
-
-            </Space>
         </div>
     );
 }
