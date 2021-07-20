@@ -85,7 +85,8 @@ function SubAnswer(props) {
                             <div className='sub_answer--block' >
                                 <div className='sub_answer--status'>
                                     {sub.status === 'selected' && <CheckSquareTwoTone />}
-                                    {/* {sub.status === 'yet' && <CloseSquareTwoTone twoToneColor="#eb2f96" />} */}
+                                    {sub.status === false && <CloseSquareTwoTone twoToneColor="#eb2f96" />}
+                                    {sub.status === true && <CheckSquareTwoTone twoToneColor="#52c41a" />}
                                     {sub.status === 'yet' && < WarningTwoTone twoToneColor="#ec8d22" />}
 
                                 </div>

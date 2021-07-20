@@ -1,6 +1,6 @@
 import { Button, Col, Divider, Modal, Row, Space, Table, Tag } from 'antd';
 import Timer from 'features/OnlineExam/components/Timer';
-import { setExamSelected, setScrollId, setStatus, setsubPartSelected } from 'features/OnlineExam/onlineExamSlice';
+import { setExamSelected, setScrollId, setIsSubmit, setStatus, setsubPartSelected } from 'features/OnlineExam/onlineExamSlice';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
@@ -60,6 +60,8 @@ function Checkout(props) {
 		content: 'Time is still',
 		onOk() {
 			history.push(`/exams/${testId}/result`);
+			dispatch(setIsSubmit(true));
+			localStorage.setItem('isSubmit', true);
 		},
 	};
 
@@ -199,10 +201,10 @@ function Checkout(props) {
 	const handleDetailClick = (text, record, index) => {
 
 		localStorage.setItem("partSelected", record.key);
+		console.log('record key', record.key)
 		dispatch(setsubPartSelected(0));
 		dispatch(setScrollId('top'));
 		history.push(`/exams/${testId}/examining`);
-
 
 	}
 
@@ -223,7 +225,6 @@ function Checkout(props) {
 						<Table dataSource={data_reading} columns={columns} pagination={false} />
 					</div>
 
-					<Divider></Divider>
 					<Row gutter={[16, 16]}>
 						<Col span={3} offset={8} flex={1} >
 							<div className='button_align' >

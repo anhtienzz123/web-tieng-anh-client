@@ -4,7 +4,7 @@ import React from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useParams } from 'react-router-dom';
 import './style.scss';
-import { setExamSelected } from 'features/OnlineExam/onlineExamSlice';
+import { setExamSelected, refreshStore } from 'features/OnlineExam/onlineExamSlice';
 CheckInExam.propTypes = {
 
 };
@@ -18,7 +18,8 @@ function CheckInExam(props) {
 
 
     function handleOnClick() {
-        dispatch(setExamSelected(1));
+        dispatch(refreshStore());
+
         localStorage.clear();
         history.replace(`/exams/${testId}/examining`);
     }

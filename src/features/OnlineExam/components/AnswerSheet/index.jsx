@@ -58,7 +58,8 @@ function AnswerSheet(props) {
                     <Panel header="Part 1" key="1" extra={<SoundOutlined />}>
                         <SubAnswer title={titlEachPart.PART1} data={answers_part1} />
                     </Panel>
-                    <Panel header="Part 2" key="2" extra={<SoundOutlined />} className="notify">
+                    {/* className="notify" */}
+                    <Panel header="Part 2" key="2" extra={<SoundOutlined />} >
                         <SubAnswer title={titlEachPart.PART2} data={answers_part2} />
                     </Panel>
                     <Panel header="Part 3" key="3" extra={<SoundOutlined />}  >

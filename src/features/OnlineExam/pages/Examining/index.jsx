@@ -3,21 +3,21 @@ import AnswerSheet from 'features/OnlineExam/components/AnswerSheet';
 import Timer from 'features/OnlineExam/components/Timer';
 import ToeicPart from 'features/OnlineExam/components/ToeicPart';
 import React from 'react';
-import { useRouteMatch } from "react-router-dom";
+import { useSelector } from 'react-redux';
 import './style.scss';
 
 
 
 
 function Examining(props) {
-
+    const { isSubmit } = useSelector(state => state.exam)
 
 
     return (
         <>
             <Row gutter={[16, 16]}>
                 <Col span={24} >
-                    <Timer />
+                    {isSubmit ? '' : <Timer />}
                 </Col>
             </Row>
             <div className='examining'>

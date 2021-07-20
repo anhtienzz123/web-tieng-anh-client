@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { Row, Col, Divider } from 'antd';
-import { Affix, Button } from 'antd';
+import { FieldTimeOutlined } from '@ant-design/icons';
+import { Affix, Button, Col, Modal, Row } from 'antd';
 import PropTypes from 'prop-types';
-import { FieldTimeOutlined, DownloadOutlined } from '@ant-design/icons';
-import './style.scss';
+import React, { useEffect, useState } from 'react';
+import { useHistory, useParams } from 'react-router-dom';
 import useWindowUnloadEffect from 'utils/useWindowUnloadEffect';
-import { useHistory, useRouteMatch, useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import './style.scss';
+import { setIsSubmit } from 'features/OnlineExam/onlineExamSlice';
 Timer.propTypes = {
     page: PropTypes.string,
 };
@@ -16,10 +17,11 @@ Timer.defaultProps = {
 
 function Timer(props) {
     const { page } = props;
-    const initialMinute = 120;
-    const initialSeconds = 0;
+    const initialMinute = 0;
+    const initialSeconds = 10;
     const [minutes, setMinutes] = useState(initialMinute);
     const [seconds, setSeconds] = useState(initialSeconds);
+    const dispatch = useDispatch();
 
 
 
@@ -28,7 +30,6 @@ function Timer(props) {
         if (timeTemp != "undefined" && timeTemp != null) {
 
             let time = JSON.parse(timeTemp);
-            console.log(time);
 
             setMinutes(time.minute);
             setSeconds(time.second);
@@ -50,11 +51,40 @@ function Timer(props) {
             }
 
         }, 1000);
+
+        if (seconds === 0 && minutes === 0) {
+            modal.warning(config);
+        }
         return () => {
             clearInterval(myInterval);
 
         };
     });
+
+
+
+    // modal timeout config
+    const ReachableContext = React.createContext();
+    const [modal, contextHolder] = Modal.useModal();
+
+    const config = {
+        title: 'Use Hook!',
+        content: (
+            <>
+                <ReachableContext.Consumer>{name => `${name} !`}</ReachableContext.Consumer>
+            </>
+        ),
+        onOk() {
+            history.push(`/exams/${testId}/result`);
+            dispatch(setIsSubmit(true));
+            localStorage.setItem('isSubmit', true);
+        },
+        onCancel() {
+            history.push(`/exams/${testId}/result`);
+            dispatch(setIsSubmit(true));
+            localStorage.setItem('isSubmit', true);
+        }
+    };
 
 
     useWindowUnloadEffect(() => {
@@ -121,6 +151,11 @@ function Timer(props) {
                     }
                 </Row>
             </div>
+
+            <ReachableContext.Provider value="Time out">
+
+                {contextHolder}
+            </ReachableContext.Provider>
         </Affix>
 
 

@@ -12,8 +12,6 @@ export const handleAnswer = (answers) => {
     });
 
     const obj = Object.fromEntries(map);
-
-    console.log(obj);
     return obj;
 
 

@@ -1,11 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import { CheckCircleTwoTone } from '@ant-design/icons';
 import { Radio, Space } from 'antd';
-import { useSelector } from 'react-redux';
-import { useEffect } from 'react';
 import CustomAudioControl from 'components/CustomAudioControl';
 import parse from 'html-react-parser';
-import { Divider } from 'antd';
+import PropTypes from 'prop-types';
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import './style.scss';
 
 
@@ -36,7 +35,7 @@ ShortSub.defaultProps = {
 
 function ShortSub(props) {
     const { data, onAnswerSheetClick, image, audio, checkPart, para } = props;
-    const { answers, scrollId } = useSelector(state => state.exam);
+    const { answers, scrollId, isSubmit } = useSelector(state => state.exam);
 
 
 
@@ -44,7 +43,6 @@ function ShortSub(props) {
     useEffect(() => {
 
         document.getElementById(`${scrollId}`).scrollIntoView();
-        console.log("scroll to ", scrollId)
     }, [scrollId]);
 
     function handleSelected(question, e) {
@@ -58,9 +56,6 @@ function ShortSub(props) {
         }
 
     }
-
-
-
 
     return (
         <div className="short_part">
@@ -79,11 +74,6 @@ function ShortSub(props) {
 
                 </div>
 
-
-
-
-
-
                 {
                     data.map((element, index) => (
 
@@ -91,12 +81,12 @@ function ShortSub(props) {
 
                             <div id={element.stt} className='title_question' >{element.content}</div>
                             {/* onChange={(e) => handleSelected(element.stt, e)} value={answers[element.stt - 1].selected} */}
-                            <Radio.Group onChange={(e) => handleSelected(element.stt, e)} value={answers[element.stt - 1].selected}>
+                            <Radio.Group disabled={isSubmit} onChange={(e) => handleSelected(element.stt, e)} value={answers[element.stt - 1].selected}>
                                 <Space direction="vertical" >
-                                    <Radio value={'A'}>{element.a}</Radio>
-                                    <Radio value={'B'}>{element.b}</Radio>
-                                    <Radio value={'C'}>{element.c}</Radio>
-                                    <Radio value={'D'}>{element.d}</Radio>
+                                    <Radio value={'A'}>{element.a} {answers[element.stt - 1].result === 'a' ? <CheckCircleTwoTone twoToneColor="#52c41a" /> : ''}</Radio>
+                                    <Radio value={'B'}>{element.b} {answers[element.stt - 1].result === 'b' ? <CheckCircleTwoTone twoToneColor="#52c41a" /> : ''}</Radio>
+                                    <Radio value={'C'}>{element.c} {answers[element.stt - 1].result === 'c' ? <CheckCircleTwoTone twoToneColor="#52c41a" /> : ''}</Radio>
+                                    <Radio value={'D'}>{element.d} {answers[element.stt - 1].result === 'd' ? <CheckCircleTwoTone twoToneColor="#52c41a" /> : ''}</Radio>
                                 </Space>
 
                             </Radio.Group>

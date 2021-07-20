@@ -1,10 +1,7 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import image_exam from 'assets/image/toeic_exam.jpg';
-import { answers } from 'constants/ToeicSheet';
-import { test } from 'constants/ToeicQuestion';
-import testExam from 'constants/QuestionTemp';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import bookApi from 'api/bookApi';
 import examApi from 'api/examApi';
+import { answers } from 'constants/ToeicSheet';
 
 const KEY = 'exam';
 
@@ -19,14 +16,14 @@ export const fetchBooks = createAsyncThunk("fetchBook", async (params, thunkApi)
 export const fetchExam = createAsyncThunk("fetchExam", async (params, thunkApi) => {
     const { slug } = params;
     const data = await examApi.fetchExamBySlug(slug);
-    console.log('data exam', data)
+
     return data;
 });
 
 export const fetchResult = createAsyncThunk('fetchResult', async (params, thunkApi) => {
     const { slug, answers } = params;
     const data = await examApi.fetchResultBySlug(slug, answers);
-    console.log(data);
+
     return data;
 })
 
@@ -46,7 +43,8 @@ const examSlice = createSlice({
         part4MaxPage: 0,
         part6MaxPage: 0,
         part7MaxPage: 0,
-        result: {}
+        result: {},
+        isSubmit: false,
 
     }
     ,
@@ -99,7 +97,27 @@ const examSlice = createSlice({
         },
         setsubPartSelected: (state, action) => {
             state.subPartSelected = action.payload;
+        },
+
+        writeResultToExam: (state, action) => {
+            state.answers = action.payload;
+        },
+        setIsSubmit: (state, action) => {
+            state.isSubmit = action.payload;
+        },
+        refreshStore: (state, action) => {
+            state.isSubmit = false;
+            state.answers = answers;
+            state.examSelected = 1;
+            state.scrollId = 'top';
+            state.subPartSelected = 0;
+            state.result = {};
+            localStorage.clear();
+
         }
+
+
+
     },
     extraReducers: {
 
@@ -130,5 +148,5 @@ const examSlice = createSlice({
 });
 
 const { reducer, actions } = examSlice;
-export const { setExamSelected, setStatus, writeAnswerSheet, setsubPartSelected, setMaxPartSelected, setScrollId, setExamCheckin, setAnswerAfterRefresh } = actions;
+export const { setExamSelected, setIsSubmit, refreshStore, writeResultToExam, setStatus, writeAnswerSheet, setsubPartSelected, setMaxPartSelected, setScrollId, setExamCheckin, setAnswerAfterRefresh } = actions;
 export default reducer;

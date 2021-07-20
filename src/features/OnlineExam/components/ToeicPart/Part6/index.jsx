@@ -1,7 +1,5 @@
-import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
-import { setMaxPartSelected } from 'features/OnlineExam/onlineExamSlice';
+import React from 'react';
 import ShortPart from '../ShortPart';
 
 Part6.propTypes = {
@@ -17,9 +15,10 @@ Part6.defaultProps = {
 }
 
 function Part6(props) {
-    const { data, onAnswerSheetClick, name } = props;
-    console.log("check data part 6",data);
+    const { data, onAnswerSheetClick, name, scrollId } = props;
+    console.log("check data part 6", data);
 
+   
     return (
         <div id='top'>
             <ShortPart data={data} onAnswerSheetClick={onAnswerSheetClick} name={name} /> :

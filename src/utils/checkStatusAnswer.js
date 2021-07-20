@@ -71,7 +71,6 @@ function checkAnswerPart(answers_part, status) {
 
     });
 
-    console.log(flag);
     if (flag != 0) {
         subStatus = 'Incomplete';
     }

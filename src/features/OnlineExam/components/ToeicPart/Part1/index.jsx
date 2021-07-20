@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import { CheckCircleTwoTone } from '@ant-design/icons';
 
 
 Part1.propTypes = {
@@ -21,7 +22,7 @@ Part1.defaultProps = {
 function Part1(props) {
 
     const { data, onAnswerSheetClick, longAudio } = props;
-    const { answers, scrollId } = useSelector(state => state.exam);
+    const { answers, scrollId, isSubmit } = useSelector(state => state.exam);
 
     useEffect(() => {
         document.getElementById(`${scrollId}`).scrollIntoView();
@@ -76,13 +77,13 @@ function Part1(props) {
                                 </div>
                                 <p className='title_question'>{question.stt} : Select the answer</p>
 
-                                <Radio.Group onChange={(e) => handleSelected(question.stt, e)} value={answers[question.stt - 1].selected}>
+                                <Radio.Group disabled={isSubmit} onChange={(e) => handleSelected(question.stt, e)} value={answers[question.stt - 1].selected}>
 
                                     <Space direction="vertical">
-                                        <Radio value={'A'}>Option A</Radio>
-                                        <Radio value={'B'}>Option B</Radio>
-                                        <Radio value={'C'}>Option C</Radio>
-                                        <Radio value={'D'}>Option D</Radio>
+                                        <Radio value={'A'}>Option A {answers[question.stt - 1].result === 'a' ? <CheckCircleTwoTone twoToneColor="#52c41a" /> : ''}</Radio>
+                                        <Radio value={'B'}>Option B {answers[question.stt - 1].result === "b" ? <CheckCircleTwoTone twoToneColor="#52c41a" /> : ''}</Radio>
+                                        <Radio value={'C'}>Option C {answers[question.stt - 1].result === "c" ? <CheckCircleTwoTone twoToneColor="#52c41a" /> : ''}</Radio>
+                                        <Radio value={'D'}>Option D {answers[question.stt - 1].result === "d" ? <CheckCircleTwoTone twoToneColor="#52c41a" /> : ''}</Radio>
                                     </Space>
                                 </Radio.Group>
                             </Space>

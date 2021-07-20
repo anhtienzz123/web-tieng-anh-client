@@ -1,6 +1,6 @@
 import { CaretLeftFilled, CaretRightFilled } from '@ant-design/icons';
 import { Button, Col, Row } from 'antd';
-import { fetchExam, setExamSelected, setScrollId, setsubPartSelected, writeAnswerSheet } from 'features/OnlineExam/onlineExamSlice';
+import { fetchExam, setExamSelected, setIsSubmit, setScrollId, setsubPartSelected, writeAnswerSheet } from 'features/OnlineExam/onlineExamSlice';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
@@ -25,7 +25,7 @@ function ToeicPart(props) {
 
 
     useLoadExamSelectedAfterRefresh();
-    const { questions, examSelected, scrollId } = useSelector(state => state.exam);
+    const { questions, examSelected, scrollId, isSubmit } = useSelector(state => state.exam);
     const { part1, part2, part3, part4, part5, part6, part7, part3Audio, part1Audio, part2Audio, part4Audio } = questions;
     const { subPartSelected, part3MaxPage, part4MaxPage, part6MaxPage, part7MaxPage } = useSelector(state => state.exam);
     const history = useHistory();
@@ -34,7 +34,14 @@ function ToeicPart(props) {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if (examSelected === 8) {
+        let check = localStorage.getItem("isSubmit");
+        if (check !== "undefined" && check !== null) {
+            dispatch(setIsSubmit(check));
+        }
+    }, [])
+
+    useEffect(() => {
+        if (examSelected === 8 && isSubmit === false) {
             history.push(`/exams/${testId}/checkout`);
         }
     }, [examSelected]);
@@ -91,6 +98,13 @@ function ToeicPart(props) {
         // if (examSelected == 7) {
         //     history.push(`/exams/${testId}/checkout`);
         // }
+
+
+        if (isSubmit) {
+            if (examSelected === 7 && subPartSelected === part7MaxPage) {
+                history.push(`/exams/${testId}/result`);
+            }
+        }
 
         if (examSelected === 1 || examSelected === 2 || examSelected === 5) {
             console.log("Next");
@@ -152,6 +166,9 @@ function ToeicPart(props) {
 
 
 
+
+
+
     return (
         <div id='top' className="toeic_part">
             <div className="toeic_part_content">
@@ -172,7 +189,7 @@ function ToeicPart(props) {
                         </Button>
                     </Col>
                     <Col span={4}>
-                        <Button type="primary" block onClick={handleNextClick}>
+                        <Button type="primary" block onClick={handleNextClick} >
                             <b>Next</b>
                             <CaretRightFilled />
                         </Button>
