@@ -7,6 +7,7 @@ import Home from "features/Home";
 import Login from "features/Login";
 import Me from "features/Me";
 import Translate from "features/Translate";
+import Video from "features/Video";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
@@ -29,6 +30,7 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route path="/login" component={Login} />
           <Route path="/translate" component={Translate} />
+          <Route path="/videos" component={Video} />
           <ProtectedRoute path="/me" component={Me} />
 
           <Route component={NotFoundPage} />
