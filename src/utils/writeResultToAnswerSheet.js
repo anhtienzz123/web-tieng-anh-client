@@ -39,6 +39,8 @@ export const writeTranScript = (result) => {
 
 }
 
+
+
 function getTranscript(transcript, part, name) {
     let object = [];
 
@@ -63,6 +65,7 @@ function handleQuestion_complex(part, resultSheet) {
             stt = subElement.question.stt;
             result = subElement.question.result;
 
+
             let obejct = { stt, selected, status, result };
             resultSheet.push(obejct);
         })
@@ -73,15 +76,16 @@ function handleQuestion_complex(part, resultSheet) {
 
 
 function handleQuestion_simple(part, resultSheet) {
-    let stt, selected, status, result, audio;
+    let stt, selected, status, result, audio, scriptAudio;
     part.forEach((element, index) => {
         selected = element.choice;
         status = element.correct;
         stt = element.question.stt;
         result = element.question.result;
         audio = element.question.audio;
+        scriptAudio = { a: element.question.a, b: element.question.b, c: element.question.c, d: element.question.d }
 
-        let obejct = { stt, selected, status, result, audio };
+        let obejct = { stt, selected, status, result, audio, scriptAudio };
         resultSheet.push(obejct);
 
 

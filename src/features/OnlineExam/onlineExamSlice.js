@@ -135,10 +135,10 @@ const examSlice = createSlice({
 
             newSheet = writeResultToAnswerSheet(action.payload);
             newTranscript = writeTranScript(action.payload);
-        
-            state.answers = newSheet
-            state.transcript = newTranscript
-            
+
+            state.answers = newSheet;
+            state.transcript = newTranscript;
+
             localStorage.setItem('answers', JSON.stringify(newSheet));
             localStorage.setItem('transcript', JSON.stringify(newTranscript));
 
@@ -148,5 +148,5 @@ const examSlice = createSlice({
 });
 
 const { reducer, actions } = examSlice;
-export const { setExamSelected, setIsSubmit, refreshStore, writeResultToExam, setStatus, writeAnswerSheet, setsubPartSelected, setMaxPartSelected, setScrollId, setExamCheckin, setAnswerAfterRefresh } = actions;
+export const { setExamSelected, setIsSubmit, setTranScript, refreshStore, writeResultToExam, setStatus, writeAnswerSheet, setsubPartSelected, setMaxPartSelected, setScrollId, setExamCheckin, setAnswerAfterRefresh } = actions;
 export default reducer;

@@ -24,7 +24,7 @@ function ToeicPart(props) {
     useLoadExamSelectedAfterRefresh();
     const { questions, examSelected, scrollId, isSubmit } = useSelector(state => state.exam);
     const { part1, part2, part3, part4, part5, part6, part7, part3Audio, part1Audio, part2Audio, part4Audio } = questions;
-    const { subPartSelected, part3MaxPage, part4MaxPage, part6MaxPage, part7MaxPage } = useSelector(state => state.exam);
+    const { subPartSelected, part3MaxPage, part4MaxPage, part6MaxPage, part7MaxPage, transcript } = useSelector(state => state.exam);
     const history = useHistory();
     const { testId } = useParams();
 
@@ -45,7 +45,7 @@ function ToeicPart(props) {
     useEffect(() => {
 
         if (examSelected === 8 && isSubmit === false) {
-            
+
             history.push(`/exams/${testId}/checkout`);
 
             console.log("lệnh nàyh bị lỗi nè")
@@ -163,6 +163,7 @@ function ToeicPart(props) {
 
     useWindowUnloadEffect(() => {
         localStorage.setItem('partSelected', examSelected);
+        localStorage.setItem('Transcript', transcript)
     }, true);
 
     const disabled = examSelected == 1 ? true : false;

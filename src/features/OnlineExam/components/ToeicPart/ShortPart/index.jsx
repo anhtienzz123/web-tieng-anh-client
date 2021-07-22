@@ -61,7 +61,7 @@ function ShortPart(props) {
 
                         <div className="question" >
                             <Space direction="vertical" style={{ width: "100%" }}>
-                                <ShortSub name={name} audio={tempData.pharagraph} image={tempData.image} data={tempData.questions} onAnswerSheetClick={onAnswerSheetClick} checkPart={checkPart} />
+                                <ShortSub name={name} audio={tempData.paragraph} image={tempData.image} data={tempData.questions} onAnswerSheetClick={onAnswerSheetClick} checkPart={checkPart} />
                             </Space>
                         </div>
 

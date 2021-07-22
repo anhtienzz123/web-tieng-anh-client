@@ -86,10 +86,36 @@ function Part1(props) {
                                 <Radio.Group disabled={isSubmit} onChange={(e) => handleSelected(question.stt, e)} value={answers[question.stt - 1].selected}>
 
                                     <Space direction="vertical">
-                                        <Radio value={'A'}>Option A {answers[question.stt - 1].result === 'a' ? <CheckCircleTwoTone twoToneColor="#52c41a" /> : ''}</Radio>
-                                        <Radio value={'B'}>Option B {answers[question.stt - 1].result === "b" ? <CheckCircleTwoTone twoToneColor="#52c41a" /> : ''}</Radio>
-                                        <Radio value={'C'}>Option C {answers[question.stt - 1].result === "c" ? <CheckCircleTwoTone twoToneColor="#52c41a" /> : ''}</Radio>
-                                        <Radio value={'D'}>Option D {answers[question.stt - 1].result === "d" ? <CheckCircleTwoTone twoToneColor="#52c41a" /> : ''}</Radio>
+                                        <Radio value={'A'}>Option A
+
+                                            &nbsp;
+                                            {answers.scriptAudio && answers[question.stt - 1].scriptAudio.a.slice(2)}
+                                            &nbsp;
+                                            {answers[question.stt - 1].result === 'a' ? <CheckCircleTwoTone twoToneColor="#52c41a" /> : ''}
+                                        </Radio>
+                                        <Radio value={'B'}>Option B
+                                            &nbsp;
+                                            {answers.scriptAudio && answers[question.stt - 1].scriptAudio.b.slice(2)}
+                                            &nbsp;
+                                            {answers[question.stt - 1].result === "b" ? <CheckCircleTwoTone twoToneColor="#52c41a" /> : ''}
+
+
+                                        </Radio>
+                                        <Radio value={'C'}>Option C
+                                            &nbsp;
+                                            {answers.scriptAudio && answers[question.stt - 1].scriptAudio.c.slice(2)}
+                                            &nbsp;
+                                            {answers[question.stt - 1].result === "c" ? <CheckCircleTwoTone twoToneColor="#52c41a" /> : ''}
+
+
+                                        </Radio>
+                                        <Radio value={'D'}>Option D
+                                            &nbsp;
+                                            {answers.scriptAudio && answers[question.stt - 1].scriptAudio.d.slice(2)}
+                                            &nbsp;
+                                            {answers[question.stt - 1].result === "d" ? <CheckCircleTwoTone twoToneColor="#52c41a" /> : ''}
+
+                                        </Radio>
                                     </Space>
                                 </Radio.Group>
                             </Space>

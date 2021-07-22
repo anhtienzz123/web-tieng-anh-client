@@ -72,15 +72,16 @@ function ShortSub(props) {
                     {image && <img src={image} alt="error picture" />}
 
                     {checkPart && <CustomAudioControl audio={audio} onPlay={false} />}
+                    {tempTranscript && parse(tempTranscript[subPartSelected])}
 
-                    {isSubmit && <div>{ }</div>}
-                    <div>
-                        {checkPart ? '' :
 
-                            parse(audio)
+                    {checkPart ? '' :
+                        <div >
+                           { parse(audio)}
+                        </div>
 
-                        }
-                    </div>
+                    }
+
 
                 </div>
 
@@ -89,7 +90,7 @@ function ShortSub(props) {
 
                         <Space direction="vertical" key={index}>
 
-                            {tempTranscript && <div>{tempTranscript[subPartSelected]}</div>}
+
 
                             <div id={element.stt} className='title_question' >{element.content}</div>
                             {/* onChange={(e) => handleSelected(element.stt, e)} value={answers[element.stt - 1].selected} */}
