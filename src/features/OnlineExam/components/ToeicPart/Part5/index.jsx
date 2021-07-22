@@ -27,7 +27,6 @@ function Part5(props) {
             selected: e.target.value
         };
 
-        console.log("Check answer", answer);
 
         if (onAnswerSheetClick) {
             onAnswerSheetClick(answer);

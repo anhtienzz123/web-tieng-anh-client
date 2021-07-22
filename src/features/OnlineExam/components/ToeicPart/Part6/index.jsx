@@ -16,7 +16,6 @@ Part6.defaultProps = {
 
 function Part6(props) {
     const { data, onAnswerSheetClick, name, scrollId } = props;
-    console.log("check data part 6", data);
 
    
     return (

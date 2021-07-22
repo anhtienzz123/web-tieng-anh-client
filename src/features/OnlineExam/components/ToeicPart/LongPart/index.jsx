@@ -3,22 +3,34 @@ import CustomAudioControl from 'components/CustomAudioControl';
 import PropTypes from 'prop-types';
 import React from 'react';
 import LongSub from '../LongSub';
+import { useSelector } from 'react-redux';
 LongPart.propTypes = {
     data: PropTypes.array,
     longAudio: PropTypes.string,
     onAnswerSheetClick: PropTypes.func,
+    name: PropTypes.string,
 };
 
 LongPart.defaultProps = {
     data: [],
     longAudio: '',
-    onAnswerSheetClick: null
+    onAnswerSheetClick: null,
+    name: ''
 
 }
 
 function LongPart(props) {
-    const { data, longAudio, onAnswerSheetClick } = props;
+    const { data, longAudio, onAnswerSheetClick, name } = props;
+    const { transcript } = useSelector(state => state.exam);
     console.log("check dataa long", data);
+
+    let tempTranscript;
+
+    if (name === 'part3') {
+        tempTranscript = transcript.part3;
+    } else if (name === 'part4') {
+        tempTranscript = transcript.part4;
+    }
 
     return (
         <div>
@@ -36,7 +48,9 @@ function LongPart(props) {
                         <div className="question" key={index} id={question.stt} >
                             <Space direction="vertical">
                                 {question.image && <img src={question.image} alt="" />}
-                                <LongSub data={question.questions} onAnswerSheetClick={onAnswerSheetClick} />
+                                {tempTranscript && <div>{tempTranscript[index]}</div>}
+
+                                <LongSub data={question.questions} onAnswerSheetClick={onAnswerSheetClick} name={name} />
                             </Space>
 
 

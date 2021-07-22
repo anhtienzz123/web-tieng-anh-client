@@ -1,12 +1,11 @@
 import { HomeOutlined, StarTwoTone } from '@ant-design/icons';
 import { Button, Space, Table } from 'antd';
-import { fetchResult, setScrollId, setsubPartSelected, writeResultToExam } from 'features/OnlineExam/onlineExamSlice';
+import { fetchResult, refreshStore, setExamSelected, setScrollId, setsubPartSelected, writeResultToExam } from 'features/OnlineExam/onlineExamSlice';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { handleAnswer } from 'utils/handleDataAnswer';
-import { writeResultToAnswerSheet } from 'utils/writeResultToAnswerSheet';
-import { refreshStore } from 'features/OnlineExam/onlineExamSlice';
+import { writeResultToAnswerSheet, writeTranScript } from 'utils/writeResultToAnswerSheet';
 import './style.scss';
 ResultPage.propTypes = {
 
@@ -37,16 +36,18 @@ function ResultPage(props) {
     }, []);
 
 
-    useEffect(() => {
-        let newSheet;
-        if (!(Object.keys(result).length === 0 && result.constructor === Object)) {
-            newSheet = result && writeResultToAnswerSheet(result);
-            dispatch(writeResultToExam(newSheet));
-            localStorage.setItem('answers', JSON.stringify(newSheet));
+    // useEffect(() => {
+    //     let newSheet, newTranscript;
+    //     if (!(Object.keys(result).length === 0 && result.constructor === Object)) {
+    //         newSheet = result && writeResultToAnswerSheet(result);
+    //         newTranscript = result && writeTranScript(result);
+    //         dispatch(writeResultToExam(newSheet));
+    //         dispatch(writeTranScript(newTranscript));
+    //         localStorage.setItem('answers', JSON.stringify(newSheet));
+    //         localStorage.setItem('transcript', JSON.stringify(newTranscript));
 
-
-        }
-    }, [result])
+    //     }
+    // }, [result])
 
 
     useEffect(() => {
@@ -57,9 +58,9 @@ function ResultPage(props) {
     const handleDetailClick = (text, record, index) => {
 
         localStorage.setItem("partSelected", record.key);
+        dispatch(setExamSelected(record.key));
         dispatch(setsubPartSelected(0));
         dispatch(setScrollId('top'));
-        // dispatch(setExamSelected(record.key))
         history.push(`/exams/${testId}/examining`);
 
 

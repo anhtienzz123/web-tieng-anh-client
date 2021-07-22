@@ -21,9 +21,6 @@ ToeicPart.propTypes = {
 
 function ToeicPart(props) {
 
-
-
-
     useLoadExamSelectedAfterRefresh();
     const { questions, examSelected, scrollId, isSubmit } = useSelector(state => state.exam);
     const { part1, part2, part3, part4, part5, part6, part7, part3Audio, part1Audio, part2Audio, part4Audio } = questions;
@@ -38,11 +35,20 @@ function ToeicPart(props) {
         if (check !== "undefined" && check !== null) {
             dispatch(setIsSubmit(check));
         }
+    }, []);
+
+
+    useEffect(() => {
+
     }, [])
 
     useEffect(() => {
+
         if (examSelected === 8 && isSubmit === false) {
+            
             history.push(`/exams/${testId}/checkout`);
+
+            console.log("lệnh nàyh bị lỗi nè")
         }
     }, [examSelected]);
 
@@ -51,9 +57,6 @@ function ToeicPart(props) {
             slug: testId
         }))
     }, []);
-
-
-
 
     useEffect(() => {
         console.log('effect', scrollId);

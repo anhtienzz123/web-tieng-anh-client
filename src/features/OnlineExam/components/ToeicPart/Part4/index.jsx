@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import { useDispatch } from 'react-redux';
-import { setMaxPartSelected } from 'features/OnlineExam/onlineExamSlice';
 import LongPart from '../LongPart';
 import ShortPart from '../ShortPart';
 
@@ -24,13 +23,6 @@ function Part4(props) {
     const { data, onAnswerSheetClick, longAudio, name } = props;
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        const object = { amount: data.length - 1, name: name };
-
-        dispatch(setMaxPartSelected(object));
-        return () => {
-        };
-    }, []);
 
     let flag = 0;
 
@@ -46,8 +38,8 @@ function Part4(props) {
     return (
         <div id='top'>
             {typePart == 'short' ?
-                <ShortPart data={data} onAnswerSheetClick={onAnswerSheetClick} /> :
-                <LongPart data={data} longAudio={longAudio} onAnswerSheetClick={onAnswerSheetClick} />
+                <ShortPart data={data} onAnswerSheetClick={onAnswerSheetClick} name={name} /> :
+                <LongPart data={data} longAudio={longAudio} onAnswerSheetClick={onAnswerSheetClick} name={name} />
             }
         </div>
     );

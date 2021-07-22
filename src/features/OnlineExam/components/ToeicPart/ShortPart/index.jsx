@@ -24,13 +24,7 @@ function ShortPart(props) {
     let tempData = data[subPartSelected];
 
 
-    console.log("subpart check", subPartSelected);
-    console.log("data check", data);
-    console.log("tempData check", tempData);
-
-
     const from = 0;
-    // const to = tempData.questions.length - 1;
     const to = tempData ? tempData.questions.length - 1 : 0;
 
 
@@ -67,7 +61,7 @@ function ShortPart(props) {
 
                         <div className="question" >
                             <Space direction="vertical" style={{ width: "100%" }}>
-                                <ShortSub audio={tempData.pharagraph} image={tempData.image} data={tempData.questions} onAnswerSheetClick={onAnswerSheetClick} checkPart={checkPart} />
+                                <ShortSub name={name} audio={tempData.pharagraph} image={tempData.image} data={tempData.questions} onAnswerSheetClick={onAnswerSheetClick} checkPart={checkPart} />
                             </Space>
                         </div>
 

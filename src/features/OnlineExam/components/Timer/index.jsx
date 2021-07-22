@@ -17,8 +17,8 @@ Timer.defaultProps = {
 
 function Timer(props) {
     const { page } = props;
-    const initialMinute = 0;
-    const initialSeconds = 10;
+    const initialMinute = 120;
+    const initialSeconds = 0;
     const [minutes, setMinutes] = useState(initialMinute);
     const [seconds, setSeconds] = useState(initialSeconds);
     const dispatch = useDispatch();
@@ -68,7 +68,7 @@ function Timer(props) {
     const [modal, contextHolder] = Modal.useModal();
 
     const config = {
-        title: 'Use Hook!',
+        title: 'TimeOut',
         content: (
             <>
                 <ReachableContext.Consumer>{name => `${name} !`}</ReachableContext.Consumer>
@@ -152,7 +152,7 @@ function Timer(props) {
                 </Row>
             </div>
 
-            <ReachableContext.Provider value="Time out">
+            <ReachableContext.Provider value="Go to result page ">
 
                 {contextHolder}
             </ReachableContext.Provider>

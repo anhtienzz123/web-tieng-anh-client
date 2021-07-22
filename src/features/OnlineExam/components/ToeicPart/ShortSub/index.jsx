@@ -18,6 +18,7 @@ ShortSub.propTypes = {
     audio: PropTypes.string,
     checkPart: PropTypes.bool,
     para: PropTypes.string,
+    name: ''
 
 };
 
@@ -27,17 +28,24 @@ ShortSub.defaultProps = {
     image: '',
     audio: null,
     checkPart: true,
-    para: ''
+    para: '',
+    name: ''
 }
 
 
 
 
 function ShortSub(props) {
-    const { data, onAnswerSheetClick, image, audio, checkPart, para } = props;
-    const { answers, scrollId, isSubmit } = useSelector(state => state.exam);
+    const { data, onAnswerSheetClick, image, audio, checkPart, para, name } = props;
+    const { answers, scrollId, isSubmit, transcript, subPartSelected } = useSelector(state => state.exam);
 
+    let tempTranscript;
 
+    if (name === 'part3') {
+        tempTranscript = transcript.part3;
+    } else if (name === 'part4') {
+        tempTranscript = transcript.part4;
+    }
 
 
     useEffect(() => {
@@ -64,6 +72,8 @@ function ShortSub(props) {
                     {image && <img src={image} alt="error picture" />}
 
                     {checkPart && <CustomAudioControl audio={audio} onPlay={false} />}
+
+                    {isSubmit && <div>{ }</div>}
                     <div>
                         {checkPart ? '' :
 
@@ -78,6 +88,8 @@ function ShortSub(props) {
                     data.map((element, index) => (
 
                         <Space direction="vertical" key={index}>
+
+                            {tempTranscript && <div>{tempTranscript[subPartSelected]}</div>}
 
                             <div id={element.stt} className='title_question' >{element.content}</div>
                             {/* onChange={(e) => handleSelected(element.stt, e)} value={answers[element.stt - 1].selected} */}

@@ -19,8 +19,7 @@ Part3.defaultProps = {
 
 function Part3(props) {
     const { data, onAnswerSheetClick, longAudio, name } = props;
- 
-    console.log("check data part 3",data);
+
 
     let flag = 0;
 
@@ -46,8 +45,8 @@ function Part3(props) {
         <div id='top'>
 
             {typePart == 'short' ?
-                <ShortPart data={data} onAnswerSheetClick={onAnswerSheetClick} /> :
-                <LongPart data={data} longAudio={longAudio} onAnswerSheetClick={onAnswerSheetClick} />
+                <ShortPart data={data} onAnswerSheetClick={onAnswerSheetClick} name={name} /> :
+                <LongPart data={data} longAudio={longAudio} onAnswerSheetClick={onAnswerSheetClick} name={name} />
             }
 
 

@@ -1,10 +1,9 @@
+import { CheckCircleTwoTone } from '@ant-design/icons';
 import { Divider, Radio, Space } from 'antd';
 import CustomAudioControl from 'components/CustomAudioControl';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import { CheckCircleTwoTone } from '@ant-design/icons';
 
 
 Part1.propTypes = {
@@ -53,10 +52,11 @@ function Part1(props) {
                 <Divider />
                 <p>Please refrain from replaying the audio, you can only listen one time when in real exam.</p>
 
-                {longAudio &&
+
+                {(isSubmit === false && longAudio != null) ?
                     <div className="content_part--audio">
-                        <CustomAudioControl audio={longAudio} />
-                    </div>
+                        <CustomAudioControl audio={longAudio} onPlay={!isSubmit} />
+                    </div> : ''
                 }
 
 
@@ -67,14 +67,20 @@ function Part1(props) {
 
                             <Space direction="vertical">
                                 {
-                                    longAudio == null
+                                    (longAudio == null && isSubmit == false)
                                         ? <CustomAudioControl audio={question.audio} onPlay={false} />
                                         : ''
                                 }
 
+
                                 <div className="question--img" id={question.stt}>
                                     <img src={question.content} alt="" />
                                 </div>
+
+                                {
+                                    isSubmit ? <CustomAudioControl audio={answers[question.stt - 1].audio} onPlay={false} /> : ''
+                                }
+
                                 <p className='title_question'>{question.stt} : Select the answer</p>
 
                                 <Radio.Group disabled={isSubmit} onChange={(e) => handleSelected(question.stt, e)} value={answers[question.stt - 1].selected}>

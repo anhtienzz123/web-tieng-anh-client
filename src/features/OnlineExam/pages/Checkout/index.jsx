@@ -1,6 +1,6 @@
-import { Button, Col, Divider, Modal, Row, Space, Table, Tag } from 'antd';
+import { Button, Col, Modal, Row, Space, Table, Tag } from 'antd';
 import Timer from 'features/OnlineExam/components/Timer';
-import { setExamSelected, setScrollId, setIsSubmit, setStatus, setsubPartSelected } from 'features/OnlineExam/onlineExamSlice';
+import { setExamSelected, setIsSubmit, setScrollId, setStatus, setsubPartSelected } from 'features/OnlineExam/onlineExamSlice';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
@@ -201,7 +201,8 @@ function Checkout(props) {
 	const handleDetailClick = (text, record, index) => {
 
 		localStorage.setItem("partSelected", record.key);
-		console.log('record key', record.key)
+		console.log('record key', record.key);
+		dispatch(setExamSelected(record.key));
 		dispatch(setsubPartSelected(0));
 		dispatch(setScrollId('top'));
 		history.push(`/exams/${testId}/examining`);
@@ -235,7 +236,7 @@ function Checkout(props) {
 
 						<Col span={3} offset={2} flex={1} >
 
-							<ReachableContext.Provider >
+							<ReachableContext.Provider value='' >
 								<div className='button_align'>
 									<Button
 										block type="primary"

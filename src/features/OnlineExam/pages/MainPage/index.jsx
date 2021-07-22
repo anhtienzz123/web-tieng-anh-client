@@ -31,7 +31,7 @@ function MainPage(props) {
                 <ListExam examList={setExam} />
             </div>
         </Spin>
-    
+
     );
 }
 

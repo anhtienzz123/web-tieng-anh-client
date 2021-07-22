@@ -1,10 +1,9 @@
+import { CheckCircleTwoTone } from '@ant-design/icons';
 import { Divider, Radio, Space } from 'antd';
 import CustomAudioControl from 'components/CustomAudioControl';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import { CheckCircleTwoTone } from '@ant-design/icons';
 Part2.propTypes = {
     data: PropTypes.array,
     onAnswerSheetClick: PropTypes.func,
@@ -39,7 +38,7 @@ function Part2(props) {
 
     }
 
-    console.log('data part 1', data);
+
     return (
         <div id='top'>
             <Space direction="vertical" size='large' style={{ width: '100%' }} >
@@ -47,10 +46,11 @@ function Part2(props) {
                 <Divider />
                 <p>Please refrain from replaying the audio, you can only listen one time when in real exam.</p>
 
-                {
-                    longAudio != null
-                        ? <CustomAudioControl audio={longAudio} />
-                        : ''
+
+                {(isSubmit === false && longAudio != null) ?
+                    <div className="content_part--audio">
+                        <CustomAudioControl audio={longAudio} onPlay={!isSubmit} />
+                    </div> : ''
                 }
 
 
@@ -59,14 +59,20 @@ function Part2(props) {
 
                         <div className="question" key={index} id={question.stt} >
 
-                            <Space direction="vertical">
+                            <Space direction="vertical" style={{ width: '100%' }}>
                                 {
                                     longAudio == null
                                         ? <CustomAudioControl audio={question.audio} onPlay={false} />
                                         : ''
                                 }
 
+                                {
+                                    isSubmit ? <CustomAudioControl audio={answers[question.stt - 1].audio} onPlay={false} /> : ''
+                                }
+
                                 <p className='title_question' >{question.stt} : Select the answer</p>
+
+
 
                                 <Radio.Group disabled={isSubmit} onChange={(e) => handleSelected(question.stt, e)} value={answers[question.stt - 1].selected}>
 

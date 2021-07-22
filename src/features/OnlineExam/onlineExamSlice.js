@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import bookApi from 'api/bookApi';
 import examApi from 'api/examApi';
 import { answers } from 'constants/ToeicSheet';
+import { writeResultToAnswerSheet, writeTranScript } from 'utils/writeResultToAnswerSheet'
 
 const KEY = 'exam';
 
@@ -44,6 +45,7 @@ const examSlice = createSlice({
         part6MaxPage: 0,
         part7MaxPage: 0,
         result: {},
+        transcript: [],
         isSubmit: false,
 
     }
@@ -77,24 +79,6 @@ const examSlice = createSlice({
         setAnswerAfterRefresh: (state, action) => {
             state.answers = action.payload;
         },
-        setMaxPartSelected: (state, action) => {
-            if (action.payload.name === 'part3') {
-                state.part3MaxPage = action.payload.amount;
-            }
-
-            if (action.payload.name === 'part4') {
-                state.part4MaxPage = action.payload.amount;
-            }
-
-            if (action.payload.name === 'part6') {
-                state.part6MaxPage = action.payload.amount;
-            }
-
-            if (action.payload.name === 'part7') {
-                state.part7MaxPage = action.payload.amount;
-            }
-
-        },
         setsubPartSelected: (state, action) => {
             state.subPartSelected = action.payload;
         },
@@ -114,6 +98,9 @@ const examSlice = createSlice({
             state.result = {};
             localStorage.clear();
 
+        },
+        setTranScript: (state, action) => {
+            state.transcript = action.payload;
         }
 
 
@@ -142,8 +129,21 @@ const examSlice = createSlice({
 
         [fetchResult.fulfilled]: (state, action) => {
             state.result = action.payload;
-        }
 
+
+            let newSheet, newTranscript;
+
+            newSheet = writeResultToAnswerSheet(action.payload);
+            newTranscript = writeTranScript(action.payload);
+        
+            state.answers = newSheet
+            state.transcript = newTranscript
+            
+            localStorage.setItem('answers', JSON.stringify(newSheet));
+            localStorage.setItem('transcript', JSON.stringify(newTranscript));
+
+
+        }
     }
 });
 

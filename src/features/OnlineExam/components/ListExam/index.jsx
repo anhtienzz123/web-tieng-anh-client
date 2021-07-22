@@ -22,7 +22,7 @@ function ListExam(props) {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(fetchBooks());
-        
+
 
     }, []);
 
@@ -34,7 +34,6 @@ function ListExam(props) {
 
 
     const { examList } = props;
-    console.log(examList);
 
     return (
 

@@ -1,4 +1,3 @@
-import { answers } from 'constants/ToeicSheet';
 
 export const writeResultToAnswerSheet = (result) => {
 
@@ -17,6 +16,41 @@ export const writeResultToAnswerSheet = (result) => {
 
     return resultSheet;
 
+}
+
+export const writeTranScript = (result) => {
+    const transcript = {
+        part3: [],
+        part4: []
+    };
+    const { part3, part4 } = result;
+    if (result) {
+        if (part3) {
+            getTranscript(transcript, part3, 'part3');
+        }
+
+        if (part4) {
+            getTranscript(transcript, part4, 'part4');
+        }
+    }
+
+
+    return transcript;
+
+}
+
+function getTranscript(transcript, part, name) {
+    let object = [];
+
+    part.forEach((element, index) => {
+        object.push(element.transcript);
+    });
+
+    if (name === 'part3') {
+        transcript.part3 = object;
+    } else {
+        transcript.part4 = object;
+    }
 }
 
 
@@ -39,14 +73,15 @@ function handleQuestion_complex(part, resultSheet) {
 
 
 function handleQuestion_simple(part, resultSheet) {
-    let stt, selected, status, result;
+    let stt, selected, status, result, audio;
     part.forEach((element, index) => {
         selected = element.choice;
         status = element.correct;
         stt = element.question.stt;
         result = element.question.result;
+        audio = element.question.audio;
 
-        let obejct = { stt, selected, status, result };
+        let obejct = { stt, selected, status, result, audio };
         resultSheet.push(obejct);
 
 
