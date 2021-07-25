@@ -1,70 +1,86 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Carousel } from 'antd';
-import AliceCarousel from 'react-alice-carousel';
-import 'react-alice-carousel/lib/alice-carousel.css';
+import { Col, Row, Spin } from 'antd';
+import Slider from 'features/Video/components/Slider';
+import VideoCard from 'features/Video/components/VideoCard';
+import { fetchByCategoryVideo, raisePage, fetchNextPage } from 'features/Video/videoSlice';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import InfiniteScroll from "react-infinite-scroll-component";
+import './style.scss';
+
 MainPage.propTypes = {
 
 };
 
 function MainPage(props) {
 
-    const responsive = {
-        0: { items: 1 },
-        568: { items: 2 },
-        1024: { items: 4 },
-    };
 
-    const items = [
-        <div className="item" data-value="1" style={{ border: "1px solid black", margin: '5px 5px' }}>1</div>,
-        <div className="item" data-value="2" style={{ border: "1px solid black", margin: '5px 5px' }}>2</div>,
-        <div className="item" data-value="3" style={{ border: "1px solid black", margin: '5px 5px' }}>3</div>,
-        <div className="item" data-value="4" style={{ border: "1px solid black", margin: '5px 5px' }}>4</div>,
-        <div className="item" data-value="5" style={{ border: "1px solid black", margin: '5px 5px' }}>5</div>,
-    ];
+    const { slugCategory } = useParams();
+    const dispatch = useDispatch();
+    const { movies, page, totalPages, level } = useSelector((state) => state.video);
+    const { data } = movies;
+
+    useEffect(() => {
+        if (slugCategory) {
+            dispatch(fetchByCategoryVideo({
+                slug: slugCategory,
+            }));
+        }
+    }, [slugCategory]);
 
 
-    const contentStyle = {
-        height: '160px',
-        color: '#fff',
-        lineHeight: '160px',
-        textAlign: 'center',
-        background: '#364d79',
-    };
 
+    useEffect(() => {
+        if (slugCategory && page) {
+            dispatch(fetchNextPage({
+                slug: slugCategory,
+                page: page
+            }))
+        }
+    }, [page])
+
+    const handleNextScroll = () => {
+        dispatch(raisePage())
+    }
+
+    let check = true;
+    if (page === totalPages) {
+        check = false
+    }
 
 
     return (
         <div>
-            <Carousel autoplay>
-                <div>
-                    <h3 style={contentStyle}>1</h3>
-                </div>
-                <div>
-                    <h3 style={contentStyle}>2</h3>
-                </div>
-                <div>
-                    <h3 style={contentStyle}>3</h3>
-                </div>
-                <div>
-                    <h3 style={contentStyle}>4</h3>
-                </div>
-            </Carousel>
+            <Slider />
 
-            <hr />
-            <AliceCarousel
-                mouseTracking
-                items={items}
-                responsive={responsive}
-                controlsStrategy="alternate"
-                autoPlay={true}
-                animationDuration={2000}
-                disableButtonsControls={true}
-                infinite={true}
-                paddingLeft={100}
-            />
+            
+            <div className="mainpage_wrapper">
 
-        </div>
+                <InfiniteScroll
+                    style={{ overflowX: 'hidden' }}
+                    dataLength={data ? data.length : 0}
+                    next={handleNextScroll}
+                    hasMore={true}
+                    loader={check ? <div className="loader"><Spin size="medium" /></div> : ''}
+
+                >
+                    <Row gutter={[8, 16]}>
+
+                        {
+                            data && data.map((element, index) => (
+                                <Col key={index} span={6} >
+                                    <VideoCard data={element} />
+                                </Col>
+                            ))
+                        }
+                    </Row>
+                </InfiniteScroll>
+
+            </div>
+
+
+
+        </div >
     );
 }
 

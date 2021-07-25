@@ -1,26 +1,26 @@
-import {
-    AppstoreOutlined,
-    CarryOutOutlined,
-    FileSearchOutlined,
-    HomeOutlined,
-    LoginOutlined,
-    UserOutlined,
-    PlayCircleOutlined
-
-} from "@ant-design/icons";
+import { AppstoreOutlined, CarryOutOutlined, FileSearchOutlined, HomeOutlined, LoginOutlined, PlayCircleOutlined, UserOutlined } from "@ant-design/icons";
 import { Menu, message } from "antd";
 import { setLogin } from "app/globalSlice";
-import React from "react";
+import { fetchCategoriesVideo } from 'features/Video/videoSlice';
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import auth from "utils/auth";
 import './style.scss';
+import BlockLevel from 'components/BlockLevel';
 
 const { SubMenu } = Menu;
 
 function Header(props) {
     const { isLogin } = useSelector((state) => state.global);
     const dispatch = useDispatch();
+    const { categories } = useSelector((state) => state.video);
+    const level = [1, 2, 3, 4, 5, 6, 7];
+
+
+    useEffect(() => {
+        dispatch(fetchCategoriesVideo());
+    }, []);
 
     return (
         <div className="header">
@@ -39,41 +39,43 @@ function Header(props) {
 
                 <Menu.Item key="3" icon={<CarryOutOutlined />}>
                     <Link to="/exams">Luyện thi toeic</Link>
+
                 </Menu.Item>
 
+
                 <SubMenu key="SubMenu" icon={<PlayCircleOutlined />} title="Video">
-                    <Menu.ItemGroup title="Explore by topics">
-                        <Menu.Item key="1">
-                            <Link to="/videos">Luyện thi toeic</Link>
-                        </Menu.Item>
-                        <Menu.Item key="2">
-                            <Link to="/videos">Luyện thi toeic</Link>
-                        </Menu.Item>
-                        <Menu.Item key="3">
-                            <Link to="/exams">Luyện thi toeic</Link>
-                        </Menu.Item>
-                        <Menu.Item key="3">
-                            <Link to="/exams">Luyện thi toeic</Link>
-                        </Menu.Item>
-                        <Menu.Item key="4">
-                            <Link to="/exams">Luyện thi toeic</Link>
-                        </Menu.Item>
-                        <Menu.Item key="6">
-                            <Link to="/exams">Luyện thi toeic</Link>
-                        </Menu.Item>
+                    <div className='adjust-video'>
+                        <Menu.ItemGroup title="Explore by topics">
 
-                    </Menu.ItemGroup>
+                            {
+                                categories && categories.map((category, index) => (
+                                    <Menu.Item key={category.slug}>
+                                        <Link to={"/videos/" + category.slug}>{category.name}</Link>
+                                    </Menu.Item>
+                                ))
+                            }
 
-                    <Menu.ItemGroup title="Explore by levels">
-                        <Menu.Item key="setting:3">Option 3</Menu.Item>
-                        <Menu.Item key="setting:4">Option 4</Menu.Item>
-                        <Menu.Item key="setting:5">Option 3</Menu.Item>
-                        <Menu.Item key="setting:6">Option 4</Menu.Item>
-                        <Menu.Item key="setting:7">Option 3</Menu.Item>
-                        <Menu.Item key="setting:8">Option 4</Menu.Item>
-                        <Menu.Item key="setting:9">Option 3</Menu.Item>
-                        <Menu.Item key="setting:1">Option 4</Menu.Item>
-                    </Menu.ItemGroup>
+                        </Menu.ItemGroup>
+
+                        {/* <Menu.ItemGroup title="Explore by levels">
+
+                            {
+                                level.map((element, index) => (
+                                    <Menu.Item key={"level" + element}>
+                                        <Link to={"/videos/level/" + element}>
+                                            <BlockLevel level={element.toString()} />
+                                        </Link>
+                                    </Menu.Item>
+                                ))
+                            }
+
+                        </Menu.ItemGroup> */}
+
+                    </div>
+
+
+
+
                 </SubMenu >
 
                 {isLogin ? (
