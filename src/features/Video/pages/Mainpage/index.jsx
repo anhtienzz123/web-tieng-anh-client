@@ -1,11 +1,14 @@
-import { Col, Row, Spin } from 'antd';
+import { Col, Divider, Row, Spin } from 'antd';
+import { dataSelectDuration } from 'constants/dataSelectLevel';
+import SearchBar from 'features/Video/components/SearchBar';
 import Slider from 'features/Video/components/Slider';
 import VideoCard from 'features/Video/components/VideoCard';
-import { fetchByCategoryVideo, raisePage, fetchNextPage } from 'features/Video/videoSlice';
+import { fetchByCategoryVideo, setDurationSelected, fetchNextPage, raisePage, setLevel, setTimeFrom, setTimeTo } from 'features/Video/videoSlice';
 import React, { useEffect } from 'react';
+import InfiniteScroll from "react-infinite-scroll-component";
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import InfiniteScroll from "react-infinite-scroll-component";
+import { Empty } from 'antd';
 import './style.scss';
 
 MainPage.propTypes = {
@@ -17,16 +20,21 @@ function MainPage(props) {
 
     const { slugCategory } = useParams();
     const dispatch = useDispatch();
-    const { movies, page, totalPages, level } = useSelector((state) => state.video);
+    const { movies, page, totalPages, level, timeFrom, timeTo, titleVideoSelected } = useSelector((state) => state.video);
     const { data } = movies;
 
     useEffect(() => {
+
         if (slugCategory) {
             dispatch(fetchByCategoryVideo({
                 slug: slugCategory,
+                level: level,
+                timeFrom: timeFrom,
+                timeTo: timeTo
+
             }));
         }
-    }, [slugCategory]);
+    }, [slugCategory, level, timeFrom, timeTo]);
 
 
 
@@ -34,7 +42,10 @@ function MainPage(props) {
         if (slugCategory && page) {
             dispatch(fetchNextPage({
                 slug: slugCategory,
-                page: page
+                page: page,
+                level: level,
+                timeFrom: timeFrom,
+                timeTo: timeTo
             }))
         }
     }, [page])
@@ -48,16 +59,35 @@ function MainPage(props) {
         check = false
     }
 
+    function handleLevelChange(value) {
+        dispatch(setLevel(parseInt(value)));
+
+    }
+
+    function handleDurationChange(value) {
+        const valueObject = handleDataDuration(value);
+        dispatch(setTimeTo(valueObject.value.timeTo));
+        dispatch(setTimeFrom(valueObject.value.timeFrom));
+        dispatch(setDurationSelected(value));
+
+    }
+
+    function handleDataDuration(duration) {
+        return dataSelectDuration.find(element => element.duration === duration);
+    }
+
 
     return (
         <div>
-            <Slider />
+            <Slider slug={slugCategory} />
 
-            
             <div className="mainpage_wrapper">
+                <SearchBar title={titleVideoSelected} onSelectedDuration={handleDurationChange} onSelectedLevel={handleLevelChange} />
+                <Divider></Divider>
+
 
                 <InfiniteScroll
-                    style={{ overflowX: 'hidden' }}
+                    style={{ overflowX: 'hidden', overflowY: 'hidden' }}
                     dataLength={data ? data.length : 0}
                     next={handleNextScroll}
                     hasMore={true}
@@ -73,8 +103,15 @@ function MainPage(props) {
                                 </Col>
                             ))
                         }
+
+
                     </Row>
                 </InfiniteScroll>
+
+                {(data && data.length === 0) ?
+                    <Empty /> : ''
+                }
+
 
             </div>
 

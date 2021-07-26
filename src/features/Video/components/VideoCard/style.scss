@@ -62,8 +62,6 @@
         opacity: 0;
         transition: all 0.25s ease-in-out 0s;
         border-radius: 15px;
-
-       
     }
 
     &:hover &_overlay {
@@ -74,6 +72,10 @@
         transform: scale(1.2);
         transition: all 0.25s ease-in-out 0s;
     }
+
+    // &:hover & {
+    //     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    // }
 
     &_title {
         text-align: center;

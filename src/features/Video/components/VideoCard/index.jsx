@@ -1,8 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import './style.scss';
 import { PlayCircleOutlined } from '@ant-design/icons';
 import BlockLevel from 'components/BlockLevel';
+import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+import DefaultImage from 'assets/images/default_img.jpg';
+import './style.scss';
 VideoCard.propTypes = {
     data: PropTypes.object,
     height: PropTypes.string,
@@ -20,6 +21,8 @@ function VideoCard(props) {
     const { data, height, padding } = props;
     const { durationString, level, duration, image, slug, name, id } = data;
 
+
+
     let noneRadius = height !== '' ? '0px' : '';
 
     const styleSlider = {
@@ -27,6 +30,11 @@ function VideoCard(props) {
         justifyContent: "flex-start"
     };
 
+    const [checkImage, setCheckImage] = useState(true);
+
+    const handleError = () => {
+        setCheckImage(false)
+    }
 
     return (
         <div className='wrapper' style={{ paddingRight: padding }}>
@@ -34,9 +42,10 @@ function VideoCard(props) {
 
                 <div className="video_card_img" style={{ borderRadius: noneRadius }}>
                     <img
-                        src={image}
+                        src={checkImage ? image : DefaultImage}
                         alt="error image"
                         style={{ height: height }}
+                        onError={handleError}
 
                     />
 

@@ -1,18 +1,29 @@
-import React from 'react';
+import { Row } from 'antd';
+import VideoCard from 'features/Video/components/VideoCard';
 import PropTypes from 'prop-types';
+import React, { useEffect } from 'react';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import { useDispatch, useSelector } from 'react-redux';
-import VideoCard from 'features/Video/components/VideoCard';
-import { Row, Col } from 'antd';
-Slider.propTypes = {
+import { fetchSliderBySlug } from 'features/Video/videoSlice';
 
+Slider.propTypes = {
+    slug: PropTypes.string,
 };
 
-function Slider(props) {
+Slider.defaultProps = {
+    slug: ''
+}
 
-    const { movies } = useSelector((state) => state.video);
-    const { data } = movies;
+function Slider(props) {
+    const { slug } = props;
+    const { moviesSlider } = useSelector((state) => state.video);
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(fetchSliderBySlug({
+            slug: slug
+        }))
+    }, [slug])
 
     const responsive = {
         0: { items: 1 },
@@ -22,10 +33,10 @@ function Slider(props) {
 
     let items = [];
 
-    if (data) {
+    if (moviesSlider) {
         for (let index = 0; index < 5; index++) {
             items.push(
-                <VideoCard data={data[index]} height='350px' padding='10px' />
+                <VideoCard data={moviesSlider[index]} height='350px' padding='10px' />
             )
 
         }

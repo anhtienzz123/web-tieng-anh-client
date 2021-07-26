@@ -42,9 +42,12 @@ function BlockLevel(props) {
         from = '#3ecffa';
         to = '#1da1f2';
     }
-    else {
+    else if (level === '7') {
         from = '#e53838';
         to = '#e5388e';
+    } else {
+        from = '#c4c4c4';
+        to = '#c4c4c4'
     }
 
 

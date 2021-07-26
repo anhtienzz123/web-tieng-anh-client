@@ -1,7 +1,7 @@
 import { AppstoreOutlined, CarryOutOutlined, FileSearchOutlined, HomeOutlined, LoginOutlined, PlayCircleOutlined, UserOutlined } from "@ant-design/icons";
 import { Menu, message } from "antd";
 import { setLogin } from "app/globalSlice";
-import { fetchCategoriesVideo } from 'features/Video/videoSlice';
+import { fetchCategoriesVideo, setTitleVideoSelector, changeSubject } from 'features/Video/videoSlice';
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -22,9 +22,15 @@ function Header(props) {
         dispatch(fetchCategoriesVideo());
     }, []);
 
+    function handleSelectMenu(value) {
+        console.log("menu selected", value);
+        dispatch(setTitleVideoSelector(value.key));
+        dispatch(changeSubject())
+    }
+
     return (
         <div className="header">
-            <Menu mode="horizontal">
+            <Menu mode="horizontal" onSelect={handleSelectMenu}>
                 <Menu.Item key="1" icon={<HomeOutlined />}>
                     <Link to="/">Trang chủ</Link>
                 </Menu.Item>
@@ -49,7 +55,7 @@ function Header(props) {
 
                             {
                                 categories && categories.map((category, index) => (
-                                    <Menu.Item key={category.slug}>
+                                    <Menu.Item key={category.name}>
                                         <Link to={"/videos/" + category.slug}>{category.name}</Link>
                                     </Menu.Item>
                                 ))

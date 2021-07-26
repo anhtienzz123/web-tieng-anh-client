@@ -8,16 +8,21 @@ export const fetchCategoriesVideo = createAsyncThunk("fetchCategoriesVideo", asy
 })
 
 export const fetchByCategoryVideo = createAsyncThunk("fetchByCategoryVideo", async (param, thunkApi) => {
-  const { slug } = param;
-  const data = await videoApi.fetchByCategoryVideo(slug);
-
+  const { slug, level, timeFrom, timeTo } = param;
+  const data = await videoApi.fetchByCategoryVideo(slug, level, timeFrom, timeTo);
+  console.log(data)
   return data;
 })
 
 export const fetchNextPage = createAsyncThunk("fetchNextPage", async (param, thunkApi) => {
-  const { slug, page } = param;
-  const data = await videoApi.fetchNextPage(slug, page);
+  const { slug, page, level, timeFrom, timeTo } = param;
+  const data = await videoApi.fetchNextPage(slug, page, level, timeFrom, timeTo);
+  return data;
+})
 
+export const fetchSliderBySlug = createAsyncThunk("fetchSliderBySlug", async (param, thunkApi) => {
+  const { slug } = param;
+  const data = await videoApi.fetchSliderBySlug(slug);
   return data;
 })
 
@@ -33,7 +38,11 @@ const videoSlice = createSlice({
     movies: {},
     page: 0,
     totalPages: 0,
-
+    durationSelected: '',
+    timeTo: 0,
+    timeFrom: '',
+    moviesSlider: [],
+    titleVideoSelected: '',
   },
   reducers: {
     setLoading: (state, action) => {
@@ -44,6 +53,29 @@ const videoSlice = createSlice({
       if (state.page < state.totalPages) {
         state.page = state.page + 1
       }
+    },
+    setLevel: (state, action) => {
+      state.level = action.payload;
+    },
+    setTimeTo: (state, action) => {
+      state.timeTo = action.payload;
+    },
+    setTimeFrom: (state, action) => {
+      state.timeFrom = action.payload;
+    },
+    setTitleVideoSelector: (state, action) => {
+      state.titleVideoSelected = action.payload;
+    },
+    changeSubject: (state, action) => {
+      state.timeTo = 0;
+      state.timeFrom = '';
+      state.level = '';
+      state.page = 0;
+      state.durationSelected = '';
+
+    },
+    setDurationSelected: (state, action) => {
+      state.durationSelected = action.payload;
     }
 
   },
@@ -56,16 +88,22 @@ const videoSlice = createSlice({
       state.movies = action.payload;
       state.page = action.payload.page;
       state.totalPages = action.payload.totalPages;
-      // state.level = 
+
+
+
     },
     [fetchNextPage.fulfilled]: (state, action) => {
       state.movies.data = state.movies.data.concat(action.payload.data);
 
+    },
+    [fetchSliderBySlug.fulfilled]: (state, action) => {
+      const tempMovie = action.payload.data.slice(0, 5);
+      state.moviesSlider = tempMovie;
     }
 
   },
 });
 
 const { reducer, actions } = videoSlice;
-export const { setLoading, raisePage } = actions;
+export const { setLoading, raisePage, setLevel, changeSubject, setTimeFrom, setTimeTo, setDurationSelected, setTitleVideoSelector } = actions;
 export default reducer;
