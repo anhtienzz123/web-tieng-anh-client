@@ -1,0 +1,12 @@
+#word-note-page {
+	min-height: calc(100vh - 44px);
+	padding: 10vh 16vw;
+	background-image: url("../../assets/images/bg-translate.png");
+	.word-note-container {
+		background-color: white;
+		border-radius: 20px;
+		min-height: 75vh;
+		padding: 0px 32px 24px;
+		width: 100%;
+	}
+}

@@ -5,6 +5,7 @@ import login from "features/Login/loginSlice";
 import home from "features/Home/homeSlice";
 import course from "features/Courses/courseSlice";
 import translate from "features/Translate/translateSlice";
+import wordNote from "features/WordNote/wordNoteSlice";
 
 const rootReducer = {
 	global,
@@ -13,6 +14,7 @@ const rootReducer = {
 	home,
 	course,
 	translate,
+	wordNote,
 };
 
 const store = configureStore({

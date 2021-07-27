@@ -1,22 +1,23 @@
 import { FileTextOutlined } from "@ant-design/icons";
-import { Affix, Col, Divider, Pagination, Row } from "antd";
-import BackToTopButton from "components/BackToTopButton";
-import WordCard from "features/Courses/components/WordCard";
+import { Affix, Divider, Pagination, Row } from "antd";
+import WordList from "features/Courses/components/WordList";
 import {
 	fetchCourseDetail,
 	fetchCourseWords,
 } from "features/Courses/courseSlice";
-import React, { useEffect, useRef } from "react";
+import { fetchWordNotes } from "features/WordNote/wordNoteSlice";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import "./style.scss";
 
-function Topic(props) {
+function TopicPage(props) {
 	const { slug } = useParams();
+
 	const { courseWords, courseDetail } = useSelector((state) => state.course);
 
 	const { image, name, description, wordNumber } = courseDetail;
-	const { data = [], page = 1, size = 1, pageMax = 1 } = courseWords;
+	const { data = [], page = 1, size = 1, totalPages = 1 } = courseWords;
 
 	const dispatch = useDispatch();
 
@@ -29,6 +30,7 @@ function Topic(props) {
 		// window.scrollTo(0, 0);
 		dispatch(fetchCourseWords({ courseSlug: slug }));
 		dispatch(fetchCourseDetail({ slug }));
+		dispatch(fetchWordNotes());
 	}, []);
 
 	return (
@@ -49,7 +51,7 @@ function Topic(props) {
 			<Affix>
 				<Row justify="center" className="pagination-top">
 					<Pagination
-						total={pageMax * size}
+						total={totalPages * size}
 						showQuickJumper
 						pageSize={size}
 						onChange={handleOnPageChange}
@@ -63,21 +65,12 @@ function Topic(props) {
 				{name}
 			</Divider>
 			<div className="topic-page__content">
-				<Row justify="start" gutter={[36, 24]}>
-					{courseWords &&
-						Object.keys(courseWords).length !== 0 &&
-						data.map((word, index) => (
-							<Col key={index} xs={24} sm={24} md={12} lg={12}>
-								<WordCard word={word} />
-							</Col>
-						))}
-				</Row>
-				<BackToTopButton />
+				<WordList data={data} />
 			</div>
 		</div>
 	);
 }
-Topic.propTypes = {};
-Topic.defaultProps = {};
+TopicPage.propTypes = {};
+TopicPage.defaultProps = {};
 
-export default Topic;
+export default TopicPage;

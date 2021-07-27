@@ -8,6 +8,7 @@ import Home from "features/Home";
 import Login from "features/Login";
 import Me from "features/Me";
 import Translate from "features/Translate";
+import WordNote from "features/WordNote";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
@@ -31,6 +32,7 @@ function App() {
 					<Route path="/login" component={Login} />
 					<Route path="/translate" component={Translate} />
 					<Route path="/courses" component={Course} />
+					<ProtectedRoute path="/wordnotes" component={WordNote} />
 					<ProtectedRoute path="/me" component={Me} />
 
 					<Route component={NotFoundPage} />
