@@ -1,0 +1,11 @@
+.info {
+    &_name {
+        font-size: 2.5rem;
+        font-weight: 500;
+    }
+    &_level-and-subject {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+}

@@ -43,6 +43,7 @@ const videoSlice = createSlice({
     timeFrom: '',
     moviesSlider: [],
     titleVideoSelected: '',
+    audioPlay: '',
   },
   reducers: {
     setLoading: (state, action) => {
@@ -76,6 +77,9 @@ const videoSlice = createSlice({
     },
     setDurationSelected: (state, action) => {
       state.durationSelected = action.payload;
+    },
+    setAudioPlay: (state, action) => {
+      state.audioPlay = action.payload;
     }
 
   },
@@ -105,5 +109,5 @@ const videoSlice = createSlice({
 });
 
 const { reducer, actions } = videoSlice;
-export const { setLoading, raisePage, setLevel, changeSubject, setTimeFrom, setTimeTo, setDurationSelected, setTitleVideoSelector } = actions;
+export const { setLoading, setAudioPlay, raisePage, setLevel, changeSubject, setTimeFrom, setTimeTo, setDurationSelected, setTitleVideoSelector } = actions;
 export default reducer;

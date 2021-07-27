@@ -5,7 +5,7 @@ import { Route, useRouteMatch, Switch } from "react-router-dom";
 import { Spin } from "antd";
 import { useSelector } from "react-redux";
 import NotFoundPage from "components/NotFoundPage";
-import VideoCard from 'features/Video/components/VideoCard'
+import VideoPage from './pages/VideoPage';
 
 Video.propTypes = {
 
@@ -22,7 +22,7 @@ function Video(props) {
             <div>
                 <Switch>
                     <Route exact path="/videos/:slugCategory" component={MainPage} />
-                    {/* <Route exact path="/videos/level/:idLevel" component={MainPage} /> */}
+                    <Route exact path="/videos/:slugCategory/:slugVideo" component={VideoPage} />
                     <Route component={NotFoundPage} />
                 </Switch>
             </div>

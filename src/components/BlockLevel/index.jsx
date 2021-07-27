@@ -5,18 +5,20 @@ BlockLevel.propTypes = {
     level: PropTypes.string,
     width: PropTypes.string,
     height: PropTypes.string,
+    fontsize: PropTypes.string,
 };
 
 BlockLevel.defaultProps = {
     level: '',
     height: '25',
     width: '25',
+    fontsize: ''
 };
 
 
 
 function BlockLevel(props) {
-    const { level, height, width } = props;
+    const { level, height, width, fontsize } = props;
 
     let from, to;
     if (level === "1") {
@@ -66,11 +68,11 @@ function BlockLevel(props) {
 
 
     }
-
+    console.log('fontsize', fontsize)
 
     return (
         <div className='block_level' style={style}>
-            <div className='block_text'>{level}</div>
+            <div className='block_text' style={{ fontSize: fontsize }}>{level}</div>
 
         </div>
     );
