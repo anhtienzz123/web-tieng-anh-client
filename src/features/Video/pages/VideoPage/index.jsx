@@ -11,7 +11,6 @@ VideoPage.propTypes = {
 };
 
 function VideoPage(props) {
-    const URL = 'https://toeicexamstore.xyz/upload/audiotoeic/part1875.mp3';
     return (
         <div className='videopage_background'>
             <div className="videopage_wrapper">
@@ -32,9 +31,7 @@ function VideoPage(props) {
                     <Row gutter={[16, 8]}>
                         <Col span={16}>
                             <VideoInfo />
-                            <AudioCustom url={URL} id='1234' />
 
-                            <AudioCustom url={URL} id='5678' />
                         </Col>
                         <Col span={8} >
                             <MoreVideo />

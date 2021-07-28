@@ -1,85 +1,71 @@
-import { ExclamationCircleOutlined, HighlightOutlined } from '@ant-design/icons';
-import { Space, Table, Tabs, Tag } from 'antd';
+import { DownloadOutlined, ExclamationCircleOutlined, HighlightOutlined, PlayCircleOutlined } from '@ant-design/icons';
+import { Button, Space, Table, Tabs, Tag } from 'antd';
 import BlockLevel from 'components/BlockLevel';
 import React from 'react';
+import { Link } from 'react-router-dom';
+import AudioCustom from '../AudioCustom';
 import './style.scss';
 
 
 VideoInfo.propTypes = {
 
 };
+const URL = 'https://toeicexamstore.xyz/upload/audiotoeic/part1875.mp3';
 
 const columns = [
     {
-        title: 'Name',
-        dataIndex: 'name',
-        key: 'name',
-        render: text => <a>{text}</a>,
+        title: 'Total',
+        dataIndex: 'total',
+        key: 'total',
+        render: (object) => (
+            <div className='cell_sound'>{object.audio}&nbsp;&nbsp;{object.keyword}</div>
+        )
     },
     {
-        title: 'Age',
-        dataIndex: 'age',
-        key: 'age',
+        title: 'Frequency',
+        dataIndex: 'frequency',
+        key: 'frequency',
+        defaultSortOrder: 'descend',
+        sorter: (a, b) => a.frequency - b.frequency,
     },
     {
-        title: 'Address',
-        dataIndex: 'address',
-        key: 'address',
+        title: 'Word root',
+        key: 'wordroot',
+        dataIndex: 'wordroot',
     },
     {
-        title: 'Tags',
-        key: 'tags',
-        dataIndex: 'tags',
-        render: tags => (
-            <>
-                {tags.map(tag => {
-                    let color = tag.length > 5 ? 'geekblue' : 'green';
-                    if (tag === 'loser') {
-                        color = 'volcano';
-                    }
-                    return (
-                        <Tag color={color} key={tag}>
-                            {tag.toUpperCase()}
-                        </Tag>
-                    );
-                })}
-            </>
-        ),
-    },
-    {
-        title: 'Action',
-        key: 'action',
+        title: '',
+        key: 'play',
+        align: 'center',
+
+
         render: (text, record) => (
-            <Space size="middle">
-                <a>Invite {record.name}</a>
-                <a>Delete</a>
-            </Space>
-        ),
+            <div>
+                <Button type="primary" shape="round" icon={<PlayCircleOutlined />} size='small'>
+                    Play
+                </Button>
+            </div >
+        )
     },
 ];
 
 const data = [
     {
         key: '1',
-        name: 'John Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park',
-        tags: ['nice', 'developer'],
+        total: { audio: <AudioCustom url={URL} id='5678' />, keyword: 'asdfasdf' },
+        frequency: 10,
+        wordroot: 'abcyz',
+
     },
+
     {
         key: '2',
-        name: 'Jim Green',
-        age: 42,
-        address: 'London No. 1 Lake Park',
-        tags: ['loser'],
+        total: { audio: <AudioCustom url={URL} id='5678' />, keyword: 'asdfasdf' },
+        frequency: 20,
+        wordroot: 'abcyz',
+
     },
-    {
-        key: '3',
-        name: 'Joe Black',
-        age: 32,
-        address: 'Sidney No. 1 Lake Park',
-        tags: ['cool', 'teacher'],
-    },
+
 ];
 
 function VideoInfo(props) {
@@ -103,7 +89,7 @@ function VideoInfo(props) {
                         <div className="info_level-and-subject">
                             <BlockLevel level="3" width="40" height="40" fontsize='1.8rem' />
                             <div>
-                                &nbsp; Intermediate | <a href="">Inspiration</a>
+                                &nbsp; Intermediate | <Link to="/videos/abc">Infomation Technogoly</Link>
                             </div>
                         </div>
                         <div className="info_description">
@@ -122,7 +108,7 @@ function VideoInfo(props) {
                     }
                     key="2"
                 >
-                    <Table columns={columns} dataSource={data} />
+                    <Table pagination={false} scroll={{ y: 400 }} columns={columns} dataSource={data} />
                 </TabPane>
             </Tabs>,
         </div>

@@ -72,3 +72,9 @@ tr {
     outline: 0.5 solid #4b91ff;
     border-radius: 0.5rem;
 }
+
+.cell_sound {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
