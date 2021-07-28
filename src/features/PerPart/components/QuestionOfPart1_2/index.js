@@ -1,39 +1,58 @@
-import { Alert, Col, Image, Row, Space, Typography } from "antd";
+import { Alert, Col, Divider, Image, Row, Space, Typography } from "antd";
+import { setChoiceOfPart1_2_5 } from "features/PerPart/perPartSlice";
 import PropTypes from "prop-types";
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { useDispatch } from "react-redux";
 import ButtonCustom from "../ButtonCustom";
 import EmptyButton from "../EmptyButtonList";
 import "./style.scss";
+import parse from "html-react-parser";
 
-const { Title, Text } = Typography;
+const { Text } = Typography;
 
 QuestionOfPart1_2.propTypes = {
   question: PropTypes.object,
-  choice: PropTypes.string,
-  onAnswerClick: PropTypes.func,
 };
 
 QuestionOfPart1_2.defaultProps = {
-  question: {},
-  choice: "",
-  onAnswerClick: null,
+  question: {
+    extra: "",
+  },
 };
 
-function QuestionOfPart1_2({ question, choice, onAnswerClick }) {
-  const { stt, content, a, b, c, d, result, extra, audio, type } = question;
+function QuestionOfPart1_2({ question }) {
+  const dispatch = useDispatch();
+
+  const { content, a, b, c, d, result, extra = "", audio, type } = question;
+
+  const [choice, setChoice] = useState("");
 
   const audioRef = useRef();
 
   const handleAnswerClick = (answer) => {
-    if (!onAnswerClick) return;
-
-    onAnswerClick(answer);
+    setChoice(answer.toLowerCase());
+    dispatch(setChoiceOfPart1_2_5(true));
   };
 
   if (audioRef.current) {
     audioRef.current.pause();
     audioRef.current.load();
   }
+
+  const renderQuestionAnswer = (char, content) => {
+    return (
+      <ButtonCustom
+        content={content}
+        type={
+          result === char ? "primary" : choice === char ? "danger" : "default"
+        }
+      />
+    );
+  };
+
+  useEffect(() => {
+    setChoice("");
+  }, [question]);
 
   return (
     <div className="question-of-part-1-2">
@@ -59,60 +78,19 @@ function QuestionOfPart1_2({ question, choice, onAnswerClick }) {
           </audio>
         </div>
 
+        <Divider orientation="left">Câu hỏi</Divider>
         <div className="buttons">
           {choice ? (
             <Row gutter={[8, 24]}>
-              <Col span={12}>
-                <ButtonCustom
-                  content={a}
-                  type={
-                    result === "a"
-                      ? "primary"
-                      : choice === "a"
-                      ? "danger"
-                      : "default"
-                  }
-                />
-              </Col>
+              <Col span={12}>{renderQuestionAnswer("a", a)}</Col>
 
-              <Col span={12}>
-                <ButtonCustom
-                  content={b}
-                  type={
-                    result === "b"
-                      ? "primary"
-                      : choice === "b"
-                      ? "danger"
-                      : "default"
-                  }
-                />
-              </Col>
+              <Col span={12}>{renderQuestionAnswer("b", b)}</Col>
 
               <Col span={type === 1 ? 12 : 24}>
-                <ButtonCustom
-                  content={c}
-                  type={
-                    result === "c"
-                      ? "primary"
-                      : choice === "c"
-                      ? "danger"
-                      : "default"
-                  }
-                />
+                {renderQuestionAnswer("c", c)}
               </Col>
 
-              <Col span={12}>
-                <ButtonCustom
-                  content={d}
-                  type={
-                    result === "d"
-                      ? "primary"
-                      : choice === "d"
-                      ? "danger"
-                      : "default"
-                  }
-                />
-              </Col>
+              <Col span={12}>{renderQuestionAnswer("d", d)}</Col>
             </Row>
           ) : (
             <EmptyButton
@@ -124,7 +102,11 @@ function QuestionOfPart1_2({ question, choice, onAnswerClick }) {
 
         {choice && extra && (
           <div className="extras">
-            <Alert message="Giải thích" description={extra} type="info" />
+            <Divider orientation="left">Giải thích</Divider>
+
+            {parse(
+              `<div style="font-size:16px; font-weight:500">${extra}</div>`
+            )}
           </div>
         )}
       </Space>

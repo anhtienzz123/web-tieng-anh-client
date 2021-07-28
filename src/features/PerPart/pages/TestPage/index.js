@@ -1,17 +1,18 @@
 import { DoubleRightOutlined } from "@ant-design/icons";
-import { Alert, Button, Col, Image, Row, Space, Typography } from "antd";
-import ButtonCustom from "features/PerPart/components/ButtonCustom";
+import { Button, Typography } from "antd";
+import Part3_4_6_7 from "features/PerPart/components/Part3_4_6_7";
 import QuestionOfPart1_2 from "features/PerPart/components/QuestionOfPart1_2";
 import QuestionOfPart5 from "features/PerPart/components/QuestionOfPart5";
 import {
   fetchQuestionsOfPart,
   restoreQuestionsDefault,
+  setChoiceOfPart1_2_5,
+  setChoiceOfPart3_4_6_7,
   setSelectedIndexNext,
 } from "features/PerPart/perPartSlice";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useRouteMatch } from "react-router-dom";
-import { number } from "yup/lib/locale";
 import "./style.scss";
 
 const { Title } = Typography;
@@ -21,20 +22,18 @@ TestPage.propTypes = {};
 function TestPage(props) {
   const match = useRouteMatch();
   const dispatch = useDispatch();
-  const { questions, selectedIndex } = useSelector((state) => state.perPart);
-  const selectedQuestion = questions[selectedIndex];
 
   const { examSlug, numberPart } = match.params;
 
-  const [choice, setChoice] = useState("");
+  const { questions, selectedIndex } = useSelector((state) => state.perPart);
+  const selectedQuestion = questions[selectedIndex];
 
-  const handleAnswerClick = (answer) => {
-    setChoice(answer.toLowerCase());
-  };
+  const { isChoiceOfPart1_2_5, isChoiceOfPart3_4_6_7 } = useSelector(
+    (state) => state.perPart
+  );
 
   const handleQuestionNext = () => {
     dispatch(setSelectedIndexNext());
-    setChoice("");
   };
 
   useEffect(() => {
@@ -59,22 +58,23 @@ function TestPage(props) {
             </div>
 
             {(numberPart === "1" || numberPart === "2") && (
-              <QuestionOfPart1_2
-                question={selectedQuestion}
-                choice={choice}
-                onAnswerClick={handleAnswerClick}
-              />
+              <QuestionOfPart1_2 question={selectedQuestion} />
             )}
 
             {numberPart === "5" && (
-              <QuestionOfPart5
-                question={selectedQuestion}
-                choice={choice}
-                onAnswerClick={handleAnswerClick}
+              <QuestionOfPart5 question={selectedQuestion} />
+            )}
+
+            {((numberPart === "3") | (numberPart === "4") ||
+              numberPart === "6" ||
+              numberPart === "7") && (
+              <Part3_4_6_7
+                questionGroup={selectedQuestion}
+                numberPart={numberPart}
               />
             )}
 
-            {choice && (
+            {(isChoiceOfPart1_2_5 || isChoiceOfPart3_4_6_7) && (
               <div className="button-next">
                 <Button
                   icon={<DoubleRightOutlined />}
