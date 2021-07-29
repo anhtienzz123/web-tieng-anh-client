@@ -1,15 +1,34 @@
-import { DownloadOutlined, ExclamationCircleOutlined, HighlightOutlined, PlayCircleOutlined } from '@ant-design/icons';
-import { Button, Space, Table, Tabs, Tag } from 'antd';
+import { ExclamationCircleOutlined, HighlightOutlined, PlayCircleOutlined } from '@ant-design/icons';
+import { Button, Space, Table, Tabs } from 'antd';
 import BlockLevel from 'components/BlockLevel';
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import AudioCustom from '../AudioCustom';
+import { dataSelectLevel } from 'constants/dataSelectLevel';
 import './style.scss';
 
 
-VideoInfo.propTypes = {
 
+
+
+VideoInfo.propTypes = {
+    videoWords: PropTypes.array,
+    categoryName: PropTypes.string,
+    name: PropTypes.string,
+    level: PropTypes.string,
+    description: PropTypes.string,
+    slugCategory: PropTypes.string,
 };
+
+VideoInfo.defaultProps = {
+    videoWords: [],
+    categoryName: '',
+    name: '',
+    level: '',
+    description: '',
+    slugCategory: ''
+}
 const URL = 'https://toeicexamstore.xyz/upload/audiotoeic/part1875.mp3';
 
 const columns = [
@@ -49,27 +68,33 @@ const columns = [
     },
 ];
 
-const data = [
-    {
-        key: '1',
-        total: { audio: <AudioCustom url={URL} id='5678' />, keyword: 'asdfasdf' },
-        frequency: 10,
-        wordroot: 'abcyz',
 
-    },
 
-    {
-        key: '2',
-        total: { audio: <AudioCustom url={URL} id='5678' />, keyword: 'asdfasdf' },
-        frequency: 20,
-        wordroot: 'abcyz',
 
-    },
+function getLevelTitle(level) {
+    if (level) {
+        const temp = dataSelectLevel.find(element => element.levelValue === level);
+        return temp.levelName;
+    }
+}
 
-];
 
 function VideoInfo(props) {
     const { TabPane } = Tabs;
+    const { videoWords, categoryName, name, level, description, slugCategory } = props;
+    const data = [];
+    videoWords.map((element, index) => {
+
+        data.push({
+            key: element.id,
+            total: { audio: <AudioCustom url={element.sound} id={element.id} /> , keyword: element.name },
+            frequency: element.frequency,
+            wordroot: element.origin,
+
+        })
+
+    })
+
     return (
         <div>
             <Tabs defaultActiveKey="1">
@@ -84,17 +109,17 @@ function VideoInfo(props) {
                 >
                     <Space direction="vertical">
                         <div className="info_name">
-                            "You Can Also Be Great" - Elon Musk Motivation
+                            {name}
                         </div>
                         <div className="info_level-and-subject">
-                            <BlockLevel level="3" width="40" height="40" fontsize='1.8rem' />
+                            <BlockLevel level={level.toString()} width="40" height="40" fontsize='1.8rem' />
                             <div>
-                                &nbsp; Intermediate | <Link to="/videos/abc">Infomation Technogoly</Link>
+                                &nbsp; {getLevelTitle(level)} | <Link to={"/videos/" + slugCategory}>{categoryName}</Link>
                             </div>
                         </div>
                         <div className="info_description">
 
-                            Elon Musk Incredible Speech - Motivational video By MulliganBrothers
+                            {description}
                         </div>
                     </Space>
 

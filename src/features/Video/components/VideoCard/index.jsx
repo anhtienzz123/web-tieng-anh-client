@@ -8,17 +8,19 @@ VideoCard.propTypes = {
     data: PropTypes.object,
     height: PropTypes.string,
     padding: PropTypes.string,
+    onClick: PropTypes.func,
 };
 
 VideoCard.defaultProps = {
     data: {},
     height: '',
-    padding: ''
+    padding: '',
+    onClick: null
 };
 
 
 function VideoCard(props) {
-    const { data, height, padding } = props;
+    const { data, height, padding, onClick } = props;
     const { durationString, level, duration, image, slug, name, id } = data;
 
 
@@ -36,8 +38,15 @@ function VideoCard(props) {
         setCheckImage(false)
     }
 
+    function handleOnClick(slug) {
+
+        if (onClick) {
+            onClick(slug);
+        }
+    }
+
     return (
-        <div className='wrapper' style={{ paddingRight: padding }}>
+        <div className='wrapper' style={{ paddingRight: padding }} onClick={() => handleOnClick(slug)}>
             <div className="video_card" style={{ borderRadius: noneRadius }}>
 
                 <div className="video_card_img" style={{ borderRadius: noneRadius }}>

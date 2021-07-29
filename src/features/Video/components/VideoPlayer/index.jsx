@@ -3,26 +3,32 @@ import { Space } from 'antd';
 import React from 'react';
 import ReactPlayer from 'react-player';
 import './style.scss';
-VideoPlayer.propTypes = {
+import PropTypes from 'prop-types';
 
+
+
+VideoPlayer.propTypes = {
+    url: PropTypes.string,
 };
+
+VideoPlayer.defaultProps = {
+    url: ''
+}
 
 
 function VideoPlayer(props) {
-    const URL = "https://cdna.englishcentral.com/dialogs/26313/videoh264_26313_20160425161528.mp4";
+    const { url } = props;
     return (
         <div className='video-player_wrapper'>
 
             <Space direction="vertical" style={{ width: '100%' }}>
                 <div>
                     <ReactPlayer className='player-demension'
-                        url={URL}
+                        url={url}
                         width='100%'
                         controls={true}
                         playing={false}
                         height='440px'
-
-
 
                     />
                 </div>

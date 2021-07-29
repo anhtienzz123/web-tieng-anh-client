@@ -8,12 +8,12 @@ import './style.scss';
 
 AudioCustom.propTypes = {
     url: PropTypes.string,
-    id: PropTypes.string,
+    id: PropTypes.number.isRequired,
 };
 
 AudioCustom.defaultProps = {
     url: '',
-    id: ''
+
 }
 
 
@@ -23,20 +23,14 @@ function AudioCustom(props) {
     const { url, id } = props;
     const dispatch = useDispatch();
     const { audioPlay } = useSelector(state => state.video);
-    const URL = 'https://toeicexamstore.xyz/upload/audiotoeic/part1875.mp3';
-    console.log(id);
 
-    const audio = id && document.getElementById(id);
-    console.log(audio);
-    // const { isPlay, setIsPlay } = useState(false);
 
-    // dispatch(setAudioPlay(true));
-    // setIsPlay(true);
+    const audio = new Audio(url);
 
     function handleOnClick(e) {
 
-
         dispatch(setAudioPlay(id));
+        
         if (id === audioPlay) {
             audio.load();
             var playPromise = audio.play();
@@ -51,46 +45,44 @@ function AudioCustom(props) {
                     });
             }
 
-            // audio.load();
             // audio.play();
+            // audio.load();
         }
 
     }
 
-    if (audio) {
-        if (audioPlay === id || audioPlay === '') {
-            const playPromise = audio.play();
-            if (playPromise !== undefined) {
-                playPromise
-                    .then(_ => {
-                        // Automatic playback started!
-                        // Show playing UI.
-                        console.log("audio played auto");
-                    })
-                    .catch(error => {
-                        // Auto-play was prevented
-                        // Show paused UI.
-                        console.log("playback prevented");
-                    });
-            }
-            // audio.load();
-            // audio.play();
-        } else {
-            audio.pause();
+
+    if (audioPlay === id) {
+        audio.load();
+        var playPromise = audio.play();
+        if (playPromise !== undefined) {
+            playPromise.then(_ => {
+                // Automatic playback started!
+                // Show playing UI.
+            })
+                .catch(error => {
+                    // Auto-play was prevented
+                    // Show paused UI.
+                });
         }
 
+        // audio.load();
+        // audio.play();
+    } else {
+        audio.pause();
     }
+
+
+
+
 
     return (
-        <div className='audio-custom_wrapper'>
+        <div className='audio-custom_wrapper' style={{ cursor: 'pointer' }}>
             <div onClick={handleOnClick}>
                 <SoundTwoTone twoToneColor="#52c41a" style={{ fontSize: '2.2rem' }} />
             </div>
 
 
-            <audio id={id} controls style={{ display: 'none' }}>
-                <source src={url} type="audio/mpeg" />
-            </audio>
         </div>
 
     );

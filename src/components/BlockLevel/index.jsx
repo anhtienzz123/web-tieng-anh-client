@@ -68,7 +68,6 @@ function BlockLevel(props) {
 
 
     }
-    console.log('fontsize', fontsize)
 
     return (
         <div className='block_level' style={style}>

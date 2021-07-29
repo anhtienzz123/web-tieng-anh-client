@@ -7,7 +7,7 @@ import { fetchByCategoryVideo, setDurationSelected, fetchNextPage, raisePage, se
 import React, { useEffect } from 'react';
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { Empty } from 'antd';
 import './style.scss';
 
@@ -76,6 +76,11 @@ function MainPage(props) {
         return dataSelectDuration.find(element => element.duration === duration);
     }
 
+    const history = useHistory();
+    function handleOnClick(slug) {
+        history.push(`/videos/${slugCategory}/${slug}`);
+    }
+
 
     return (
         <div>
@@ -99,7 +104,7 @@ function MainPage(props) {
                         {
                             data && data.map((element, index) => (
                                 <Col key={index} span={6} >
-                                    <VideoCard data={element} />
+                                    <VideoCard data={element} onClick={handleOnClick} />
                                 </Col>
                             ))
                         }

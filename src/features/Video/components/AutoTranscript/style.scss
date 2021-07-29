@@ -25,6 +25,8 @@
         // padding: 0 10px;
         box-shadow: none;
         transition: all 0.3s ease 0s;
+        width: 70px;
+        height: 26px;
 
         & > .align {
             display: flex;
@@ -54,6 +56,9 @@ th {
     padding: 8px;
 }
 
+td {
+    height: 60px;
+}
 tr {
     border-bottom: 0.5px solid #666;
 }
