@@ -6,6 +6,7 @@ import home from "features/Home/homeSlice";
 import exam from "features/OnlineExam/onlineExamSlice";
 import course from "features/Courses/courseSlice";
 import translate from "features/Translate/translateSlice";
+import perPart from "features/PerPart/perPartSlice";
 
 const rootReducer = {
   global,
@@ -15,6 +16,7 @@ const rootReducer = {
   exam,
   course,
   translate,
+  perPart,
 };
 
 const store = configureStore({

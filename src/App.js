@@ -8,6 +8,7 @@ import Home from "features/Home";
 import Login from "features/Login";
 import Me from "features/Me";
 import OnlineExam from "features/OnlineExam";
+import PerPart from "features/PerPart";
 import Translate from "features/Translate";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -34,6 +35,7 @@ function App() {
           <Route path="/exams" component={OnlineExam} />
           <Route path="/courses" component={Course} />
           <ProtectedRoute path="/me" component={Me} />
+          <Route path="/parts" component={PerPart} />
           <Route component={NotFoundPage} />
         </Switch>
 
