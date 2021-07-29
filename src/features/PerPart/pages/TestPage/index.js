@@ -34,6 +34,7 @@ function TestPage(props) {
 
   const handleQuestionNext = () => {
     dispatch(setSelectedIndexNext());
+    dispatch(setChoiceOfPart1_2_5(false));
   };
 
   useEffect(() => {
