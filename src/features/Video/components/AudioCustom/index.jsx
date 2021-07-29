@@ -1,7 +1,7 @@
 import { SoundTwoTone } from '@ant-design/icons';
 import { setAudioPlay } from 'features/Video/videoSlice';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './style.scss';
 
@@ -23,14 +23,13 @@ function AudioCustom(props) {
     const { url, id } = props;
     const dispatch = useDispatch();
     const { audioPlay } = useSelector(state => state.video);
-
+    // const [audio, setAudio] = useState('');
 
     const audio = new Audio(url);
-
     function handleOnClick(e) {
 
         dispatch(setAudioPlay(id));
-        
+
         if (id === audioPlay) {
             audio.load();
             var playPromise = audio.play();
@@ -52,7 +51,11 @@ function AudioCustom(props) {
     }
 
 
+
+
     if (audioPlay === id) {
+
+
         audio.load();
         var playPromise = audio.play();
         if (playPromise !== undefined) {
@@ -76,13 +79,12 @@ function AudioCustom(props) {
 
 
 
+
     return (
         <div className='audio-custom_wrapper' style={{ cursor: 'pointer' }}>
             <div onClick={handleOnClick}>
                 <SoundTwoTone twoToneColor="#52c41a" style={{ fontSize: '2.2rem' }} />
             </div>
-
-
         </div>
 
     );

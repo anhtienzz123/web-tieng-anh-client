@@ -69,8 +69,6 @@ const columns = [
 ];
 
 
-
-
 function getLevelTitle(level) {
     if (level) {
         const temp = dataSelectLevel.find(element => element.levelValue === level);
@@ -87,7 +85,7 @@ function VideoInfo(props) {
 
         data.push({
             key: element.id,
-            total: { audio: <AudioCustom url={element.sound} id={element.id} /> , keyword: element.name },
+            total: { audio: <AudioCustom url={element.sound} id={element.id} />, keyword: element.name },
             frequency: element.frequency,
             wordroot: element.origin,
 
