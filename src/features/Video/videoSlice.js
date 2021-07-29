@@ -10,7 +10,7 @@ export const fetchCategoriesVideo = createAsyncThunk("fetchCategoriesVideo", asy
 export const fetchByCategoryVideo = createAsyncThunk("fetchByCategoryVideo", async (param, thunkApi) => {
     const { slug, level, timeFrom, timeTo } = param;
     const data = await videoApi.fetchByCategoryVideo(slug, level, timeFrom, timeTo);
-    console.log(data)
+
     return data;
 })
 
@@ -29,6 +29,11 @@ export const fetchSliderBySlug = createAsyncThunk("fetchSliderBySlug", async (pa
 export const fetchVideo = createAsyncThunk('fetchVideo', async (param, thunkApi) => {
     const { slug } = param;
     const data = await videoApi.fetchVideo(slug);
+    return data;
+})
+export const fetchMoreVideo = createAsyncThunk("fetchMoreVideo", async (param, thunkApi) => {
+    const { slug, size } = param;
+    const data = await videoApi.fetchMoreVideo(slug, size);
     return data;
 })
 
@@ -50,7 +55,9 @@ const videoSlice = createSlice({
         moviesSlider: [],
         titleVideoSelected: '',
         audioPlay: '',
-        video: {}
+        video: {},
+        more: [],
+        showMore: false
     },
     reducers: {
         setLoading: (state, action) => {
@@ -87,6 +94,9 @@ const videoSlice = createSlice({
         },
         setAudioPlay: (state, action) => {
             state.audioPlay = action.payload;
+        },
+        setShowMore: (state, action) => {
+            state.showMore = !state.showMore;
         }
 
     },
@@ -100,8 +110,6 @@ const videoSlice = createSlice({
             state.page = action.payload.page;
             state.totalPages = action.payload.totalPages;
 
-
-
         },
         [fetchNextPage.fulfilled]: (state, action) => {
             state.movies.data = state.movies.data.concat(action.payload.data);
@@ -114,11 +122,14 @@ const videoSlice = createSlice({
 
         [fetchVideo.fulfilled]: (state, action) => {
             state.video = action.payload;
+        },
+        [fetchMoreVideo.fulfilled]: (state, action) => {
+            state.more = action.payload.data;
         }
 
     },
 });
 
 const { reducer, actions } = videoSlice;
-export const { setLoading, setAudioPlay, raisePage, setLevel, changeSubject, setTimeFrom, setTimeTo, setDurationSelected, setTitleVideoSelector } = actions;
+export const { setLoading, setShowMore, setAudioPlay, raisePage, setLevel, changeSubject, setTimeFrom, setTimeTo, setDurationSelected, setTitleVideoSelector } = actions;
 export default reducer;

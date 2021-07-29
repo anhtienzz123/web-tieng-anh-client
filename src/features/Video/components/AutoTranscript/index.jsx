@@ -21,12 +21,6 @@ function AutoTranscript(props) {
 
 
     }
-
-
-
-
-
-
     return (
         <div className="transcript-select_wrapper">
             <div className="transcript-select-header">Auto Transcript&nbsp;<FileTextOutlined /></div>

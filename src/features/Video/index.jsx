@@ -15,8 +15,6 @@ function Video(props) {
 
     const { isLoading } = useSelector((state) => state.login);
     const { url } = useRouteMatch();
-
-    console.log(url);
     return (
         <Spin spinning={isLoading} >
             <div>

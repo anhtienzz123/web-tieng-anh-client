@@ -39,6 +39,15 @@ const videoApi = {
 
     fetchVideo: (slug) => {
         return axiosClient.get(`/videos/${slug}`);
+    },
+    fetchMoreVideo: (slug, size) => {
+        return axiosClient.get(`/videos`, {
+            params: {
+                categorySlug: slug,
+                page: 0,
+                size: size
+            }
+        })
     }
 }
 
