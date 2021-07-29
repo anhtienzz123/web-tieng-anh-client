@@ -21,10 +21,10 @@ VideoCard.defaultProps = {
 
 function VideoCard(props) {
     const { data, height, padding, onClick } = props;
-  
+
     const { durationString, level, duration, image, slug, name, id } = data;
 
-    let noneRadius = height  ? '0px' : '';
+    let noneRadius = height ? '0px' : '';
 
     const styleSlider = {
         flexDirection: "column",
@@ -57,7 +57,7 @@ function VideoCard(props) {
 
                     />
 
-                    <div className="video_card_img--info" style={height  ? styleSlider : {}}>
+                    <div className="video_card_img--info" style={height ? styleSlider : {}}>
                         <div className="video_card_img--info-level">
                             <BlockLevel level={level && level.toString()} width='40' height='30' />
                         </div>
@@ -69,7 +69,7 @@ function VideoCard(props) {
                             </div>
                             : ''
                         }
-                        {!height  ?
+                        {!height ?
                             <div className="video_card_img--info-duration">
                                 <div>{durationString}</div>
                             </div>

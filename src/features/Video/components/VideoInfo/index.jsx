@@ -112,7 +112,7 @@ function VideoInfo(props) {
 
 
     return (
-        <div>
+        <div className="info_wrapper">
 
             <Tabs defaultActiveKey="1">
                 <TabPane
@@ -130,7 +130,7 @@ function VideoInfo(props) {
                         </div>
                         <div className="info_level-and-subject">
                             <BlockLevel level={level.toString()} width="40" height="40" fontsize='1.8rem' />
-                            <div>
+                            <div className='info_level-and-subject--upSize'>
                                 &nbsp; {getLevelTitle(level)} | <Link to={"/videos/" + slugCategory}>{categoryName}</Link>
                             </div>
                         </div>

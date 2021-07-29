@@ -9,6 +9,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import { Empty } from 'antd';
+import { Affix, Button } from 'antd';
 import './style.scss';
 
 MainPage.propTypes = {
@@ -81,17 +82,25 @@ function MainPage(props) {
         history.push(`/videos/${slugCategory}/${slug}`);
     }
 
+    useEffect(() => {
+        document.getElementById('top').scrollIntoView();
+    }, [slugCategory, level, timeFrom, timeTo])
+
 
     return (
-        <div>
+        <div >
             <Slider slug={slugCategory} />
 
-            <div className="mainpage_wrapper">
-                <SearchBar title={titleVideoSelected} onSelectedDuration={handleDurationChange} onSelectedLevel={handleLevelChange} />
+            <div className="mainpage_wrapper" id='top'>
+                <Affix offsetTop={-10}>
+                    <SearchBar title={titleVideoSelected} onSelectedDuration={handleDurationChange} onSelectedLevel={handleLevelChange} />
+                </Affix>
+
                 <Divider></Divider>
 
 
                 <InfiniteScroll
+
                     style={{ overflowX: 'hidden', overflowY: 'hidden' }}
                     dataLength={data ? data.length : 0}
                     next={handleNextScroll}

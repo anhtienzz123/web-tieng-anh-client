@@ -1,7 +1,11 @@
 .transcript-select {
-    border: 2px solid #4b91ff;
-    max-height: 489px;
+    background-color: #fff;
+    height: 489px;
     overflow: auto;
+    padding: 0 4px;
+
+    border-radius: 0 0 0.3125rem 0.3125rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
     &_wrapper {
         // border: 1px solid rgb(17, 17, 17);
         border-radius: 0.5rem;

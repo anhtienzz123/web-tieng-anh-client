@@ -22,37 +22,48 @@ function VideoPage(props) {
         dispatch(fetchVideo({
             slug: slugVideo
         }))
-    }, [])
+    }, [slugVideo]);
+
+    useEffect(() => {
+        document.getElementById('top').scrollIntoView();
+    }, [slugVideo])
 
 
     return (
-        <div className='videopage_background'>
+        <div className='videopage_background' id='top'>
             <div className="videopage_wrapper">
-                <div className="videopage_top">
-                    <Row gutter={[16, 8]}>
-                        <Col span={16}>
-                            <VideoPlayer url={video.url} />
-                        </Col>
-                        <Col span={8} >
-                            <AutoTranscript subtitles={video.subtitles} />
-                        </Col>
 
-                    </Row>
-                </div>
+                <Space direction="vertical" size='large'>
+                    <div className="videopage_top">
+                        <Row gutter={[16, 8]}>
+                            <Col span={16}>
+                                <VideoPlayer url={video.url} />
+                            </Col>
+                            <Col span={8} >
+                                <AutoTranscript subtitles={video.subtitles} />
+                            </Col>
+
+                        </Row>
+                    </div>
+
+                    <div className="videopage_bottom">
+                        <Row gutter={[16, 8]}>
+                            <Col span={16}>
+                                <VideoInfo slugCategory={slugCategory} videoWords={video.videoWords} name={video.name} description={video.description} level={video.level} categoryName={video.categoryName} />
+
+                            </Col>
+                            <Col span={8} >
+                                <MoreVideo />
+                            </Col>
+
+                        </Row>
+                    </div>
+
+                </Space>
 
 
-                <div className="videopage_bottom">
-                    <Row gutter={[16, 8]}>
-                        <Col span={16}>
-                            <VideoInfo slugCategory={slugCategory} videoWords={video.videoWords} name={video.name} description={video.description} level={video.level} categoryName={video.categoryName} />
 
-                        </Col>
-                        <Col span={8} >
-                            <MoreVideo />
-                        </Col>
 
-                    </Row>
-                </div>
 
 
             </div>

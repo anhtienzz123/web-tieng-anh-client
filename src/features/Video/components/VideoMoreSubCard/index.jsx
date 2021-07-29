@@ -3,7 +3,7 @@ import DefaultImage from 'assets/images/default_img.jpg';
 import BlockLevel from 'components/BlockLevel';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useHistory } from 'react-router-dom';
 import './style.scss';
 VideoMoreSubCard.propTypes = {
     data: PropTypes.object,
@@ -18,7 +18,7 @@ function VideoMoreSubCard(props) {
     const { slugVideo, slugCategory } = useParams();
 
 
-
+    console.log(data)
     const [checkImage, setCheckImage] = useState(true);
 
 
@@ -26,9 +26,16 @@ function VideoMoreSubCard(props) {
         setCheckImage(false);
 
     }
+
+    const history = useHistory();
+
+    const handleOnClick = (slugVideo) => {
+        history.push(`/videos/${slugCategory}/${slugVideo}`)
+    }
+
     return (
         <div className='video-more_card'>
-            <div className='video-more_card-left'>
+            <div className='video-more_card-left' onClick={() => handleOnClick(data.slug)}>
                 <div className="video-more_card_content">
                     <div className="video-more_card_content-image">
                         <img
@@ -56,7 +63,7 @@ function VideoMoreSubCard(props) {
             </div>
 
             <div className='video-more_card-right'>
-                <Link to={"/videos/" + slugCategory + "/" + slugVideo} >
+                <Link className='video-more_card--link' to={"/videos/" + slugCategory + "/" + data.slug} >
                     {data.name}
                 </Link>
 
