@@ -2,14 +2,12 @@ import { ExclamationCircleOutlined, HighlightOutlined, PlayCircleOutlined } from
 import { Button, Space, Table, Tabs } from 'antd';
 import BlockLevel from 'components/BlockLevel';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import AudioCustom from '../AudioCustom';
 import { dataSelectLevel } from 'constants/dataSelectLevel';
 import './style.scss';
-
-
-
+import {useSelector} from 'react-redux';
 
 
 VideoInfo.propTypes = {
@@ -83,11 +81,27 @@ function VideoInfo(props) {
     const { TabPane } = Tabs;
     const { videoWords, categoryName, name, level, description, slugCategory } = props;
     const data = [];
+    
+    let audio;
+
+    const handleAudioClick = (url) => {
+        
+        // da co audio
+        if(audio)
+            audio.pause();
+
+        audio = new Audio(url);
+        audio.load();
+        audio.play();
+    }
+
     videoWords.map((element, index) => {
 
         data.push({
             key: element.id,
-            total: { audio: <AudioCustom url={element.sound} id={element.id} /> , keyword: element.name },
+            total: { audio: <AudioCustom
+              onClick={handleAudioClick}
+             url={element.sound} id={element.id} /> , keyword: element.name },
             frequency: element.frequency,
             wordroot: element.origin,
 
@@ -95,8 +109,10 @@ function VideoInfo(props) {
 
     })
 
+  
     return (
         <div>
+        
             <Tabs defaultActiveKey="1">
                 <TabPane
                     tab={

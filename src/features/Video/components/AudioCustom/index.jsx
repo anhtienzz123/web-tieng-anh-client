@@ -13,72 +13,27 @@ AudioCustom.propTypes = {
 
 AudioCustom.defaultProps = {
     url: '',
-
 }
 
 
 
 function AudioCustom(props) {
 
-    const { url, id } = props;
-    const dispatch = useDispatch();
-    const { audioPlay } = useSelector(state => state.video);
+    const { url, id, onClick } = props;
 
+    const handleClick = () => {
 
-    const audio = new Audio(url);
+        if(!onClick)
+            return;
 
-    function handleOnClick(e) {
-
-        dispatch(setAudioPlay(id));
-        
-        if (id === audioPlay) {
-            audio.load();
-            var playPromise = audio.play();
-            if (playPromise !== undefined) {
-                playPromise.then(_ => {
-                    // Automatic playback started!
-                    // Show playing UI.
-                })
-                    .catch(error => {
-                        // Auto-play was prevented
-                        // Show paused UI.
-                    });
-            }
-
-            // audio.play();
-            // audio.load();
-        }
+        onClick(url);
 
     }
 
-
-    if (audioPlay === id) {
-        audio.load();
-        var playPromise = audio.play();
-        if (playPromise !== undefined) {
-            playPromise.then(_ => {
-                // Automatic playback started!
-                // Show playing UI.
-            })
-                .catch(error => {
-                    // Auto-play was prevented
-                    // Show paused UI.
-                });
-        }
-
-        // audio.load();
-        // audio.play();
-    } else {
-        audio.pause();
-    }
-
-
-
-
-
+   
     return (
         <div className='audio-custom_wrapper' style={{ cursor: 'pointer' }}>
-            <div onClick={handleOnClick}>
+            <div onClick={handleClick}>
                 <SoundTwoTone twoToneColor="#52c41a" style={{ fontSize: '2.2rem' }} />
             </div>
 
