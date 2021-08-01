@@ -22,7 +22,6 @@ function WordCard(props) {
 
 	const [isModalVisible, setIsModalVisible] = useState(false);
 	const [isConfirmVisible, setIsConfirmVisible] = useState(false);
-	const [isImageNotFound, setIsImageNotFound] = useState(false);
 
 	const handleDelete = async () => {
 		await dispatch(deleteFromWordNote({ wordnoteId, wordId: word.id }));
@@ -38,7 +37,7 @@ function WordCard(props) {
 				closable: true,
 				maskClosable: true,
 				centered: true,
-				title: "Oops... You need to log in ",
+				title: "Oops... Bạn cần phải đăng nhập để sử dụng chức năng này",
 			});
 		}
 	};
@@ -48,9 +47,9 @@ function WordCard(props) {
 			<div className="word-card">
 				<div className="word-card__image">
 					<img
-						src={isImageNotFound ? imageNotFound : word.image}
+						src={word.image}
 						alt={word.name}
-						onError={() => setIsImageNotFound(true)}
+						onError={(e) => (e.target.src = imageNotFound)}
 					/>
 				</div>
 				<div className="word-card__content">
@@ -58,13 +57,17 @@ function WordCard(props) {
 						<div className="word-card-header__left">
 							<Title level={2}>
 								<Space>
-									<AudioButton audioUrl={word.sound} color={"#28a745"} />
+									<AudioButton
+										audioUrl={word.sound}
+										color={"#28a745"}
+										toolTip="Nghe"
+									/>
 									<span>{word.name}</span>
 								</Space>
 							</Title>
 						</div>
 						<div className="word-card-header__right">
-							<Tooltip title={isWordNote ? "Delete" : "Add to wordnote"}>
+							<Tooltip title={isWordNote ? "Xóa" : "Thêm vào wordnote"}>
 								<Button
 									style={{ borderRadius: "50%" }}
 									type={isWordNote ? "danger" : "primary"}
@@ -90,8 +93,9 @@ function WordCard(props) {
 					isModalVisible={isConfirmVisible}
 					setIsModalVisible={setIsConfirmVisible}
 					handleOnOk={handleDelete}
-					content={`Are you sure to delete this word ?`}
-					okText={"Yes"}
+					content={"Bạn có chắc chắn muốn xóa từ này không?"}
+					okText={"Đồng ý"}
+					cancelText={"Hủy"}
 				/>
 			) : (
 				<WordNoteModal

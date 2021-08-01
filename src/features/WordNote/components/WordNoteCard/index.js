@@ -3,7 +3,7 @@ import { Button, Space, Tooltip, Typography } from "antd";
 import ConfirmModal from "components/ConfirmModal";
 import {
 	deleteWordNote,
-	fetchWordNotes,
+	fetchWordNotes
 } from "features/WordNote/wordNoteSlice";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
@@ -53,7 +53,7 @@ function WordNoteCard(props) {
 					</div>
 					<div className="word-note-card__action">
 						<Space wrap align="center">
-							<Tooltip title="Delete">
+							<Tooltip title="Xóa">
 								<Button
 									style={style}
 									type="danger"
@@ -66,7 +66,7 @@ function WordNoteCard(props) {
 								></Button>
 							</Tooltip>
 
-							<Tooltip title="Edit">
+							<Tooltip title="Đổi tên">
 								<Button
 									style={style}
 									type="primary"
@@ -92,7 +92,9 @@ function WordNoteCard(props) {
 				isModalVisible={isConfirmVisible}
 				setIsModalVisible={setIsConfirmVisible}
 				handleOnOk={handleDelete}
-				content={`Are you sure to delete ${wordNote.name} ?`}
+				content={`Bạn có chắc chắn muốn xóa ${wordNote.name} không?`}
+				okText="Đồng ý"
+				cancelText="Hủy"
 			/>
 		</>
 	);

@@ -44,6 +44,12 @@ const wordNoteApi = {
 	getWordNoteReview: (wordnoteId, params) => {
 		const url = `${BASE_ENDPOINT}/review/${wordnoteId}`;
 		return axiosClient.get(url, { params });
+		// return axiosClient.get(url, {
+		// 	params: {
+		// 		type: params.type,
+		// 		ids: params.ids,
+		// 	},
+		// });
 	},
 };
 

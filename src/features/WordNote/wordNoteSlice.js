@@ -60,6 +60,14 @@ export const getWordNoteDetail = createAsyncThunk(
 		return data;
 	}
 );
+export const getWordNoteReview = createAsyncThunk(
+	`${KEY}/getWordNoteReview`,
+	async (params, thunkApi) => {
+		const { wordnoteId, values } = params;
+		const data = await wordNoteApi.getWordNoteReview(wordnoteId, values);
+		return data;
+	}
+);
 
 const wordNoteSlice = createSlice({
 	name: KEY,
@@ -73,6 +81,13 @@ const wordNoteSlice = createSlice({
 			createDate: "",
 			wordNumber: 0,
 			words: [],
+		},
+		word: {
+			id: 0,
+			name: "",
+			image: "",
+			definition: "",
+			suggestions: [],
 		},
 	},
 	reducers: {
@@ -101,6 +116,17 @@ const wordNoteSlice = createSlice({
 			state.wordNoteDetail = action.payload;
 		},
 		[getWordNoteDetail.rejected]: (state, action) => {
+			state.isError = true;
+		},
+
+		// getWordNoteReview
+		[getWordNoteReview.pending]: (state, action) => {
+			state.isError = false;
+		},
+		[getWordNoteReview.fulfilled]: (state, action) => {
+			state.word = action.payload;
+		},
+		[getWordNoteReview.rejected]: (state, action) => {
 			state.isError = true;
 		},
 	},

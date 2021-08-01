@@ -9,6 +9,7 @@ function ConfirmModal(props) {
 		title,
 		handleOnOk,
 		okText,
+		cancelText,
 		content,
 		isModalVisible,
 		setIsModalVisible,
@@ -26,6 +27,7 @@ function ConfirmModal(props) {
 			visible={isModalVisible}
 			onCancel={handleCancelModal}
 			onOk={handleOnOk}
+			cancelText={cancelText}
 			okText={okText}
 			width={width}
 		>
@@ -45,6 +47,7 @@ ConfirmModal.propTypes = {
 	title: PropTypes.string,
 	handleOnOk: PropTypes.func,
 	okText: PropTypes.string,
+	cancelText: PropTypes.string,
 	content: PropTypes.string,
 	isModalVisible: PropTypes.bool,
 	setIsModalVisible: PropTypes.func,
@@ -56,6 +59,7 @@ ConfirmModal.defaultProps = {
 	title: "",
 	handleOnOk: null,
 	okText: "Ok",
+	cancelText: "Cancel",
 	content: "Are you sure?",
 	isModalVisible: false,
 	setIsModalVisible: null,

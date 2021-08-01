@@ -4,7 +4,7 @@ import { Col, Row } from "antd";
 import BackToTopButton from "components/BackToTopButton";
 import WordCard from "../WordCard";
 import { useSelector } from "react-redux";
-import { useWordNoteOptions } from "features/Courses/hooks";
+import { useWordNoteIds, useWordNoteOptions } from "features/Courses/hooks";
 
 function WordList(props) {
 	const { data, isWordNote, wordnoteId } = props;

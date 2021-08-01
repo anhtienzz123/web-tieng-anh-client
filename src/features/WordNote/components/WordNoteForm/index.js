@@ -8,7 +8,7 @@ import {
 } from "features/WordNote/wordNoteSlice";
 import { FastField, Form, Formik } from "formik";
 import PropTypes from "prop-types";
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 
@@ -18,8 +18,8 @@ function WordNoteForm(props) {
 
 	const validationSchema = Yup.object().shape({
 		name: Yup.string()
-			.required("This field is required.")
-			.max(20, "Name have max 20 characters"),
+			.required("Không được bỏ trống")
+			.max(20, "Tối đa 20 kí tự"),
 	});
 
 	const handleCancelModal = () => {
@@ -38,7 +38,7 @@ function WordNoteForm(props) {
 
 	return (
 		<Modal
-			title={isAddMode ? "Add new wordnote" : "Edit wordnote"}
+			title={isAddMode ? "Thêm wordnote" : "Đổi tên"}
 			centered
 			visible={isModalVisible}
 			footer={null}
@@ -58,8 +58,8 @@ function WordNoteForm(props) {
 							<FastField
 								component={InputField}
 								name="name"
-								title="Name"
-								placeholder="Eg: Phrasebook ..."
+								title="Tên"
+								placeholder="Vd: Phrasebook ..."
 								titleCol={6}
 								inputCol={18}
 							/>
@@ -67,11 +67,11 @@ function WordNoteForm(props) {
 							<Row justify="end" style={{ marginTop: "20px" }}>
 								<Col>
 									<Space size="middle">
-										<Button onClick={handleCancelModal}>Cancel</Button>
+										<Button onClick={handleCancelModal}>Hủy</Button>
 
 										<Button htmlType="submit" type="primary">
 											{isSubmitting && <Spin />}
-											{isAddMode ? "Add" : "Save"}
+											{isAddMode ? "Thêm" : "Lưu"}
 										</Button>
 									</Space>
 								</Col>

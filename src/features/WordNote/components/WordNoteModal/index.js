@@ -10,10 +10,19 @@ function WordNoteModal(props) {
 	const { isModalVisible, setIsModalVisible, wordNoteOptions, wordId } = props;
 	const dispatch = useDispatch();
 	const [selectedWordNote, setSelectedWordNote] = useState([]);
+	const [checkAll, setCheckAll] = useState(false);
 
 	function onChange(checkedValues) {
 		setSelectedWordNote(checkedValues);
+		setCheckAll(checkedValues.length === wordNoteOptions.length);
 	}
+
+	const onCheckAllChange = (e) => {
+		const isChecked = e.target.checked;
+		const values = wordNoteOptions.map((record) => record.value);
+		setCheckAll(isChecked);
+		setSelectedWordNote(isChecked ? values : []);
+	};
 
 	const handleCancelModal = () => {
 		setIsModalVisible(false);
@@ -55,11 +64,16 @@ function WordNoteModal(props) {
 			okText={"Add"}
 		>
 			{wordNoteOptions.length > 0 ? (
-				<Checkbox.Group
-					options={wordNoteOptions}
-					defaultValue={selectedWordNote}
-					onChange={onChange}
-				/>
+				<>
+					<Checkbox onChange={onCheckAllChange} checked={checkAll}>
+						Check all
+					</Checkbox>
+					<Checkbox.Group
+						options={wordNoteOptions}
+						value={selectedWordNote}
+						onChange={onChange}
+					/>
+				</>
 			) : (
 				<Empty
 					description={

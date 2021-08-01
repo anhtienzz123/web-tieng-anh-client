@@ -1,8 +1,11 @@
 import { AppstoreAddOutlined } from "@ant-design/icons";
-import { Col, Divider, Row, Space, Typography } from "antd";
-import BackToTopButton from "components/BackToTopButton";
-import WordNoteCard from "features/WordNote/components/WordNoteCard";
-import WordNoteForm from "features/WordNote/components/WordNoteForm";
+import { Col, Row, Space, Typography } from "antd";
+import {
+	BackToTopButton,
+	WordNoteCard,
+	WordNoteForm,
+	WordNoteHeader,
+} from "features/WordNote/common";
 import { WORDNOTE_IMAGES } from "features/WordNote/constants";
 import { fetchWordNotes } from "features/WordNote/wordNoteSlice";
 import React, { useEffect, useState } from "react";
@@ -21,13 +24,8 @@ function MainPage(props) {
 	}, []);
 	return (
 		<div id="word-note-main-page">
-			<Row justify="start">
-				<Col>
-					<Title>Wordnote</Title>
-				</Col>
-			</Row>
+			<WordNoteHeader isMainPage={true} />
 
-			<Divider />
 			<Row justify="start" gutter={[24, 24]}>
 				<Col xs={24} sm={24} md={12} lg={8}>
 					<div className="word-note-card">
@@ -39,7 +37,7 @@ function MainPage(props) {
 						>
 							<Space align="center">
 								<Title level={3}>
-									<AppstoreAddOutlined /> New wordnote
+									<AppstoreAddOutlined /> Thêm wordnote
 								</Title>
 							</Space>
 						</div>
