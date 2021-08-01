@@ -22,12 +22,12 @@ function TopicPage(props) {
 	const dispatch = useDispatch();
 
 	const handleOnPageChange = (page) => {
-		// window.scrollTo(0, 0);
+		window.scrollTo(0, 0);
 		dispatch(fetchCourseWords({ courseSlug: slug, page: page - 1 }));
 	};
 
 	useEffect(() => {
-		// window.scrollTo(0, 0);
+		window.scrollTo(0, 0);
 		dispatch(fetchCourseWords({ courseSlug: slug }));
 		dispatch(fetchCourseDetail({ slug }));
 		dispatch(fetchWordNotes());

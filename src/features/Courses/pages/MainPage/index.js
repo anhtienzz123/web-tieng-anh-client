@@ -34,7 +34,7 @@ function MainPage(props) {
 	};
 
 	const handleOnPageChange = (page) => {
-		// window.scrollTo(0, 0);
+		window.scrollTo(0, 0);
 		dispatch(fetchCourses({ topicSlug: filterSelected, page: page - 1 }));
 	};
 

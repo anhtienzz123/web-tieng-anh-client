@@ -53,7 +53,7 @@ function WordNoteHeader(props) {
 										size="large"
 										icon={<PlaySquareOutlined />}
 										href={`${url}/review`}
-										disabled={wordNoteDetail.words.length > 0 ? false : true}
+										disabled={wordNoteDetail.words.length > 1 ? false : true}
 									>
 										Play game
 									</Button>
