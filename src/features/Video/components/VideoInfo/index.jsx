@@ -1,20 +1,21 @@
 import { ExclamationCircleOutlined, HighlightOutlined, PlayCircleOutlined } from '@ant-design/icons';
 import { Button, Space, Table, Tabs } from 'antd';
 import BlockLevel from 'components/BlockLevel';
+import { dataSelectLevel } from 'constants/dataSelectLevel';
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import AudioCustom from '../AudioCustom';
-import { dataSelectLevel } from 'constants/dataSelectLevel';
+import { setSubActive, setSeekTo, setIsPlay, setSttInSub } from 'features/Video/videoSlice';
 import './style.scss';
-import { useSelector } from 'react-redux';
 
 
 VideoInfo.propTypes = {
     videoWords: PropTypes.array,
     categoryName: PropTypes.string,
     name: PropTypes.string,
-    level: PropTypes.string,
+    level: PropTypes.number,
     description: PropTypes.string,
     slugCategory: PropTypes.string,
 };
@@ -23,48 +24,15 @@ VideoInfo.defaultProps = {
     videoWords: [],
     categoryName: '',
     name: '',
-    level: '',
+    level: 0,
     description: '',
     slugCategory: ''
 }
 const URL = 'https://toeicexamstore.xyz/upload/audiotoeic/part1875.mp3';
 
-const columns = [
-    {
-        title: 'Total',
-        dataIndex: 'total',
-        key: 'total',
-        render: (object) => (
-            <div className='cell_sound'>{object.audio}&nbsp;&nbsp;{object.keyword}</div>
-        )
-    },
-    {
-        title: 'Frequency',
-        dataIndex: 'frequency',
-        key: 'frequency',
-        defaultSortOrder: 'descend',
-        sorter: (a, b) => a.frequency - b.frequency,
-    },
-    {
-        title: 'Word root',
-        key: 'wordroot',
-        dataIndex: 'wordroot',
-    },
-    {
-        title: '',
-        key: 'play',
-        align: 'center',
 
 
-        render: (text, record) => (
-            <div>
-                <Button type="primary" shape="round" icon={<PlayCircleOutlined />} size='small'>
-                    Play
-                </Button>
-            </div >
-        )
-    },
-];
+
 
 
 function getLevelTitle(level) {
@@ -76,11 +44,56 @@ function getLevelTitle(level) {
 
 
 function VideoInfo(props) {
+    const dispatch = useDispatch();
     const { TabPane } = Tabs;
     const { videoWords, categoryName, name, level, description, slugCategory } = props;
+    const { transcript } = useSelector((state) => state.video);
     const data = [];
-
     let audio;
+
+
+    const columns = [
+        {
+            title: `Total: ${videoWords.length}`,
+            dataIndex: 'total',
+            key: 'total',
+            render: (object) => (
+                <div className='cell_sound'>{object.audio}&nbsp;&nbsp;{object.keyword}</div>
+            )
+        },
+        {
+            title: 'Frequency',
+            dataIndex: 'frequency',
+            key: 'frequency',
+            defaultSortOrder: 'descend',
+            sorter: (a, b) => a.frequency - b.frequency,
+        },
+        {
+            title: 'Word root',
+            key: 'wordroot',
+            dataIndex: 'wordroot',
+        },
+        {
+            title: '',
+            key: 'play',
+            align: 'center',
+
+
+            render: (text, record, index) => (
+                <div>
+                    <Button
+                        type="primary"
+                        shape="round"
+                        icon={<PlayCircleOutlined />}
+                        size='small'
+                        onClick={() => handleWordClick(text, record, index)}
+                    >
+                        Play
+                    </Button>
+                </div >
+            )
+        },
+    ];
 
     const handleAudioClick = (url) => {
 
@@ -91,7 +104,7 @@ function VideoInfo(props) {
         audio = new Audio(url);
         audio.load();
         audio.play();
-    }
+    };
 
     videoWords.map((element, index) => {
 
@@ -108,14 +121,38 @@ function VideoInfo(props) {
 
         })
 
-    })
+    });
+
+    const handleWordClick = (text, record, index) => {
+        const temp = text.total.keyword;
+        let regex = `${temp}`;
+        let reExp = new RegExp(regex, "i");
+
+
+
+        const tempScript = transcript.find(x => {
+            if (reExp.exec(x.content) !== null) {
+                return x;
+            }
+
+        })
+
+        if (tempScript) {
+            dispatch(setSubActive(tempScript.id));
+            dispatch(setSttInSub(tempScript.stt));
+            dispatch(setSeekTo(Math.trunc(tempScript.start / 1000)));
+            dispatch(setIsPlay(true));
+        }
+
+
+    }
 
 
     return (
         <div className="info_wrapper">
 
-            <Tabs defaultActiveKey="1">
-                <TabPane
+            <Tabs defaultActiveKey="1" size="large" >
+                <TabPane 
                     tab={
                         <span>
                             <ExclamationCircleOutlined />
@@ -141,7 +178,7 @@ function VideoInfo(props) {
                     </Space>
 
                 </TabPane>
-                <TabPane
+                <TabPane 
                     tab={
                         <span>
                             <HighlightOutlined />

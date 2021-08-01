@@ -30,11 +30,6 @@ function MoreVideo(props) {
         dispatch(setShowMore())
     }
 
-
-   
- 
-
-    console.log(DefaultImage)
     return (
         <div className='more_video_wrapper'>
             <div className='more_video_title' >

@@ -17,8 +17,6 @@ function VideoMoreSubCard(props) {
     const { data } = props;
     const { slugVideo, slugCategory } = useParams();
 
-
-    console.log(data)
     const [checkImage, setCheckImage] = useState(true);
 
 

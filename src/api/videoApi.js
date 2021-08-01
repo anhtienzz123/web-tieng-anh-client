@@ -41,6 +41,7 @@ const videoApi = {
         return axiosClient.get(`/videos/${slug}`);
     },
     fetchMoreVideo: (slug, size) => {
+        // const randomNuber = Math.trunc(Math.random() * 10);
         return axiosClient.get(`/videos`, {
             params: {
                 categorySlug: slug,

@@ -90,7 +90,7 @@ function VideoCard(props) {
             </div>
 
             {
-                height == '' ?
+                !height ?
                     <div className="video_card_title" >
                         {name}
                     </div>
