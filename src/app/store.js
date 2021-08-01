@@ -3,8 +3,10 @@ import global from "./globalSlice";
 import me from "features/Me/meSlice";
 import login from "features/Login/loginSlice";
 import home from "features/Home/homeSlice";
+import exam from "features/OnlineExam/onlineExamSlice";
 import course from "features/Courses/courseSlice";
 import translate from "features/Translate/translateSlice";
+import perPart from "features/PerPart/perPartSlice";
 import wordNote from "features/WordNote/wordNoteSlice";
 
 const rootReducer = {
@@ -12,8 +14,10 @@ const rootReducer = {
 	me,
 	login,
 	home,
+	exam,
 	course,
 	translate,
+	perPart,
 	wordNote,
 };
 

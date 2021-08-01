@@ -7,6 +7,8 @@ import Course from "features/Courses";
 import Home from "features/Home";
 import Login from "features/Login";
 import Me from "features/Me";
+import OnlineExam from "features/OnlineExam";
+import PerPart from "features/PerPart";
 import Translate from "features/Translate";
 import WordNote from "features/WordNote";
 import React, { useEffect } from "react";
@@ -31,10 +33,11 @@ function App() {
 					<Route exact path="/" component={Home} />
 					<Route path="/login" component={Login} />
 					<Route path="/translate" component={Translate} />
+					<Route path="/exams" component={OnlineExam} />
 					<Route path="/courses" component={Course} />
 					<ProtectedRoute path="/wordnotes" component={WordNote} />
 					<ProtectedRoute path="/me" component={Me} />
-
+					<Route path="/parts" component={PerPart} />
 					<Route component={NotFoundPage} />
 				</Switch>
 
