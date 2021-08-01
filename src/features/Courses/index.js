@@ -4,7 +4,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
 import MainPage from "./pages/MainPage";
-import Topic from "./pages/Topic";
+import TopicPage from "./pages/TopicPage";
 
 function Course(props) {
 	const { isLoading } = useSelector((state) => state.global);
@@ -15,7 +15,7 @@ function Course(props) {
 			<div>
 				<Switch>
 					<Route exact path={url} component={MainPage} />
-					<Route path={`${url}/:slug`} component={Topic} />
+					<Route path={`${url}/:slug`} component={TopicPage} />
 
 					<Route component={NotFoundPage} />
 				</Switch>

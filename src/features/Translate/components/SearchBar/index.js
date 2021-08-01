@@ -1,6 +1,8 @@
 import { AudioOutlined, PauseCircleOutlined } from "@ant-design/icons";
 import { message, Tooltip } from "antd";
 import Search from "antd/lib/input/Search";
+import ignoreSound from "assets/medias/ignore-sound.mp3";
+import listenSound from "assets/medias/listen-sound.mp3";
 import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
 import SpeechRecognition, {
@@ -31,16 +33,26 @@ function SearchBar(props) {
 
 	const handleOnChange = (e) => setWordToTranslate(e.target.value);
 
+	let audio;
+	const playAudio = (url) => {
+		if (audio) audio.pause();
+		audio = new Audio(url);
+		audio.load();
+		audio.play();
+	};
+
 	const handleStartListen = () => {
 		if (!browserSupportsSpeechRecognition) {
 			message.error("Browser doesn't support speech recognition.");
 		} else {
+			playAudio(listenSound);
 			resetTranscript();
 			SpeechRecognition.startListening();
 		}
 	};
 
 	const handleStopListen = () => {
+		playAudio(ignoreSound);
 		SpeechRecognition.stopListening();
 	};
 

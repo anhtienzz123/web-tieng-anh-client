@@ -53,7 +53,7 @@ const courseSlice = createSlice({
 			state.courses = action.payload;
 		},
 		[fetchCourses.rejected]: (state, action) => {
-			state.courses = action.payload;
+			// state.courses = {};
 		},
 
 		// Course words
@@ -62,7 +62,7 @@ const courseSlice = createSlice({
 			state.courseWords = action.payload;
 		},
 		[fetchCourseWords.rejected]: (state, action) => {
-			state.courseWords = action.payload;
+			// state.courseWords = {};
 		},
 
 		// Topics
@@ -71,7 +71,7 @@ const courseSlice = createSlice({
 			state.topics = action.payload;
 		},
 		[fetchTopics.rejected]: (state, action) => {
-			state.topics = action.payload;
+			// state.topics = [];
 		},
 
 		// Course detail

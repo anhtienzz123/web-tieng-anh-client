@@ -1,22 +1,16 @@
 import { Button } from "antd";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { Link, useHistory, useRouteMatch } from "react-router-dom";
+import { Link, useRouteMatch } from "react-router-dom";
 import "./style.scss";
 
 function CourseCard(props) {
 	const { course, maxCharacterCount } = props;
 
-	console.log(course);
 	const { url } = useRouteMatch();
 	const { image, slug, name, description, wordNumber, personNumber } = course;
-	const history = useHistory();
-	const dispatch = useDispatch();
 
 	const [isTruncated, setIsTruncated] = useState(true);
-
-	console.log(course);
 
 	const shortDescription = isTruncated
 		? description.slice(0, maxCharacterCount) + "..."

@@ -22,7 +22,7 @@ function MainPage(props) {
 	const dispatch = useDispatch();
 	const { courses, topics } = useSelector((state) => state.course);
 
-	const { data = [], page = 1, size = 1, pageMax = 1 } = courses;
+	const { data = [], page = 1, size = 1, totalPages = 1 } = courses;
 	const filterSelected = courseSelected !== "All" ? courseSelected : "";
 
 	const handleOnChange = (e) => {
@@ -51,7 +51,9 @@ function MainPage(props) {
 					<Space direction="vertical">
 						<Radio value={"All"}>All</Radio>
 						{topics.map((topic, index) => (
-							<Radio value={topic.slug}>{topic.name}</Radio>
+							<Radio key={index} value={topic.slug}>
+								{topic.name}
+							</Radio>
 						))}
 					</Space>
 				</Radio.Group>
@@ -76,10 +78,10 @@ function MainPage(props) {
 
 			<CourseList courses={data} />
 
-			{pageMax > 1 && (
+			{totalPages > 1 && (
 				<Row justify="center">
 					<Pagination
-						total={pageMax * size}
+						total={totalPages * size}
 						showQuickJumper
 						pageSize={size}
 						onChange={handleOnPageChange}

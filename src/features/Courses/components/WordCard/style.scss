@@ -21,7 +21,7 @@
 		flex: 2;
 		padding: 0px 0px 0px 24px;
 
-		.header {
+		.word-card-header {
 			display: flex;
 			justify-content: space-between;
 
@@ -30,6 +30,8 @@
 			}
 			&__right {
 				display: flex;
+				opacity: 0;
+				transition: all 0.5s ease 0s;
 			}
 		}
 
@@ -66,4 +68,8 @@
 		font-size: 0.8em;
 		padding-top: 4px;
 	}
+}
+.word-card:hover .word-card-header__right {
+	opacity: 1;
+	transition: all 0.5s ease-in-out 0s;
 }
