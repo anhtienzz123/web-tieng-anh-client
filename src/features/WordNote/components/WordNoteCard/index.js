@@ -3,7 +3,7 @@ import { Button, Space, Tooltip, Typography } from "antd";
 import ConfirmModal from "components/ConfirmModal";
 import {
 	deleteWordNote,
-	fetchWordNotes
+	fetchWordNotes,
 } from "features/WordNote/wordNoteSlice";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
@@ -92,7 +92,7 @@ function WordNoteCard(props) {
 				isModalVisible={isConfirmVisible}
 				setIsModalVisible={setIsConfirmVisible}
 				handleOnOk={handleDelete}
-				content={`Bạn có chắc chắn muốn xóa ${wordNote.name} không?`}
+				content={`Bạn có chắc chắn muốn xóa wordnote này không?`}
 				okText="Đồng ý"
 				cancelText="Hủy"
 			/>

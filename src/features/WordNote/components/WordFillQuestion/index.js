@@ -6,26 +6,42 @@ import React, { useEffect, useState } from "react";
 import "./style.scss";
 
 function WordFillQuestion(props) {
-	const { word, userAnswer, setUserAnswer } = props;
+	const { word, setUserAnswer } = props;
 	const [wordIndexes, setWordIndexes] = useState([]);
+	const [suggestions, setSuggestions] = useState([]);
 	const [spaceClickedCount, setSpaceClickedCount] = useState(0);
 	const numberOfSpaces = word.name.split(" ").length - 1;
-	const [spaceCount, setSpaceCount] = useState(numberOfSpaces);
+
+	const alphabet = "abcdefghijklmnopqrstuvwxyz";
+
+	const randomCharacter = () => {
+		let newSuggestions = [...word.suggestions];
+		while (newSuggestions.length <= 5) {
+			const randomCharacter =
+				alphabet[Math.floor(Math.random() * alphabet.length)];
+			newSuggestions.push(randomCharacter);
+		}
+
+		const shuffledArr = () => newSuggestions.sort(() => 0.5 - Math.random());
+		setSuggestions(shuffledArr);
+	};
 
 	const handleAnswer = (wordIndexes) => {
 		const answer = Array.from(wordIndexes, (i) =>
-			i === -1 ? " " : word.suggestions[i]
+			i === -1 ? " " : suggestions[i]
 		).join("");
+
 		setUserAnswer(answer);
 	};
 
 	const handleDeleteClick = () => {
 		const lastItemIndex = wordIndexes.length - 1;
 		const newWordIndexes = wordIndexes.slice(0, -1);
+
 		wordIndexes[lastItemIndex] === -1 &&
 			setSpaceClickedCount(spaceClickedCount - 1);
-		setWordIndexes(newWordIndexes);
 
+		setWordIndexes(newWordIndexes);
 		handleAnswer(newWordIndexes);
 	};
 
@@ -43,9 +59,8 @@ function WordFillQuestion(props) {
 	useEffect(() => {
 		setWordIndexes([]);
 		setSpaceClickedCount(0);
-		const numberOfSpaces = word.name.split(" ").length - 1;
-		setSpaceCount(numberOfSpaces);
 		setUserAnswer("");
+		randomCharacter();
 	}, [word]);
 
 	return (
@@ -57,11 +72,7 @@ function WordFillQuestion(props) {
 							{wordIndexes.map((value, index) => (
 								<Col key={index}>
 									<div className={`btn btn--normal answer`}>
-										{value === -1 ? (
-											<span>&#160;</span>
-										) : (
-											word.suggestions[value]
-										)}
+										{value === -1 ? <span>&#160;</span> : suggestions[value]}
 									</div>
 								</Col>
 							))}
@@ -79,17 +90,13 @@ function WordFillQuestion(props) {
 						</button>
 					</Col>
 				</Row>
-				{/* <div>userAnswer: {userAnswer}</div>
-				<div>Index: {wordIndexes.join(" ,")}</div>
-				<div>spaceCount: {spaceCount}</div>
-				<div>spaceClickedCount: {spaceClickedCount}</div> */}
 			</div>
 
 			<div className="word-fill-question__suggested-words">
 				<Row justify="center">
 					<Col span={16}>
 						<Row justify="center" gutter={[8, 8]}>
-							{word.suggestions.map((value, index) => (
+							{suggestions.map((value, index) => (
 								<Col key={index}>
 									<button
 										className={`btn btn--normal ${

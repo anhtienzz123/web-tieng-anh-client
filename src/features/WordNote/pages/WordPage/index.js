@@ -25,7 +25,7 @@ function WordPage(props) {
 			/>
 
 			{isError ? (
-				<Result status="404" title="400" subTitle="An error has occurred" />
+				<Result status="404" title="400" subTitle="Đã có lỗi xảy ra" />
 			) : (
 				<>
 					{wordNoteDetail.words.length > 0 ? (
@@ -35,9 +35,7 @@ function WordPage(props) {
 							wordnoteId={wordNoteDetail.id}
 						/>
 					) : (
-						<Empty
-							description={<span>This wordnote doesn't have any words</span>}
-						/>
+						<Empty description={<span>Wordnote này không có từ nào</span>} />
 					)}
 				</>
 			)}

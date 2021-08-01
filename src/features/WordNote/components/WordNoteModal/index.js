@@ -31,7 +31,7 @@ function WordNoteModal(props) {
 	const openNotificationWithIcon = (type) => {
 		notification[type]({
 			message: "Warning",
-			description: "You need to select at least 1 Wordnote to add",
+			description: "Bạn cần phải chọn ít nhất 1 wordnote để thêm",
 			style: { backgroundColor: "#ffeeb0" },
 		});
 	};
@@ -48,7 +48,7 @@ function WordNoteModal(props) {
 			}
 
 			setIsModalVisible(false);
-			message.success("Added to wordnote");
+			message.success("Đã thêm vào wordnote");
 		} else {
 			openNotificationWithIcon("warning");
 		}
@@ -56,17 +56,18 @@ function WordNoteModal(props) {
 
 	return (
 		<Modal
-			title={"Add to Wordnote"}
+			title={"Thêm từ vào wordnote"}
 			centered
 			visible={isModalVisible}
 			onCancel={handleCancelModal}
 			onOk={handleAddToWordNote}
-			okText={"Add"}
+			cancelText="Hủy"
+			okText="Thêm"
 		>
 			{wordNoteOptions.length > 0 ? (
 				<>
 					<Checkbox onChange={onCheckAllChange} checked={checkAll}>
-						Check all
+						Chọn tất cả
 					</Checkbox>
 					<Checkbox.Group
 						options={wordNoteOptions}
@@ -78,8 +79,7 @@ function WordNoteModal(props) {
 				<Empty
 					description={
 						<span>
-							You don't have Wordnote to add.{" "}
-							<Link to="/wordnotes">Go to Wordnote</Link>
+							Bạn chưa có wordnote nào. <Link to="/wordnotes">Wordnote</Link>
 						</span>
 					}
 				/>

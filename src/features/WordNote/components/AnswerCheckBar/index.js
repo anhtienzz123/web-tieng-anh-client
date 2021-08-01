@@ -1,4 +1,6 @@
+import { CheckCircleFilled, CloseCircleFilled } from "@ant-design/icons";
 import { Col, Row } from "antd";
+import Title from "antd/lib/typography/Title";
 import PropTypes from "prop-types";
 import React from "react";
 import "./style.scss";
@@ -26,44 +28,62 @@ function AnswerCheckBar(props) {
 							: " answer-check-bar--danger"
 					}`}
 				>
-					<Row justify="space-around">
-						<Col>
-							{isCheckAnswer && (
-								<button
-									className="btn btn--normal"
-									onClick={() => {
-										handleOnCheckAnswer(false);
-									}}
-								>
-									Bỏ qua
-								</button>
-							)}
+					<Row justify="space-between" gutter={[12, 12]}>
+						<Col xs={24} sm={12} md={12} lg={12}>
+							<Row justify="center" className="notification">
+								{isCheckAnswer ? (
+									<button
+										className="btn btn--normal"
+										onClick={() => {
+											handleOnCheckAnswer(false);
+										}}
+									>
+										&nbsp;Bỏ qua&nbsp;
+									</button>
+								) : (
+									<div className="user-anwer">
+										<Title level={2}>
+											{isCorrectAnswer ? (
+												<span className="user-anwer--success">
+													<CheckCircleFilled /> Chính xác
+												</span>
+											) : (
+												<span className="user-anwer--danger">
+													<CloseCircleFilled /> Sai rồi
+												</span>
+											)}
+										</Title>
+									</div>
+								)}
+							</Row>
 						</Col>
-						<Col>
-							{isCheckAnswer ? (
-								<button
-									className={`btn ${userAnswer ? "btn--success" : "disable"}`}
-									onClick={() => {
-										handleOnCheckAnswer(true);
-										setIsCheckAnswer(false);
-									}}
-									disabled={userAnswer ? false : true}
-								>
-									Kiểm tra
-								</button>
-							) : (
-								<button
-									className={`btn ${
-										isCorrectAnswer ? "btn--success" : "btn--danger"
-									}`}
-									onClick={() => {
-										handleChangeWordReview(isCorrectAnswer ? true : false);
-										setIsCheckAnswer(true);
-									}}
-								>
-									Tiếp tục
-								</button>
-							)}
+						<Col xs={24} sm={12} md={12} lg={12}>
+							<Row justify="center">
+								{isCheckAnswer ? (
+									<button
+										className={`btn ${userAnswer ? "btn--success" : "disable"}`}
+										onClick={() => {
+											handleOnCheckAnswer(true);
+											setIsCheckAnswer(false);
+										}}
+										disabled={userAnswer ? false : true}
+									>
+										Kiểm tra
+									</button>
+								) : (
+									<button
+										className={`btn ${
+											isCorrectAnswer ? "btn--success" : "btn--danger"
+										}`}
+										onClick={() => {
+											handleChangeWordReview(isCorrectAnswer ? true : false);
+											setIsCheckAnswer(true);
+										}}
+									>
+										Tiếp tục
+									</button>
+								)}
+							</Row>
 						</Col>
 					</Row>
 				</div>

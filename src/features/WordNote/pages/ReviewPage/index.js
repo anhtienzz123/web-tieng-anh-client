@@ -1,4 +1,4 @@
-import { Empty, Progress, Result } from "antd";
+import { Button, Progress, Result } from "antd";
 import {
 	AnswerCheckBar,
 	completeSound,
@@ -18,11 +18,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import "./style.scss";
 
+let audio;
+const playAudio = (url) => {
+	if (audio) audio.pause();
+	audio = new Audio(url);
+	audio.load();
+	audio.play();
+};
+
 function ReviewPage(props) {
 	const { wordnoteId } = useParams();
 	const dispatch = useDispatch();
 	const history = useHistory();
-	let audio;
 	const type = Math.round(Math.random());
 
 	const [finishedWords, setFinishedWords] = useState([null]);
@@ -46,13 +53,6 @@ function ReviewPage(props) {
 			newPercent = 100;
 		}
 		setPercent(newPercent);
-	};
-
-	const playAudio = (url) => {
-		if (audio) audio.pause();
-		audio = new Audio(url);
-		audio.load();
-		audio.play();
 	};
 
 	const handleChangeWordReview = (isCorrectAnswer = false) => {
@@ -106,12 +106,32 @@ function ReviewPage(props) {
 					<Result status="404" title="400" subTitle="An error has occurred" />
 				) : (
 					<div>
-						{!isCheckAnswer && <div className="overlay"></div>}
+						{!isCheckAnswer && !isCompleted && <div className="overlay"></div>}
 						<Progress percent={percent} />
 						{word.status === 400 ? (
 							<>
 								{playAudio(completeSound)}
-								<Empty description={<span>{word.error}</span>} />
+								<Result
+									status="success"
+									title="Hoàn thành ôn tập"
+									subTitle="Bạn có muốn ôn lại lần nữa không?"
+									extra={[
+										<Button
+											key="cancel"
+											onClick={() => history.push(`/wordnotes/${wordnoteId}`)}
+										>
+											Không
+										</Button>,
+										<Button
+											type="primary"
+											key="continue"
+											onClick={() => history.go(0)}
+										>
+											Có
+										</Button>,
+									]}
+								/>
+								,
 							</>
 						) : (
 							<>
@@ -119,11 +139,7 @@ function ReviewPage(props) {
 								{questionType === 0 ? (
 									<QuizQuestion word={word} setUserAnswer={setUserAnswer} />
 								) : (
-									<WordFillQuestion
-										word={word}
-										setUserAnswer={setUserAnswer}
-										userAnswer={userAnswer}
-									/>
+									<WordFillQuestion word={word} setUserAnswer={setUserAnswer} />
 								)}
 							</>
 						)}

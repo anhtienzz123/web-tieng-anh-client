@@ -9,10 +9,28 @@
 
 	&--success {
 		background-color: #d7ffb8;
-		border: 2px #d7ffb8 solid;
 	}
 	&--danger {
 		background-color: #ffdfe0;
-		border: 2px #ffdfe0 solid;
+	}
+
+	.notification {
+		height: 100%;
+	}
+
+	.user-anwer {
+		display: flex;
+		align-items: center;
+
+		.ant-typography {
+			margin: 0px;
+		}
+
+		&--success {
+			color: #58a700;
+		}
+		&--danger {
+			color: #eb3232;
+		}
 	}
 }
