@@ -3,6 +3,7 @@ import Footer from "components/Footer";
 import Header from "components/Header";
 import NotFoundPage from "components/NotFoundPage";
 import ProtectedRoute from "components/ProtectedRoute";
+import Blog from "features/Blog";
 import Course from "features/Courses";
 import Home from "features/Home";
 import Login from "features/Login";
@@ -36,6 +37,7 @@ function App() {
 					<Route path="/exams" component={OnlineExam} />
 					<Route path="/courses" component={Course} />
 					<ProtectedRoute path="/wordnotes" component={WordNote} />
+					<Route path="/blogs" component={Blog} />
 					<ProtectedRoute path="/me" component={Me} />
 					<Route path="/parts" component={PerPart} />
 					<Route component={NotFoundPage} />

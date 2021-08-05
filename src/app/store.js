@@ -1,13 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
-import global from "./globalSlice";
-import me from "features/Me/meSlice";
-import login from "features/Login/loginSlice";
-import home from "features/Home/homeSlice";
-import exam from "features/OnlineExam/onlineExamSlice";
+import blog from "features/Blog/blogSlice";
 import course from "features/Courses/courseSlice";
-import translate from "features/Translate/translateSlice";
+import home from "features/Home/homeSlice";
+import login from "features/Login/loginSlice";
+import me from "features/Me/meSlice";
+import exam from "features/OnlineExam/onlineExamSlice";
 import perPart from "features/PerPart/perPartSlice";
+import translate from "features/Translate/translateSlice";
 import wordNote from "features/WordNote/wordNoteSlice";
+import global from "./globalSlice";
 
 const rootReducer = {
 	global,
@@ -19,6 +20,7 @@ const rootReducer = {
 	translate,
 	perPart,
 	wordNote,
+	blog,
 };
 
 const store = configureStore({

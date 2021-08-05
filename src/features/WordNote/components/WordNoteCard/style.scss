@@ -6,6 +6,7 @@
 	height: 108px;
 	border-radius: 10px;
 	box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+	transition: all 0.3s ease-in-out 0s;
 	// background-color: rgba(218, 149, 9, 0.5);
 
 	img {
@@ -44,10 +45,9 @@
 	}
 
 	&:hover {
-		transition: all 0.3s ease-in-out 0s;
-		transform: scale(1.05);
-		box-shadow: rgba(24, 144, 255, 0.5) 0px 5px 15px;
 		cursor: pointer;
+		box-shadow: rgba(24, 144, 255, 0.5) 0px 5px 15px;
+		transform: scale(1.02);
 
 		.word-note-card__action {
 			opacity: 1;

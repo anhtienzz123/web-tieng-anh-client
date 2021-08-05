@@ -1,8 +1,8 @@
 import { Col, Row } from "antd";
 import BackToTopButton from "components/BackToTopButton";
+import TopicCard from "components/TopicCard";
 import PropTypes from "prop-types";
 import React from "react";
-import CourseCard from "../CourseCard";
 import "./style.scss";
 
 function CourseList(props) {
@@ -10,11 +10,17 @@ function CourseList(props) {
 
 	return (
 		<Row justify="start" gutter={[36, 24]}>
-			{courses.map((course, index) => (
-				<Col key={index} xs={24} sm={12} md={8} lg={6}>
-					<CourseCard course={course} />
-				</Col>
-			))}
+			{courses.map((course, index) => {
+				const topic = {
+					...course,
+					additionalInfo: `${course.wordNumber} wordss`,
+				};
+				return (
+					<Col key={index} xs={24} sm={12} md={8} lg={6}>
+						<TopicCard topic={topic} />
+					</Col>
+				);
+			})}
 			<BackToTopButton />
 		</Row>
 	);
