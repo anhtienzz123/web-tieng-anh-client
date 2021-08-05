@@ -13,7 +13,7 @@ function CourseList(props) {
 			{courses.map((course, index) => {
 				const topic = {
 					...course,
-					additionalInfo: `${course.wordNumber} wordss`,
+					additionalInfo: `${course.wordNumber} words`,
 				};
 				return (
 					<Col key={index} xs={24} sm={12} md={8} lg={6}>
