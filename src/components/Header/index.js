@@ -8,7 +8,9 @@ import {
 	ScheduleOutlined,
 	UserOutlined,
 } from "@ant-design/icons";
-import { Divider, Menu, message } from "antd";
+import { faBlog } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Menu, message } from "antd";
 import { setLogin } from "app/globalSlice";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -41,6 +43,10 @@ function Header(props) {
 						<Link to="/wordnotes">Wordnote</Link>
 					</Menu.Item>
 				)}
+
+				<Menu.Item key="6" icon={<FontAwesomeIcon icon={faBlog} />}>
+					<Link to="/blogs">Blog</Link>
+				</Menu.Item>
 
 				<Menu.Item key="3" icon={<CarryOutOutlined />}>
 					<Link to="/exams">Luyện thi toeic</Link>
