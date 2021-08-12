@@ -66,6 +66,9 @@ $black_text: #363636;
             padding-top: 10px;
             transition: transform 0.2s ease-in-out;
         }
+        ul {
+            padding-inline-start: 0;
+        }
         a {
             color: $black_text;
         }

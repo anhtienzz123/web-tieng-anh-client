@@ -13,7 +13,7 @@ function Footer(props) {
         <div className="footer">
             <Divider />
             <Row gutter={[0, 16]}>
-                <Col span={10} >
+                <Col xl={{ span: 10 }} xs={{ span: 24 }} sm={{ span: 24 }}>
                     <div className='footer_left'>
 
                         <div className="footer_left-logo-page">
@@ -43,46 +43,46 @@ function Footer(props) {
                     </div>
                 </Col>
 
-                <Col span={14} >
+                <Col xl={{ span: 14 }} xs={{ span: 24 }} sm={{ span: 24 }} >
                     <div className='footer_right'>
                         <Row gutter={[8, 8]}>
-                            <Col span={8} >
+                            <Col xl={{ span: 8 }} xs={{ span: 24 }} sm={{ span: 8 }} >
                                 <ul className="footer_right-title">
-                                    <span>Danh Mục</span>
+                                    <span>Hỗ trợ</span>
 
                                     <li className="footer_right-list">
                                         {/* <Link to={"/videos/" + slugCategory}>{categoryName}</Link> */}
-                                        <Link>Mẹo thi toeic</Link>
+                                        <Link to="/" >Hướng dẫn sủ dụng</Link>
                                     </li>
                                     <li className="footer_right-list">
-                                        <Link>Mẹo thi zoeic</Link>
+                                        <Link to="/">Cộng đồng</Link>
                                     </li>
                                     <li className="footer_right-list">
-                                        <Link>Mẹo thi yoeic</Link>
+                                        <Link to="/">Báo cáo lạm dụng</Link>
                                     </li>
                                 </ul>
 
                             </Col>
-                            <Col span={8} >
+                            <Col xl={{ span: 8 }} xs={{ span: 24 }} sm={{ span: 8 }}>
                                 <ul className="footer_right-title">
-                                    <span>Thi Online</span>
+                                    <span>Khám phá</span>
 
                                     <li className="footer_right-list">
                                         {/* <Link to={"/videos/" + slugCategory}>{categoryName}</Link> */}
-                                        <Link>ETS 2020</Link>
+                                        <Link to="/">Trang chủ</Link>
                                     </li>
                                     <li className="footer_right-list">
-                                        <Link>ETS 2019</Link>
+                                        <Link to="/exams">Thi Online</Link>
                                     </li>
                                     <li className="footer_right-list">
-                                        <Link>ETS 2018</Link>
+                                        <Link to="/translate">Tra từ</Link>
                                     </li>
                                 </ul>
 
                             </Col>
-                            <Col span={8} >
+                            <Col xl={{ span: 8 }} xs={{ span: 24 }} sm={{ span: 8 }} >
                                 <ul className="footer_right-title">
-                                    <span>Creator</span>
+                                    <span>Creators</span>
 
                                     <li className="footer_right-list">
                                         <a href="https://github.com/anhtienzz123" target="_blank"><GithubOutlined /> Huỳnh Anh Tiên</a>
@@ -114,7 +114,7 @@ function Footer(props) {
 
 
             </Row>
-        </div>
+        </div >
     );
 }
 
