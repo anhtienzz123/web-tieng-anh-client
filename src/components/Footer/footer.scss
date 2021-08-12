@@ -1,6 +1,49 @@
-.footer{
+$text-color: #fff;
+$main-color: #4b91ff;
+$size-icon: 30px;
+$demesion-img: 120px;
 
-    text-align: center;
-    font-size: 16px;
-    
+.footer {
+    padding: 20px 20px;
+    &_left {
+        padding: 1rem 2rem;
+        display: flex;
+        flex-flow: column wrap;
+
+        &-logo-page img {
+            max-width: 100%;
+            height: $demesion-img;
+            width: $demesion-img;
+            object-fit: contain;
+        }
+
+        &-contact {
+            margin-top: 2.6rem;
+            display: flex;
+            &--logo-branch {
+                width: $size-icon;
+                height: $size-icon;
+                background-color: $main-color;
+                display: flex;
+
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                color: $text-color;
+
+                border: 1px solid $main-color;
+                box-shadow: 0 8px 8px -4px lightblue;
+                transition: all 0.2s ease-in-out;
+            }
+
+            &--logo-branch ~ &--logo-branch {
+                margin-left: 30px;
+            }
+
+            &--logo-branch:hover {
+                background-color: #fff;
+                color: $main-color;
+            }
+        }
+    }
 }
