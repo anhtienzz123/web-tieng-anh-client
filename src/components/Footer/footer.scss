@@ -13,7 +13,7 @@ $black_text: #363636;
 
         &-logo-page img {
             max-width: 100%;
-            height: $demesion-img;
+            height: calc(#{$demesion-img} - 20px);
             width: $demesion-img;
             object-fit: contain;
         }
@@ -79,6 +79,7 @@ $black_text: #363636;
 
         &-copyright {
             text-align: center;
+            padding: 3rem 0;
             color: #666;
         }
     }

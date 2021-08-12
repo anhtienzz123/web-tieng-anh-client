@@ -16,11 +16,15 @@ function Footer(props) {
                 <Col xl={{ span: 10 }} xs={{ span: 24 }} sm={{ span: 24 }}>
                     <div className='footer_left'>
 
-                        <div className="footer_left-logo-page">
-                            <a href="#">
+
+                        <Link to="/" >
+                            <div className="footer_left-logo-page">
                                 <img src={logo} alt="SMP-English" />
-                            </a>
-                        </div>
+                            </div>
+                        </Link>
+
+
+
 
                         <div className="footer_left-intro">
                             Website thi thử TOEIC online miễn phí có chấm điểm và xem đáp án ngay, kiểm tra trình độ TOEIC chính xác, nhanh chóng !
@@ -98,7 +102,7 @@ function Footer(props) {
                             </Col>
                         </Row>
 
-                        <Divider />
+
 
                         <Row gutter={[8, 8]}>
                             <Col span={24} >
