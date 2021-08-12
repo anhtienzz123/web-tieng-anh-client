@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import "./footer.scss";
 import { Col, Divider, Row, Space } from "antd";
 import logo from 'images/logo/logo.png';
-import { FacebookFilled, InstagramFilled, TwitterSquareFilled } from "@ant-design/icons";
+import { FacebookFilled, InstagramFilled, TwitterSquareFilled, GithubOutlined } from "@ant-design/icons";
+import { Link } from 'react-router-dom';
 
 Footer.propTypes = {};
 
@@ -43,7 +44,71 @@ function Footer(props) {
                 </Col>
 
                 <Col span={14} >
-                    ádsadsadas
+                    <div className='footer_right'>
+                        <Row gutter={[8, 8]}>
+                            <Col span={8} >
+                                <ul className="footer_right-title">
+                                    <span>Danh Mục</span>
+
+                                    <li className="footer_right-list">
+                                        {/* <Link to={"/videos/" + slugCategory}>{categoryName}</Link> */}
+                                        <Link>Mẹo thi toeic</Link>
+                                    </li>
+                                    <li className="footer_right-list">
+                                        <Link>Mẹo thi zoeic</Link>
+                                    </li>
+                                    <li className="footer_right-list">
+                                        <Link>Mẹo thi yoeic</Link>
+                                    </li>
+                                </ul>
+
+                            </Col>
+                            <Col span={8} >
+                                <ul className="footer_right-title">
+                                    <span>Thi Online</span>
+
+                                    <li className="footer_right-list">
+                                        {/* <Link to={"/videos/" + slugCategory}>{categoryName}</Link> */}
+                                        <Link>ETS 2020</Link>
+                                    </li>
+                                    <li className="footer_right-list">
+                                        <Link>ETS 2019</Link>
+                                    </li>
+                                    <li className="footer_right-list">
+                                        <Link>ETS 2018</Link>
+                                    </li>
+                                </ul>
+
+                            </Col>
+                            <Col span={8} >
+                                <ul className="footer_right-title">
+                                    <span>Creator</span>
+
+                                    <li className="footer_right-list">
+                                        <a href="https://github.com/anhtienzz123" target="_blank"><GithubOutlined /> Huỳnh Anh Tiên</a>
+                                    </li>
+                                    <li className="footer_right-list">
+                                        <a href="https://github.com/Haosmall" target="_blank"><GithubOutlined /> Nguyễn Trần Nhật Hào</a>
+                                    </li>
+                                    <li className="footer_right-list">
+                                        <a href="https://github.com/hoangphucse" target="_blank"><GithubOutlined /> Trần Hoàng Phúc</a>
+                                    </li>
+                                </ul>
+
+                            </Col>
+                        </Row>
+
+                        <Divider />
+
+                        <Row gutter={[8, 8]}>
+                            <Col span={24} >
+                                <div className='footer_right-copyright'>
+                                    © Copyright by SMP-English. tlc 2021
+                                </div>
+                            </Col>
+
+                        </Row>
+                    </div>
                 </Col>
 
 

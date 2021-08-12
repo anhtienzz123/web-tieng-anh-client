@@ -2,11 +2,12 @@ $text-color: #fff;
 $main-color: #4b91ff;
 $size-icon: 30px;
 $demesion-img: 120px;
+$black_text: #363636;
 
 .footer {
-    padding: 20px 20px;
+    padding: 20px 0;
     &_left {
-        padding: 1rem 2rem;
+        padding: 1rem 3rem;
         display: flex;
         flex-flow: column wrap;
 
@@ -15,6 +16,11 @@ $demesion-img: 120px;
             height: $demesion-img;
             width: $demesion-img;
             object-fit: contain;
+        }
+
+        &-intro {
+            color: $black_text;
+            font-size: 1.6rem;
         }
 
         &-contact {
@@ -44,6 +50,33 @@ $demesion-img: 120px;
                 background-color: #fff;
                 color: $main-color;
             }
+        }
+    }
+
+    &_right {
+        padding: 1rem 3rem;
+
+        ul span {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        li {
+            font-size: 1.6rem;
+            list-style-type: none;
+            padding-top: 10px;
+            transition: transform 0.2s ease-in-out;
+        }
+        a {
+            color: $black_text;
+        }
+
+        li:hover {
+            transform: translateX(5px);
+        }
+
+        &-copyright {
+            text-align: center;
+            color: #666;
         }
     }
 }
