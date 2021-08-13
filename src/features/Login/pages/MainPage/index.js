@@ -17,107 +17,107 @@ const { Text, Title } = Typography;
 MainPage.propTypes = {};
 
 const initialValues = {
-  username: "",
-  password: "",
+	username: "",
+	password: "",
 };
 
 function MainPage(props) {
-  const dispatch = useDispatch();
+	const dispatch = useDispatch();
 
-  const { isLogin } = useSelector((state) => state.global);
-  const [isError, setError] = useState(false);
+	const { isLogin } = useSelector((state) => state.global);
+	const [isError, setError] = useState(false);
 
-  const validationSchema = Yup.object().shape({
-    username: Yup.string().required("Tài khoản không được bỏ trống."),
-    password: Yup.string().required("Mật khẩu không được bỏ trống"),
-  });
+	const validationSchema = Yup.object().shape({
+		username: Yup.string().required("Tài khoản không được bỏ trống."),
+		password: Yup.string().required("Mật khẩu không được bỏ trống"),
+	});
 
-  const handleSubmit = async (values, actions) => {
-    const { username, password } = values;
+	const handleSubmit = async (values, actions) => {
+		const { username, password } = values;
 
-    try {
-      dispatch(setLoading(true));
-      const { token } = await loginApi.login(username, password);
+		try {
+			dispatch(setLoading(true));
+			const { token } = await loginApi.login(username, password);
 
-      dispatch(setLogin(true));
-      localStorage.setItem("token", token);
-    } catch (error) {
-      setError(true);
-    }
+			dispatch(setLogin(true));
+			localStorage.setItem("token", token);
+		} catch (error) {
+			setError(true);
+		}
 
-    dispatch(setLoading(false));
-  };
+		dispatch(setLoading(false));
+	};
 
-  return (
-    <div id="login-main-page">
-      {isLogin ? (
-        <Redirect to="/" />
-      ) : (
-        <div className="main">
-          <Title level={2} style={{ textAlign: "center" }}>
-            <Text style={{ color: "#08aeea" }}>Đăng</Text> nhập
-          </Title>
-          <Divider />
+	return (
+		<div id="login-main-page">
+			{isLogin ? (
+				<Redirect to="/" />
+			) : (
+				<div className="main">
+					<Title level={2} style={{ textAlign: "center" }}>
+						<Text style={{ color: "#08aeea" }}>Đăng</Text> nhập
+					</Title>
+					<Divider />
 
-          <Formik
-            initialValues={{ ...initialValues }}
-            onSubmit={handleSubmit}
-            validationSchema={validationSchema}
-            enableReinitialize={true}
-          >
-            {(formikProps) => {
-              return (
-                <Form layout="horizontal">
-                  <Row gutter={[0, 16]}>
-                    <Col span={24}>
-                      <FastField
-                        name="username"
-                        component={InputField}
-                        type="text"
-                        title="Tài khoản"
-                        placeholder="Nhập tài khoản"
-                        maxLength={50}
-                      ></FastField>
-                    </Col>
+					<Formik
+						initialValues={{ ...initialValues }}
+						onSubmit={handleSubmit}
+						validationSchema={validationSchema}
+						enableReinitialize={true}
+					>
+						{(formikProps) => {
+							return (
+								<Form layout="horizontal">
+									<Row gutter={[0, 16]}>
+										<Col span={24}>
+											<FastField
+												name="username"
+												component={InputField}
+												type="text"
+												title="Tài khoản"
+												placeholder="Nhập tài khoản"
+												maxLength={50}
+											></FastField>
+										</Col>
 
-                    <Col span={24}>
-                      <FastField
-                        name="password"
-                        component={InputField}
-                        type="password"
-                        title="Mật khẩu"
-                        placeholder="Nhập mật khẩu"
-                        maxLength={200}
-                      ></FastField>
-                    </Col>
-                    {isError ? (
-                      <Col offset={8} span={16}>
-                        <Tag
-                          color="error"
-                          style={{ fontWeight: "bold" }}
-                          icon={<CloseCircleOutlined />}
-                        >
-                          Tài khoản không hợp lệ
-                        </Tag>
-                      </Col>
-                    ) : (
-                      ""
-                    )}
+										<Col span={24}>
+											<FastField
+												name="password"
+												component={InputField}
+												type="password"
+												title="Mật khẩu"
+												placeholder="Nhập mật khẩu"
+												maxLength={200}
+											></FastField>
+										</Col>
+										{isError ? (
+											<Col offset={8} span={16}>
+												<Tag
+													color="error"
+													style={{ fontWeight: "bold" }}
+													icon={<CloseCircleOutlined />}
+												>
+													Tài khoản không hợp lệ
+												</Tag>
+											</Col>
+										) : (
+											""
+										)}
 
-                    <Col offset={8}>
-                      <Button type="primary" htmlType="submit">
-                        Đăng nhập
-                      </Button>
-                    </Col>
-                  </Row>
-                </Form>
-              );
-            }}
-          </Formik>
-        </div>
-      )}
-    </div>
-  );
+										<Col offset={8}>
+											<Button type="primary" htmlType="submit">
+												Đăng nhập
+											</Button>
+										</Col>
+									</Row>
+								</Form>
+							);
+						}}
+					</Formik>
+				</div>
+			)}
+		</div>
+	);
 }
 
 export default MainPage;
