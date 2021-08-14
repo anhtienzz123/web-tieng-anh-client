@@ -25,8 +25,8 @@ const { SubMenu } = Menu;
 
 function Header(props) {
     const { isLogin } = useSelector((state) => state.global);
-    const dispatch = useDispatch();
     const { categories } = useSelector((state) => state.video);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(fetchCategoriesVideo());

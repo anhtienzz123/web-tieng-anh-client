@@ -1,3 +1,4 @@
+$blue: #4b91ff;
 .align-center {
     display: flex;
     justify-content: flex-start;
@@ -10,6 +11,7 @@
     &_title {
         font-size: 3.5rem;
         font-weight: 500;
+        color: $blue;
     }
     margin: 1rem 0;
     &_filter {

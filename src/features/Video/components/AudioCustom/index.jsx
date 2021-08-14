@@ -1,8 +1,6 @@
 import { SoundTwoTone } from '@ant-design/icons';
-import { setAudioPlay } from 'features/Video/videoSlice';
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
 import './style.scss';
 
 
@@ -19,10 +17,8 @@ AudioCustom.defaultProps = {
 
 function AudioCustom(props) {
 
-    const { url, id, onClick } = props;
-
+    const { url, onClick } = props;
     const handleClick = () => {
-
         if (!onClick)
             return;
 

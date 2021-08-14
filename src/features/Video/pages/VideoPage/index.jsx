@@ -4,7 +4,7 @@ import MoreVideo from 'features/Video/components/MoreVideo';
 import VideoInfo from 'features/Video/components/VideoInfo';
 import VideoPlayer from 'features/Video/components/VideoPlayer';
 import { fetchVideo } from 'features/Video/videoSlice';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
@@ -17,7 +17,9 @@ VideoPage.propTypes = {
 function VideoPage(props) {
     const { slugCategory, slugVideo } = useParams();
     const { video } = useSelector((state) => state.video);
+    const [timeSeek, setTimeSeek] = useState(0);
     const dispatch = useDispatch();
+
     useEffect(() => {
         dispatch(fetchVideo({
             slug: slugVideo
@@ -30,6 +32,19 @@ function VideoPage(props) {
     }, [slugVideo]);
 
 
+    const handleOnSeek = (timeSeek) => {
+        setTimeSeek(timeSeek);
+    }
+
+    const handleOnSeekWord = (timeSeek) => {
+        setTimeSeek(timeSeek);
+    }
+
+
+
+
+
+
     return (
         <div className='videopage_background' id='top'>
             <div className="videopage_wrapper">
@@ -38,10 +53,10 @@ function VideoPage(props) {
                     <div className="videopage_top">
                         <Row gutter={[16, 8]}>
                             <Col span={16}>
-                                <VideoPlayer url={video.url} />
+                                <VideoPlayer url={video.url} onSeek={timeSeek} />
                             </Col>
                             <Col span={8} >
-                                <AutoTranscript subtitles={video.subtitles} />
+                                <AutoTranscript subtitles={video.subtitles} onSeek={handleOnSeek} />
                             </Col>
 
                         </Row>
@@ -57,6 +72,7 @@ function VideoPage(props) {
                                     description={video.description}
                                     level={video.level}
                                     categoryName={video.categoryName}
+                                    onSeek={handleOnSeekWord}
                                 />
 
                             </Col>

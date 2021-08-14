@@ -36,7 +36,6 @@ export const fetchNextPage = createAsyncThunk(
             timeFrom,
             timeTo
         );
-        console.log("nextpagE: ", data);
         return data;
     }
 );
@@ -72,24 +71,16 @@ const videoSlice = createSlice({
     initialState: {
         isLoading: false,
         categories: [],
-        level: "",
         movies: {},
-        page: 0,
-        totalPages: 0,
-        durationSelected: "",
-        timeTo: 0,
-        timeFrom: "",
         moviesSlider: [],
-        titleVideoSelected: "",
-        audioPlay: "",
         video: {},
         more: [],
-        showMore: false,
         transcript: [],
+        page: 0,
+        totalPages: 0,
+        audioPlay: "",
         subActive: '',
         sttInSub: '',
-        seekTo: '',
-        scriptPanes: ' . . . ',
         isPlay: false
 
 
@@ -104,49 +95,16 @@ const videoSlice = createSlice({
                 state.page = state.page + 1;
             }
         },
-        setLevel: (state, action) => {
-            state.level = action.payload;
-        },
-        setTimeTo: (state, action) => {
-            state.timeTo = action.payload;
-        },
-        setTimeFrom: (state, action) => {
-            state.timeFrom = action.payload;
-        },
-        setTitleVideoSelector: (state, action) => {
-            state.titleVideoSelected = action.payload;
-        },
-        changeSubject: (state, action) => {
-            state.timeTo = 0;
-            state.timeFrom = "";
-            state.level = "";
-            state.page = 0;
-            state.durationSelected = "";
-        },
-        setDurationSelected: (state, action) => {
-            state.durationSelected = action.payload;
-        },
         setAudioPlay: (state, action) => {
             state.audioPlay = action.payload;
-        },
-        setShowMore: (state, action) => {
-            state.showMore = !state.showMore;
-        },
-        setTranscript: (state, action) => {
-            state.transcript = action.payload;
         },
         setSubActive: (state, action) => {
             state.subActive = action.payload;
         },
         setSttInSub: (state, action) => {
             state.sttInSub = action.payload;
-            let tempScript = state.transcript.find(x => x.stt === action.payload);
-            state.scriptPanes = tempScript.content;
-        },
-        setSeekTo: (state, action) => {
-            state.seekTo = action.payload;
-        },
 
+        },
         setIsPlay: (state, action) => {
             state.isPlay = action.payload;
         }
@@ -161,6 +119,7 @@ const videoSlice = createSlice({
             state.movies = action.payload;
             state.page = action.payload.page;
             state.totalPages = action.payload.totalPages;
+
         },
         [fetchNextPage.fulfilled]: (state, action) => {
             state.movies.data = state.movies.data.concat(action.payload.data);
@@ -187,16 +146,9 @@ export const {
     setShowMore,
     setAudioPlay,
     raisePage,
-    setLevel,
     changeSubject,
-    setTimeFrom,
-    setTimeTo,
-    setDurationSelected,
-    setTitleVideoSelector,
-    setTranscript,
     setSubActive,
     setSttInSub,
-    setSeekTo,
     setIsPlay
 } = actions;
 export default reducer;

@@ -1,25 +1,31 @@
 import { StepBackwardOutlined, StepForwardOutlined } from '@ant-design/icons';
 import { Space } from 'antd';
+import { setIsPlay, setSttInSub, setSubActive } from 'features/Video/videoSlice';
+import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import ReactPlayer from 'react-player';
-import './style.scss';
-import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSubActive, setSttInSub, setIsPlay, setSeekTo } from 'features/Video/videoSlice';
+import './style.scss';
 
 
 
 VideoPlayer.propTypes = {
     url: PropTypes.string,
+    onSeek: PropTypes.number.isRequired,
 };
 
 VideoPlayer.defaultProps = {
-    url: ''
+    url: '',
+
 }
 
 
 function VideoPlayer(props) {
-    const { transcript, seekTo, isPlay, scriptPanes, sttInSub } = useSelector((state) => state.video);
+    // seekTo,
+    const { transcript, isPlay, scriptPanes, sttInSub } = useSelector((state) => state.video);
+    const [textPane, setTextPane] = useState(". . .");
+    const { onSeek } = props;
+
     const dispatch = useDispatch();
 
     const { url } = props;
@@ -29,43 +35,38 @@ function VideoPlayer(props) {
         player = rs;
     }
 
+    useEffect(() => {
+        let tempScript = transcript.find(x => x.stt === sttInSub);
+        if (tempScript) {
+            setTextPane(tempScript.content);
+        }
+
+    }, [sttInSub])
+
 
     useEffect(() => {
-        console.log('seek to', seekTo);
-        player.seekTo(Math.ceil(seekTo));
-    }, [seekTo]);
+        console.log('seek to', onSeek);
+        player.seekTo(Math.ceil(onSeek));
+    }, [onSeek]);
 
 
     function handleOnProgress(state) {
         const { playedSeconds } = state;
         const tempSecond = playedSeconds;
-        console.log('time player', tempSecond);
-
-
 
         if (isPlay) {
             const subSelected = transcript.find((sub, index) => {
                 const { start, end } = sub;
-                console.log('start ' + index, start);
-                console.log('end ' + index, end);
                 return tempSecond * 1000 >= start && tempSecond * 1000 < end;
             });
-
-
 
             if (subSelected) {
                 dispatch(setSubActive(subSelected.id));
                 dispatch(setSttInSub(subSelected.stt));
-                console.log("time auto", subSelected.start)
-                console.log("==============================")
             }
         }
 
     }
-
-
-
-
 
     const handlePreviousPane = () => {
         if (sttInSub === '') {
@@ -80,9 +81,9 @@ function VideoPlayer(props) {
         let tempScript = transcript.find(x => x.stt === temp);
         let timeTemp = Math.trunc(tempScript.start / 1000);
         dispatch(setSttInSub(temp));
-        dispatch(setSeekTo(timeTemp));
-        dispatch(setSubActive(tempScript.id))
+        player.seekTo(Math.ceil(timeTemp));
 
+        dispatch(setSubActive(tempScript.id))
 
 
     }
@@ -95,7 +96,7 @@ function VideoPlayer(props) {
 
 
             dispatch(setSttInSub(0));
-            dispatch(setSeekTo(timeTemp));
+            player.seekTo(Math.ceil(timeTemp));
             dispatch(setSubActive(tempScript.id));
 
             return;
@@ -108,7 +109,7 @@ function VideoPlayer(props) {
             if (tempScript) {
                 let timeTemp = Math.trunc(tempScript.start / 1000);
                 dispatch(setSttInSub(temp));
-                dispatch(setSeekTo(timeTemp));
+                player.seekTo(Math.ceil(timeTemp));
                 dispatch(setSubActive(tempScript.id));
 
                 return;
@@ -130,7 +131,7 @@ function VideoPlayer(props) {
     }
 
     const handleOnSeek = (second) => {
-        console.log(second);
+        // console.log(second);
     }
 
 
@@ -166,7 +167,7 @@ function VideoPlayer(props) {
                     </div>
 
                     <div className="video-player_sub--content video-player_sub-flex ">
-                        {scriptPanes}
+                        {textPane}
                     </div>
 
                     <div className="video-player_sub--next video-player_sub-flex " onClick={handleNextPane}>

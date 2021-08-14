@@ -1,33 +1,32 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import VideoMoreCard from '../VideoMoreCard';
 import { Button } from 'antd';
-import './style.scss';
-import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 import { fetchMoreVideo, setShowMore } from 'features/Video/videoSlice';
-import DefaultImage from 'assets/images/default_img.jpg';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import VideoMoreCard from '../VideoMoreCard';
+import './style.scss';
 MoreVideo.propTypes = {
 
 };
 
 function MoreVideo(props) {
     const { slugCategory } = useParams();
-    const { more, showMore } = useSelector((state) => state.video);
     const dispatch = useDispatch();
-    const checkShow = showMore ? 20 : 3;
+    const [checkShow, setCheckShow] = useState(false);
+    
 
 
     useEffect(() => {
+        const size = checkShow ? 20 : 3;
         dispatch(fetchMoreVideo({
             slug: slugCategory,
-            size: checkShow
+            size: size
         }))
     }, [slugCategory, checkShow]);
 
 
     const handleShowVideo = (e) => {
-        dispatch(setShowMore())
+        setCheckShow(!checkShow)
     }
 
     return (
@@ -42,7 +41,7 @@ function MoreVideo(props) {
 
             <div className="more_video_button">
                 <Button type="primary" size='large' block onClick={handleShowVideo}>
-                    {showMore ? 'Hide' : 'Show more'}
+                    {checkShow ? 'Hide' : 'Show more'}
                 </Button>
             </div>
         </div>

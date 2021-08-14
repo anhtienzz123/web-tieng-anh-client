@@ -3,7 +3,7 @@ import DefaultImage from 'assets/images/default_img.jpg';
 import BlockLevel from 'components/BlockLevel';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
-import { Link, useParams, useHistory } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import './style.scss';
 VideoMoreSubCard.propTypes = {
     data: PropTypes.object,
@@ -15,7 +15,7 @@ VideoMoreSubCard.defaultProps = {
 
 function VideoMoreSubCard(props) {
     const { data } = props;
-    const { slugVideo, slugCategory } = useParams();
+    const { slugCategory } = useParams();
 
     const [checkImage, setCheckImage] = useState(true);
 
