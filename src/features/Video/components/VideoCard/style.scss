@@ -1,17 +1,20 @@
+$blue: #4b91ff;
 .video_card {
     position: relative;
     display: inline-block;
     cursor: pointer;
-    border-radius: 15px;
+    border-radius: 5px;
+
     width: 100%;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
     &_img {
         overflow: hidden;
-        border-radius: 15px;
+        border-radius: 5px;
 
         img {
             object-fit: cover;
-            transition: all 0.6s ease-in-out 0s;
-            height: 200px;
+            transition: all 0.35s ease-in-out 0s;
+            height: 180px;
             width: 100%;
             background-position: center center;
             background-image: url(../../../../assets/images/default_img.jpg);
@@ -60,8 +63,8 @@
         color: #fff;
 
         opacity: 0;
-        transition: all 0.25s ease-in-out 0s;
-        border-radius: 15px;
+        transition: all 0.35s ease-in-out;
+        border-radius: 5px;
     }
 
     &:hover &_overlay {
@@ -69,8 +72,8 @@
     }
 
     &:hover &_img > img {
-        transform: scale(1.2);
-        transition: all 0.25s ease-in-out 0s;
+        transform: scale(1.1);
+        transition: all 0.35s ease-in-out 0s;
     }
 
     // &:hover & {
@@ -81,6 +84,10 @@
         text-align: center;
         font-size: 2rem;
         font-weight: 500;
+        transition: color 0.2s ease-in-out;
+    }
+    &_title:hover {
+        color: $blue;
     }
 }
 

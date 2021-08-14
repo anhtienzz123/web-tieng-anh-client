@@ -2,34 +2,48 @@ import { Col, Row, Select } from 'antd';
 import BlockLevel from 'components/BlockLevel';
 import { dataSelectDuration, dataSelectLevel } from 'constants/dataSelectLevel';
 import PropTypes from 'prop-types';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchNextPage, raisePage, setLevel, setTimeFrom, setTimeTo } from 'features/Video/videoSlice';
-
+import { useParams } from 'react-router';
 import './style.scss';
+
 SearchBar.propTypes = {
     title: PropTypes.string,
     onSelectedDuration: PropTypes.func,
     onSelectedLevel: PropTypes.func,
+    onDurationSelected: PropTypes.string,
 };
 
 SearchBar.defaultProps = {
     title: 'Inspiration Video',
     onSelectedDuration: null,
-    onSelectedLevel: null
+    onSelectedLevel: null,
+    onDurationSelected: ''
 };
 
 function SearchBar(props) {
-    const { title, onSelectedLevel, onSelectedDuration } = props;
-    const { movies, level, durationSelected } = useSelector((state) => state.video);
+    const { onSelectedLevel, onSelectedDuration, onDurationSelected, level } = props;
+    const { categories } = useSelector((state) => state.video);
     const { Option } = Select;
-    const dispatch = useDispatch();
+    const { slugCategory } = useParams();
+    const [subject, setSubject] = useState("");
 
 
 
     useEffect(() => {
+        function getSubject() {
+            if (categories.length > 0) {
 
-    }, [movies])
+                let temp = categories.find(element => element.slug === slugCategory);
+                if (temp != null) {
+                    console.log(temp)
+                    setSubject(temp.name);
+                }
+            }
+        }
+        getSubject();
+
+    }, [slugCategory, categories])
 
 
 
@@ -56,11 +70,10 @@ function SearchBar(props) {
             <Row align="middle" gutter={[16, 16]}>
                 <Col span={15}>
                     <div className='search-bar_title'>
-                        {title}
+                        {subject}
                     </div>
                 </Col>
 
-                {/* <div className="search-bar_filter"> */}
 
                 <Col span={2}>
                     <div className='search-bar_filter_name' >
@@ -70,7 +83,11 @@ function SearchBar(props) {
 
                 <Col span={4}>
                     <div className='search-bar_filter_level' >
-                        <Select value={level === '' ? 'Select Value' : level} defaultValue='Select value' style={{ width: '100%' }} onChange={handleLevelChange}>
+                        <Select
+                            value={level}
+                            defaultValue='Select value' style={{ width: '100%' }}
+                            onChange={handleLevelChange}
+                        >
 
                             {dataSelectLevel.map(element => (
                                 <Option key={element.levelValue} value={element.levelValue}>
@@ -88,7 +105,7 @@ function SearchBar(props) {
 
                 <Col span={3}>
                     <div className='search-bar_filter_duration' >
-                        <Select value={durationSelected === '' ? 'Select duration' : durationSelected} style={{ width: '100%' }} onChange={handleDurationChange}>
+                        <Select value={onDurationSelected === '' ? 'Select duration' : onDurationSelected} style={{ width: '100%' }} onChange={handleDurationChange}>
                             {dataSelectDuration.map((element, index) => (
                                 <Option key={index} value={element.duration}>
                                     {element.duration}

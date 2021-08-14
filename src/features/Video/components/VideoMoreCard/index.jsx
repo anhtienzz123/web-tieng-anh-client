@@ -17,8 +17,7 @@ function VideoMoreCard(props) {
         <>
             {
                 more.map((element, index) => (
-                    <VideoMoreSubCard key={index} data={element} />
-                 
+                    <VideoMoreSubCard key={index} data={element} />     
                 ))
             }
         </>

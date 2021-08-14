@@ -1,8 +1,8 @@
 import { PlayCircleOutlined } from '@ant-design/icons';
+import DefaultImage from 'assets/images/default_img.jpg';
 import BlockLevel from 'components/BlockLevel';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
-import DefaultImage from 'assets/images/default_img.jpg';
 import './style.scss';
 VideoCard.propTypes = {
     data: PropTypes.object,
@@ -22,7 +22,7 @@ VideoCard.defaultProps = {
 function VideoCard(props) {
     const { data, height, padding, onClick } = props;
 
-    const { durationString, level, duration, image, slug, name, id } = data;
+    const { durationString, level, image, slug, name } = data;
 
     let noneRadius = height ? '0px' : '';
 

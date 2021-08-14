@@ -18,6 +18,7 @@ VideoInfo.propTypes = {
     level: PropTypes.number,
     description: PropTypes.string,
     slugCategory: PropTypes.string,
+    onSeek: PropTypes.func,
 };
 
 VideoInfo.defaultProps = {
@@ -26,7 +27,8 @@ VideoInfo.defaultProps = {
     name: '',
     level: 0,
     description: '',
-    slugCategory: ''
+    slugCategory: '',
+    onSeek: null,
 }
 const URL = 'https://toeicexamstore.xyz/upload/audiotoeic/part1875.mp3';
 
@@ -46,7 +48,7 @@ function getLevelTitle(level) {
 function VideoInfo(props) {
     const dispatch = useDispatch();
     const { TabPane } = Tabs;
-    const { videoWords, categoryName, name, level, description, slugCategory } = props;
+    const { videoWords, categoryName, name, level, description, slugCategory, onSeek } = props;
     const { transcript } = useSelector((state) => state.video);
     const data = [];
     let audio;
@@ -128,8 +130,6 @@ function VideoInfo(props) {
         let regex = `${temp}`;
         let reExp = new RegExp(regex, "i");
 
-
-
         const tempScript = transcript.find(x => {
             if (reExp.exec(x.content) !== null) {
                 return x;
@@ -140,8 +140,11 @@ function VideoInfo(props) {
         if (tempScript) {
             dispatch(setSubActive(tempScript.id));
             dispatch(setSttInSub(tempScript.stt));
-            dispatch(setSeekTo(Math.trunc(tempScript.start / 1000)));
             dispatch(setIsPlay(true));
+
+            if (onSeek) {
+                onSeek(Math.trunc(tempScript.start / 1000))
+            }
         }
 
 
@@ -152,7 +155,7 @@ function VideoInfo(props) {
         <div className="info_wrapper">
 
             <Tabs defaultActiveKey="1" size="large" >
-                <TabPane 
+                <TabPane
                     tab={
                         <span>
                             <ExclamationCircleOutlined />
@@ -178,7 +181,7 @@ function VideoInfo(props) {
                     </Space>
 
                 </TabPane>
-                <TabPane 
+                <TabPane
                     tab={
                         <span>
                             <HighlightOutlined />

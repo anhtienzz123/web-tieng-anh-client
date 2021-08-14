@@ -1,5 +1,5 @@
 import { FileTextOutlined, PlayCircleOutlined } from '@ant-design/icons';
-import { setSeekTo, setSubActive, setSttInSub } from 'features/Video/videoSlice';
+import { setSttInSub, setSubActive } from 'features/Video/videoSlice';
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,17 +7,20 @@ import './style.scss';
 
 AutoTranscript.propTypes = {
     subtitles: PropTypes.array,
+    onSeek: PropTypes.func,
 };
 
 AutoTranscript.defaultProps = {
-    subtitles: []
+    subtitles: [],
+    onSeek: null
 }
 
 function AutoTranscript(props) {
 
-    const { subtitles } = props;
+    const { subtitles, onSeek } = props;
     const { subActive, sttInSub, isPlay } = useSelector((state) => state.video);
     const table = document.getElementById('table');
+
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -91,7 +94,9 @@ function AutoTranscript(props) {
 
     const handleSeekTo = (e, element) => {
         const temp = element.start / 1000;
-        dispatch(setSeekTo(temp));
+        if (onSeek) {
+            onSeek(temp);
+        }
         dispatch(setSttInSub(element.stt));
         dispatch(setSubActive(element.id));
     }

@@ -1,15 +1,13 @@
-import { Col, Divider, Row, Spin } from 'antd';
+import { Affix, Col, Divider, Empty, Row, Spin } from 'antd';
 import { dataSelectDuration } from 'constants/dataSelectLevel';
 import SearchBar from 'features/Video/components/SearchBar';
 import Slider from 'features/Video/components/Slider';
 import VideoCard from 'features/Video/components/VideoCard';
-import { fetchByCategoryVideo, setDurationSelected, fetchNextPage, raisePage, setLevel, setTimeFrom, setTimeTo } from 'features/Video/videoSlice';
-import React, { useEffect } from 'react';
+import { fetchByCategoryVideo, fetchNextPage, raisePage } from 'features/Video/videoSlice';
+import React, { useEffect, useState } from 'react';
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, useHistory } from 'react-router-dom';
-import { Empty } from 'antd';
-import { Affix, Button } from 'antd';
+import { useHistory, useParams } from 'react-router-dom';
 import './style.scss';
 
 MainPage.propTypes = {
@@ -21,8 +19,27 @@ function MainPage(props) {
 
     const { slugCategory } = useParams();
     const dispatch = useDispatch();
-    const { movies, page, totalPages, level, timeFrom, timeTo, titleVideoSelected } = useSelector((state) => state.video);
+    const { movies, page, totalPages } = useSelector((state) => state.video);
     const { data } = movies;
+    const [timeTo, setTimeTo] = useState(0);
+    const [timeFrom, setTimeFrom] = useState('');
+    const [durationSelected, setDurationSelected] = useState("");
+    const [level, setLevel] = useState(0);
+
+    useEffect(() => {
+
+        if (slugCategory) {
+            dispatch(fetchByCategoryVideo({
+                slug: slugCategory,
+            }));
+        };
+
+        setTimeTo(0);
+        setTimeFrom("");
+        setDurationSelected("");
+        setLevel(0);
+    }, [slugCategory]);
+
 
     useEffect(() => {
 
@@ -35,7 +52,7 @@ function MainPage(props) {
 
             }));
         }
-    }, [slugCategory, level, timeFrom, timeTo]);
+    }, [level, timeFrom, timeTo]);
 
 
 
@@ -61,15 +78,15 @@ function MainPage(props) {
     }
 
     function handleLevelChange(value) {
-        dispatch(setLevel(parseInt(value)));
+        setLevel((parseInt(value)));
 
     }
 
     function handleDurationChange(value) {
         const valueObject = handleDataDuration(value);
-        dispatch(setTimeTo(valueObject.value.timeTo));
-        dispatch(setTimeFrom(valueObject.value.timeFrom));
-        dispatch(setDurationSelected(value));
+        setTimeTo(valueObject.value.timeTo);
+        setTimeFrom(valueObject.value.timeFrom);
+        setDurationSelected(value);
 
     }
 
@@ -84,7 +101,7 @@ function MainPage(props) {
 
     useEffect(() => {
         document.getElementById('top').scrollIntoView();
-    }, [slugCategory, level, timeFrom, timeTo])
+    }, [level, timeFrom, timeTo])
 
 
     return (
@@ -93,7 +110,12 @@ function MainPage(props) {
 
             <div className="mainpage_wrapper" id='top'>
                 <Affix offsetTop={-10}>
-                    <SearchBar title={titleVideoSelected} onSelectedDuration={handleDurationChange} onSelectedLevel={handleLevelChange} />
+                    <SearchBar
+                        onSelectedDuration={handleDurationChange}
+                        onSelectedLevel={handleLevelChange}
+                        onDurationSelected={durationSelected}
+                        level={level}
+                    />
                 </Affix>
 
                 <Divider></Divider>
@@ -108,12 +130,15 @@ function MainPage(props) {
                     loader={check ? <div className="loader"><Spin size="medium" /></div> : ''}
 
                 >
-                    <Row gutter={[8, 16]}>
+                    <Row gutter={[16, 16]}>
 
                         {
                             data && data.map((element, index) => (
                                 <Col key={index} span={6} >
-                                    <VideoCard data={element} onClick={handleOnClick} />
+                                    <VideoCard
+                                        data={element}
+                                        onClick={handleOnClick}
+                                    />
                                 </Col>
                             ))
                         }

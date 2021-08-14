@@ -43,7 +43,7 @@ function Slider(props) {
     if (moviesSlider.length > 0) {
         for (let index = 0; index < 5; index++) {
             items.push(
-                <VideoCard onClick={handleClick} data={moviesSlider[index]} height='350px' padding='10px' />
+                <VideoCard onClick={handleClick} data={moviesSlider[index]} height='300px' padding='10px' />
             )
 
         }
