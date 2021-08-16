@@ -2,29 +2,32 @@ import { configureStore } from "@reduxjs/toolkit";
 import blog from "features/Blog/blogSlice";
 import course from "features/Courses/courseSlice";
 import home from "features/Home/homeSlice";
+
 import login from "features/Login/loginSlice";
 import me from "features/Me/meSlice";
 import exam from "features/OnlineExam/onlineExamSlice";
 import perPart from "features/PerPart/perPartSlice";
 import translate from "features/Translate/translateSlice";
 import wordNote from "features/WordNote/wordNoteSlice";
+import video from "features/Video/videoSlice";
 import global from "./globalSlice";
 
 const rootReducer = {
-	global,
-	me,
-	login,
-	home,
-	exam,
-	course,
-	translate,
-	perPart,
-	wordNote,
-	blog,
+    global,
+    me,
+    login,
+    home,
+    video,
+    exam,
+    course,
+    translate,
+    perPart,
+    wordNote,
+    blog,
 };
 
 const store = configureStore({
-	reducer: rootReducer,
+    reducer: rootReducer,
 });
 
 export default store;
