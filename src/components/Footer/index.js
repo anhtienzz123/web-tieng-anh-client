@@ -11,7 +11,7 @@ Footer.propTypes = {};
 function Footer(props) {
     return (
         <div className="footer">
-            <Divider />
+            <Divider style={{ marginTop: '0px' }} />
             <Row gutter={[0, 16]}>
                 <Col xl={{ span: 10 }} xs={{ span: 24 }} sm={{ span: 24 }}>
                     <div className='footer_left'>

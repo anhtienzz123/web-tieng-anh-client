@@ -7,6 +7,7 @@ import Blog from "features/Blog";
 import Course from "features/Courses";
 import Home from "features/Home";
 import Login from "features/Login";
+import AuthPage from "components/AuthPage";
 import Me from "features/Me";
 import OnlineExam from "features/OnlineExam";
 import PerPart from "features/PerPart";
@@ -25,7 +26,6 @@ function App() {
 
     useEffect(() => {
         const token = localStorage.getItem("token");
-
         if (token) dispatch(setLogin(true));
     }, []);
 
@@ -44,7 +44,9 @@ function App() {
                     <Route path="/blogs" component={Blog} />
                     <ProtectedRoute path="/me" component={Me} />
                     <Route path="/parts" component={PerPart} />
+                    <Route path="/oauth2" component={AuthPage} />
                     <Route component={NotFoundPage} />
+
                 </Switch>
 
                 <Footer />

@@ -22,3 +22,9 @@ $blue: #4b91ff;
         }
     }
 }
+
+@media only screen and (max-width: 992px) {
+    .search-bar_filter_name {
+        justify-content: start;
+    }
+}

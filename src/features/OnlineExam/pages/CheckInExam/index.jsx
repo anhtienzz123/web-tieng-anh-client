@@ -1,25 +1,40 @@
 import { CheckSquareTwoTone, ClockCircleOutlined } from '@ant-design/icons';
 import { Button, Space } from 'antd';
-import React from 'react';
-import { useSelector, useDispatch } from "react-redux";
+import { refreshStore } from 'features/OnlineExam/onlineExamSlice';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from 'react-router-dom';
 import './style.scss';
-import { setExamSelected, refreshStore } from 'features/OnlineExam/onlineExamSlice';
 CheckInExam.propTypes = {
 
 };
 
 function CheckInExam(props) {
-    let { testId } = useParams();
 
-    const { examCheckin } = useSelector(state => state.exam);
+    const { setExam } = useSelector(state => state.exam);
     const dispatch = useDispatch();
     const history = useHistory();
+    const [examTitle, setExamTitle] = useState("");
+    const { testId } = useParams();
+
+    useEffect(() => {
+        if (setExam.length > 0) {
+            setExam.find(c => {
+                let temp = c.exams.find(b => b.slug === testId);
+                if (temp !== null && temp !== undefined) {
+                    console.log(temp);
+                    setExamTitle(temp.name)
+                }
+                return temp
+            });
+
+        }
+
+    }, [setExam, testId])
 
 
     function handleOnClick() {
         dispatch(refreshStore());
-
         localStorage.clear();
         history.replace(`/exams/${testId}/examining`);
     }
@@ -28,7 +43,7 @@ function CheckInExam(props) {
         <div className="checkin-exam" >
             <Space direction="vertical" size='large' >
                 <div className="checkin-exam_title">
-                    <span>{examCheckin}</span>
+                    <span>{examTitle}</span>
                 </div>
 
                 <div className="checkin-exam_info">
