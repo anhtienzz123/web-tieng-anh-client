@@ -1,5 +1,6 @@
-import { CheckCircleTwoTone } from '@ant-design/icons';
+import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 import { Divider, Radio, Space } from 'antd';
+import Text from 'antd/lib/typography/Text';
 import CustomAudioControl from 'components/CustomAudioControl';
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
@@ -38,6 +39,24 @@ function Part2(props) {
 
     }
 
+    const renderQuestionAnswer = (char, content, result, answer) => {
+        return (
+            <div>
+                {result === char ? (
+                    <Text strong underline type="success">
+                        {content} <CheckOutlined />
+                    </Text>
+                ) : answer === char ? (
+                    <Text type="danger">
+                        {content} <CloseOutlined />
+                    </Text>
+                ) : (
+                    <Text>{content}</Text>
+                )}
+            </div>
+        );
+    };
+
 
     return (
         <div id='top'>
@@ -74,34 +93,25 @@ function Part2(props) {
 
 
 
-                                <Radio.Group disabled={isSubmit} onChange={(e) => handleSelected(question.stt, e)} value={answers[question.stt - 1].selected}>
+                                {isSubmit
 
-                                    <Space direction="vertical">
-                                        <Radio value={'A'}>Option A
-                                            &nbsp;
-                                            {answers.scriptAudio && answers[question.stt - 1].scriptAudio.a.slice(2)}
-                                            &nbsp;
-                                            {answers[question.stt - 1].result === 'a' ? <CheckCircleTwoTone twoToneColor="#52c41a" /> : ''}
-                                        </Radio>
-                                        <Radio value={'B'}>Option B
-                                            &nbsp;
-                                            {answers.scriptAudio && answers[question.stt - 1].scriptAudio.b.slice(2)}
-                                            &nbsp;
-                                            {answers[question.stt - 1].result === "b" ? <CheckCircleTwoTone twoToneColor="#52c41a" /> : ''}
+                                    ? (
+                                        <Space direction="vertical">
+                                            {renderQuestionAnswer("a", answers[question.stt - 1].scriptAudio.a, answers[question.stt - 1].result, answers[question.stt - 1].selected.toLowerCase())}
+                                            {renderQuestionAnswer("b", answers[question.stt - 1].scriptAudio.b, answers[question.stt - 1].result, answers[question.stt - 1].selected.toLowerCase())}
+                                            {renderQuestionAnswer("c", answers[question.stt - 1].scriptAudio.c, answers[question.stt - 1].result, answers[question.stt - 1].selected.toLowerCase())}
+                                        </Space>
 
+                                    )
+                                    : (
+                                        <Radio.Group onChange={(e) => handleSelected(question.stt, e)} value={answers[question.stt - 1].selected}>
 
-                                        </Radio>
-                                        <Radio value={'C'}>Option C
-                                            &nbsp;
-                                            {answers.scriptAudio && answers[question.stt - 1].scriptAudio.c.slice(2)}
-                                            &nbsp;
-                                            {answers[question.stt - 1].result === "c" ? <CheckCircleTwoTone twoToneColor="#52c41a" /> : ''}
-
-
-                                        </Radio>
-                                      
-                                    </Space>
-                                </Radio.Group>
+                                            <Space direction="vertical">
+                                                <Radio value={'A'}>Option A</Radio>
+                                                <Radio value={'B'}>Option B</Radio>
+                                                <Radio value={'C'}>Option C</Radio>
+                                            </Space>
+                                        </Radio.Group>)}
                             </Space>
 
                         </div>

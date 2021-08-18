@@ -45,8 +45,9 @@ function VideoPlayer(props) {
 
 
     useEffect(() => {
-        console.log('seek to', onSeek);
-        player.seekTo(Math.ceil(onSeek));
+        if (onSeek) {
+            player.seekTo(Math.ceil(onSeek));
+        }
     }, [onSeek]);
 
 
