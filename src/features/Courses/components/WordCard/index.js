@@ -62,7 +62,7 @@ function WordCard(props) {
 										color={"#28a745"}
 										toolTip="Nghe"
 									/>
-									<span>{word.name}</span>
+									<span className='word-name'>{word.name}</span>
 								</Space>
 							</Title>
 						</div>

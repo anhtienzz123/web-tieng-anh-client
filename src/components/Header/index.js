@@ -172,9 +172,21 @@ function Header(props) {
                         </Menu.Item>
                     </SubMenu>
                 ) : (
-                    <Menu.Item key="10_0" icon={<LoginOutlined />}>
-                        <Link to="/login">Đăng nhập</Link>
-                    </Menu.Item>
+
+                    <SubMenu
+                        key="11"
+                        icon={<LoginOutlined />}
+                        title="Đăng nhập"
+                    >
+                        <Menu.Item key="11_1" >
+                            <Link to="/login">Người dùng</Link>
+                        </Menu.Item>
+
+                        <Menu.Item key="11_2" >
+                            <Link to="/login/manage">Quản lý</Link>
+                        </Menu.Item>
+                    </SubMenu>
+
                 )}
             </Menu>
         </div>
