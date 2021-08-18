@@ -96,7 +96,9 @@ const examSlice = createSlice({
             state.scrollId = 'top';
             state.subPartSelected = 0;
             state.result = {};
+            state.transcript = [];
             localStorage.clear();
+
 
         },
         setTranScript: (state, action) => {
