@@ -14,7 +14,7 @@ import './style.scss';
 function Examining(props) {
 
     const { testId } = useParams();
-  
+    const dispatch = useDispatch();
 
 
 
