@@ -188,7 +188,7 @@ function ResultPage(props) {
                             <span className='topic sub-score'>Score {listenPoint}/495</span>
                         </div>
 
-                        <Table dataSource={data_listening} columns={columns} pagination={false} />
+                        <Table dataSource={data_listening} columns={columns} pagination={false} scroll={{ x: true }} />
                     </div>
 
                     <div className="result_reading">
@@ -196,7 +196,7 @@ function ResultPage(props) {
                             <span className='topic'>Reading({readNumber}/100)</span>
                             <span className='topic sub-score'>Score {readPoint}/495</span>
                         </div>
-                        <Table dataSource={data_reading} columns={columns} pagination={false} />
+                        <Table dataSource={data_reading} columns={columns} pagination={false} scroll={{ x: true }} />
                     </div>
 
 

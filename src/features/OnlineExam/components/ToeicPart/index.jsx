@@ -184,7 +184,7 @@ function ToeicPart(props) {
 
 
                 <Row justify="space-around">
-                    <Col span={4}>
+                    <Col xl={{ span: 4 }} lg={{ span: 4 }} md={{ span: 6 }} sm={{ span: 8 }} xs={{ span: 10 }}>
 
 
                         <Button type="primary" block onClick={handlePreviousClick} disabled={disabled}>
@@ -192,7 +192,7 @@ function ToeicPart(props) {
                             <b>Previous</b>
                         </Button>
                     </Col>
-                    <Col span={4}>
+                    <Col xl={{ span: 4 }} lg={{ span: 4 }} md={{ span: 6 }} sm={{ span: 8 }} xs={{ span: 10 }}>
                         <Button type="primary" block onClick={handleNextClick} >
                             <b>Next</b>
                             <CaretRightFilled />

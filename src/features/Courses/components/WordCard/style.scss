@@ -3,6 +3,7 @@
 	margin-bottom: 2rem;
 	border-radius: 1rem;
 	overflow: hidden;
+	
 
 	// box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 	box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
@@ -72,4 +73,42 @@
 .word-card:hover .word-card-header__right {
 	opacity: 1;
 	transition: all 0.5s ease-in-out 0s;
+}
+
+/*  Mobile and tablet :width < 1024px  */
+
+/* Mobile: width < 740px */
+@media only screen and (max-width: 739px) {
+	.word-card {
+		flex-direction: column;
+	}
+
+	.name_of_topic {
+		font-size: 25px;
+	}
+
+	.word-name {
+		font-size: 22px;
+	}
+
+	.pronunciation {
+	}
+}
+
+/* Tablet: width >= 740px and width < 1024px */
+@media only screen and (min-width: 740px) and (max-width: 1024px) {
+	.word-card {
+		flex-direction: column;
+	}
+
+	.name_of_topic {
+		font-size: 26px;
+	}
+
+	.word-name {
+		font-size: 25px;
+	}
+
+	.pronunciation {
+	}
 }

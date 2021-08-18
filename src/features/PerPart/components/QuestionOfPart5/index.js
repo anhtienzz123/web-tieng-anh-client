@@ -65,13 +65,13 @@ function QuestionOfPart5({ question }) {
         <Divider orientation="left">Câu hỏi</Divider>
         <div className="buttons">
           <Row gutter={[8, 24]}>
-            <Col span={12}>{renderQuestionAnswer("a", a)}</Col>
+            <Col xl={{ span: 12 }} lg={{ span: 12 }} md={{ span: 24 }} sm={{ span: 24 }} xs={{ span: 24 }}>{renderQuestionAnswer("a", a)}</Col>
 
-            <Col span={12}>{renderQuestionAnswer("b", b)}</Col>
+            <Col xl={{ span: 12 }} lg={{ span: 12 }} md={{ span: 24 }} sm={{ span: 24 }} xs={{ span: 24 }}>{renderQuestionAnswer("b", b)}</Col>
 
-            <Col span={12}>{renderQuestionAnswer("c", c)}</Col>
+            <Col xl={{ span: 12 }} lg={{ span: 12 }} md={{ span: 24 }} sm={{ span: 24 }} xs={{ span: 24 }}>{renderQuestionAnswer("c", c)}</Col>
 
-            <Col span={12}>{renderQuestionAnswer("d", d)}</Col>
+            <Col xl={{ span: 12 }} lg={{ span: 12 }} md={{ span: 24 }} sm={{ span: 24 }} xs={{ span: 24 }}>{renderQuestionAnswer("d", d)}</Col>
           </Row>
         </div>
 

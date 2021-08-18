@@ -1,7 +1,6 @@
-import React from "react";
+import { Button } from "antd";
 import PropTypes from "prop-types";
-import { Button, Typography } from "antd";
-import { DownloadOutlined } from "@ant-design/icons";
+import React from "react";
 
 ButtonCustom.propTypes = {
   content: PropTypes.string.isRequired,

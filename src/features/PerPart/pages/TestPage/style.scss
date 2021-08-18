@@ -1,33 +1,33 @@
-#test-page{
-
+#test-page {
     padding: 20px 0px;
     background-color: #e9ecf3;
 
-   
-    .main{
+    .main {
         background: white;
         width: 90%;
 
         margin: 0 auto;
-        padding: 10px;   
-        
+        padding: 10px;
+
         min-height: 80vh;
 
-        .questions{
+        .questions {
             width: 60%;
             margin: 0 auto;
 
             position: relative;
-           
+
             .button-next {
-                position: absolute;
-                    
-                top: 50px;
-                width: 120px;
-                right: -120px;
+
+                margin-top: 1rem;
             }
-
         }
-
     }
+}
+
+@media only screen and (max-width: 1024px) {
+    #test-page .main .questions {
+        width: 100%;
+    }
+
 }

@@ -5,6 +5,8 @@ $blue: #1890ff;
     &_wrapper {
         max-width: 1200px;
         margin: 0 auto;
+      
+        padding: 0 5px;
         .topic {
             color: #d93425;
             font-size: 1.8rem;
@@ -45,7 +47,6 @@ $blue: #1890ff;
             font-weight: 600;
             color: $blue;
 
-         
             border-radius: 0.5rem;
         }
     }
@@ -59,6 +60,6 @@ $blue: #1890ff;
     &_button {
         display: flex;
         justify-content: center;
-        
+        padding-bottom: 3rem;
     }
 }

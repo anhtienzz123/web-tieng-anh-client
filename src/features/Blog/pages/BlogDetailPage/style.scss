@@ -65,3 +65,39 @@
 .topic-page__content {
 	margin: 0px 10vw;
 }
+
+.content-blog {
+	font-size: 18px;
+}
+
+@media only screen and (min-width: 740px) and (max-width: 1024px) {
+	#blog-detail-page .topic-thumbnail__description {
+		font-size: 2.5vh;
+	}
+	#blog-detail-page .topic-thumbnail__title {
+		font-size: 4.5vh;
+	}
+
+	#blog-detail-page .topic-thumbnail__word-count {
+		font-size: 2vh;
+	}
+	.content-blog {
+		font-size: 16px;
+	}
+}
+
+@media (max-width: 739px) {
+	#blog-detail-page .topic-thumbnail__description {
+		font-size: 1.8vh;
+	}
+	#blog-detail-page .topic-thumbnail__title {
+		font-size: 3vh;
+	}
+
+	#blog-detail-page .topic-thumbnail__word-count {
+		font-size: 1.5vh;
+	}
+	.content-blog {
+		font-size: 14px;
+	}
+}

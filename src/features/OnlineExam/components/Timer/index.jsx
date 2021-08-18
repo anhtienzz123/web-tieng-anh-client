@@ -1,5 +1,5 @@
-import { FieldTimeOutlined } from '@ant-design/icons';
-import { Affix, Button, Col, Modal, Row } from 'antd';
+import { FieldTimeOutlined, MenuFoldOutlined, SolutionOutlined } from '@ant-design/icons';
+import { Affix, Button, Col, Drawer, Modal, Row } from 'antd';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
@@ -7,6 +7,7 @@ import useWindowUnloadEffect from 'utils/useWindowUnloadEffect';
 import { useDispatch } from 'react-redux';
 import './style.scss';
 import { setIsSubmit } from 'features/OnlineExam/onlineExamSlice';
+import AnswerSheet from '../AnswerSheet';
 Timer.propTypes = {
     page: PropTypes.string,
 };
@@ -21,6 +22,7 @@ function Timer(props) {
     const initialSeconds = 0;
     const [minutes, setMinutes] = useState(initialMinute);
     const [seconds, setSeconds] = useState(initialSeconds);
+    const [activeDrawer, setActiveDrawer] = useState(false);
     const dispatch = useDispatch();
 
 
@@ -105,22 +107,42 @@ function Timer(props) {
     }
 
 
+    const handleOnClose = () => {
+        setActiveDrawer(false);
+    }
 
+    const handleOnOpen = () => {
+        setActiveDrawer(true);
+    }
 
     return (
 
         <Affix offsetTop={0}>
             <div className='timer_wrapper'>
-                <Row justify="center" align="middle">
+                <Row justify="center" align="middle" gutter={[]}>
+                    <Drawer
+                        title="Your answer sheet !"
+                        width='80%'
+                        onClose={handleOnClose}
+                        visible={activeDrawer}
+                    >
+                        <AnswerSheet />
+                    </Drawer>
 
                     {
 
                         page !== 'checkout' ?
 
                             <>
+                                <Col xl={{ span: 0 }} lg={{ span: 0 }} md={{ span: 6 }} sm={{ span: 8 }} xs={{ span: 12 }}>
 
-                                <Col span={4}>
-                                    <div >
+                                    <Button onClick={handleOnOpen} size='large' block>
+                                        <MenuFoldOutlined /> Answer Sheet
+                                    </Button>
+                                </Col>
+
+                                <Col xl={{ span: 4 }} lg={{ span: 4 }} md={{ span: 6 }} sm={{ span: 8 }} xs={{ span: 12 }}>
+                                    <div className='countdown_wrapper' >
                                         {minutes === 0 && seconds === 0
                                             ? <span className='countdown_timer timeout'>Time Out</span>
                                             : <span className='countdown_timer' > <FieldTimeOutlined style={{ fontSize: '3rem' }} /> {minutes > 10 ? minutes : `0${minutes}`}<span>m</span> {seconds < 10 ? `0${seconds}` : seconds}<span>s</span> </span>
@@ -129,9 +151,9 @@ function Timer(props) {
                                     </div>
                                 </Col>
 
-                                <Col span={4}>
+                                <Col xl={{ span: 4 }} lg={{ span: 4 }} md={{ span: 6 }} sm={{ span: 8 }} xs={{ span: 0 }}>
                                     <Button onClick={handleOnClick} size='large' block>
-                                        <b>Checkout</b>
+                                        <SolutionOutlined /> <b>Checkout</b>
                                     </Button>
                                 </Col>
 
@@ -156,7 +178,7 @@ function Timer(props) {
 
                 {contextHolder}
             </ReachableContext.Provider>
-        </Affix>
+        </Affix >
 
 
 

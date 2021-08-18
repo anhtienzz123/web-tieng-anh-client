@@ -2,10 +2,17 @@
     max-width: 1400px;
     margin: 0 auto;
     overflow: hidden;
-    // justify-content:flex-start
-    
+    padding: 1rem 1rem;
+    // justify-content:flex-start;
 }
 .loader {
     display: flex;
     justify-content: center;
 }
+
+.slider {
+    margin-top: 3rem;
+}
+
+
+

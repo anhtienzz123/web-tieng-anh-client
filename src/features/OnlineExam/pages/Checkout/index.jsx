@@ -218,23 +218,23 @@ function Checkout(props) {
 				<Space direction="vertical" style={{ width: "100%" }} size="large">
 					<div className="checkout_listening">
 						<span className='topic'>Listening</span>
-						<Table dataSource={data_listening} columns={columns} pagination={false} />
+						<Table dataSource={data_listening} columns={columns} pagination={false} scroll={{ x: true }} />
 					</div>
 
 					<div className="checkout_reading">
 						<span className='topic'>Reading</span>
-						<Table dataSource={data_reading} columns={columns} pagination={false} />
+						<Table dataSource={data_reading} columns={columns} pagination={false} scroll={{ x: true }} />
 					</div>
 
-					<Row gutter={[16, 16]}>
-						<Col span={3} offset={8} flex={1} >
+					<Row gutter={[32, 16]} justify="center" align="middle">
+						<Col xl={{ span: 3 }} lg={{ span: 4 }} md={{ span: 6 }} sm={{ span: 8 }} xs={{ span: 10 }} >
 							<div className='button_align' >
 								<Button block type="primary" size='large' onClick={handleBackClick}>Back</Button>
 							</div>
 
 						</Col>
 
-						<Col span={3} offset={2} flex={1} >
+						<Col xl={{ span: 3 }} lg={{ span: 4 }} md={{ span: 6 }} sm={{ span: 8 }} xs={{ span: 10 }} >
 
 							<ReachableContext.Provider value='' >
 								<div className='button_align'>

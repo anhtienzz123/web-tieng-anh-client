@@ -106,8 +106,10 @@ function MainPage(props) {
 
     return (
         <div >
-            <Slider slug={slugCategory} />
+            <div className="slider">
+                <Slider slug={slugCategory} />
 
+            </div>
             <div className="mainpage_wrapper" id='top'>
                 <Affix offsetTop={-10}>
                     <SearchBar
@@ -134,7 +136,7 @@ function MainPage(props) {
 
                         {
                             data && data.map((element, index) => (
-                                <Col key={index} span={6} >
+                                <Col key={index} xl={{ span: 6 }} lg={{ span: 8 }} sm={{ span: 12 }} xs={{ span: 24 }}>
                                     <VideoCard
                                         data={element}
                                         onClick={handleOnClick}
@@ -148,7 +150,14 @@ function MainPage(props) {
                 </InfiniteScroll>
 
                 {(data && data.length === 0) ?
-                    <Empty /> : ''
+                    <Empty
+                        description={
+                            <span>
+                                Không có dữ liệu
+                            </span>
+                        }
+                    />
+                    : ''
                 }
 
 
