@@ -68,20 +68,20 @@ function SearchBar(props) {
 
 
             <Row align="middle" gutter={[16, 16]}>
-                <Col span={15}>
+                <Col xl={{ span: 14 }} lg={{ span: 14 }} md={{ span: 24 }} sm={{ span: 24 }} xs={{ span: 24 }}>
                     <div className='search-bar_title'>
                         {subject}
                     </div>
                 </Col>
 
 
-                <Col span={2}>
+                <Col xl={{ span: 3 }} lg={{ span: 3 }} md={{ span: 4 }} sm={{ span: 5 }} xs={{ span: 24 }}>
                     <div className='search-bar_filter_name' >
                         Filter by
                     </div>
                 </Col>
 
-                <Col span={4}>
+                <Col xl={{ span: 4 }} lg={{ span: 4 }} md={{ span: 6 }} sm={{ span: 8 }} xs={{ span: 13 }}>
                     <div className='search-bar_filter_level' >
                         <Select
                             value={level}
@@ -103,7 +103,7 @@ function SearchBar(props) {
                     </div>
                 </Col>
 
-                <Col span={3}>
+                <Col xl={{ span: 3 }} lg={{ span: 3 }} md={{ span: 6 }} sm={{ span: 8 }} xs={{ span: 11 }}>
                     <div className='search-bar_filter_duration' >
                         <Select value={onDurationSelected === '' ? 'Select duration' : onDurationSelected} style={{ width: '100%' }} onChange={handleDurationChange}>
                             {dataSelectDuration.map((element, index) => (

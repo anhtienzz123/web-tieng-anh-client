@@ -11,44 +11,77 @@ import {
 } from "@ant-design/icons";
 import { faBlog } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import useWindowUnloadEffect from 'utils/useWindowUnloadEffect';
 import { Menu, message } from "antd";
 import { setLogin } from "app/globalSlice";
 import { fetchCategoriesVideo } from "features/Video/videoSlice";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import auth from "utils/auth";
+import logo from 'images/logo/logo.png';
 import "./style.scss";
 
 const { SubMenu } = Menu;
 
 function Header(props) {
+
+
     const { isLogin } = useSelector((state) => state.global);
     const { categories } = useSelector((state) => state.video);
     const dispatch = useDispatch();
+    const [keyMenu, setKeyMenu] = useState(1);
+
+    useEffect(() => {
+        let key = localStorage.getItem("menuSelected");
+        if (key !== undefined || key == null) {
+            setKeyMenu(key);
+        }
+
+    }, [])
 
     useEffect(() => {
         dispatch(fetchCategoriesVideo());
     }, []);
 
+
+
+    const handleOnClick = (e) => {
+        setKeyMenu(e.key);
+    };
+
+    useWindowUnloadEffect(() => {
+        localStorage.setItem('menuSelected', keyMenu);
+    }, true);
+
+
+    const headerStyle = {
+
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        padding: "4px 0",
+        // boxShadow: " 0 4px 4px -2px #c4c4c4"
+
+    }
+
     return (
         <div className="header">
-            <Menu mode="horizontal">
-                <Menu.Item key="1" icon={<HomeOutlined />}>
+            <Menu mode="horizontal" style={headerStyle} onClick={handleOnClick} selectedKeys={keyMenu}>
+                <Menu.Item key={1} icon={<HomeOutlined />}>
                     <Link to="/">Trang chủ</Link>
                 </Menu.Item>
 
-                <Menu.Item key="4" icon={<FileSearchOutlined />}>
+                <Menu.Item key={2} icon={<FileSearchOutlined />}>
                     <Link to="/translate">Tra từ</Link>
                 </Menu.Item>
 
-                <Menu.Item key="2" icon={<AppstoreOutlined />}>
+                <Menu.Item key={3} icon={<AppstoreOutlined />}>
                     <Link to="/courses">Khóa học từ vựng</Link>
                 </Menu.Item>
 
                 {isLogin && (
-                    <Menu.Item key="5" icon={<FormOutlined />}>
+                    <Menu.Item key={4} icon={<FormOutlined />}>
                         <Link to="/wordnotes">Wordnote</Link>
                     </Menu.Item>
                 )}
@@ -72,16 +105,16 @@ function Header(props) {
                     </div>
                 </SubMenu>
 
-                <Menu.Item key="6" icon={<FontAwesomeIcon icon={faBlog} />}>
+                <Menu.Item key={5} icon={<FontAwesomeIcon icon={faBlog} />}>
                     <Link to="/blogs">Blog</Link>
                 </Menu.Item>
 
-                <Menu.Item key="3" icon={<CarryOutOutlined />}>
+                <Menu.Item key={6} icon={<CarryOutOutlined />}>
                     <Link to="/exams">Luyện thi toeic</Link>
                 </Menu.Item>
 
                 <SubMenu
-                    key="100"
+                    key={7}
                     icon={<ScheduleOutlined />}
                     title="Làm theo part"
                 >
@@ -139,9 +172,21 @@ function Header(props) {
                         </Menu.Item>
                     </SubMenu>
                 ) : (
-                    <Menu.Item key="10_0" icon={<LoginOutlined />}>
-                        <Link to="/login">Đăng nhập</Link>
-                    </Menu.Item>
+
+                    <SubMenu
+                        key="11"
+                        icon={<LoginOutlined />}
+                        title="Đăng nhập"
+                    >
+                        <Menu.Item key="11_1" >
+                            <Link to="/login">Người dùng</Link>
+                        </Menu.Item>
+
+                        <Menu.Item key="11_2" >
+                            <Link to="/login/manage">Quản lý</Link>
+                        </Menu.Item>
+                    </SubMenu>
+
                 )}
             </Menu>
         </div>

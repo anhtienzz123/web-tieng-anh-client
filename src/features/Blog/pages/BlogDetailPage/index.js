@@ -39,7 +39,7 @@ function BlogDetailPage(props) {
 
 			<Row justify="center">
 				<Col span={16}>
-					<div>{content && Parser(content)}</div>
+					<div className='content-blog'>{content && Parser(content)}</div>
 				</Col>
 			</Row>
 

@@ -1,4 +1,4 @@
-import { Col, Row, Space } from 'antd';
+import { Col, Result, Row, Space } from 'antd';
 import AutoTranscript from 'features/Video/components/AutoTranscript';
 import MoreVideo from 'features/Video/components/MoreVideo';
 import VideoInfo from 'features/Video/components/VideoInfo';
@@ -6,7 +6,7 @@ import VideoPlayer from 'features/Video/components/VideoPlayer';
 import { fetchVideo } from 'features/Video/videoSlice';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 import './style.scss';
 
@@ -18,6 +18,7 @@ function VideoPage(props) {
     const { slugCategory, slugVideo } = useParams();
     const { video } = useSelector((state) => state.video);
     const [timeSeek, setTimeSeek] = useState(0);
+    const history = useHistory();
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -26,6 +27,8 @@ function VideoPage(props) {
         }));
 
     }, [slugVideo]);
+
+
 
     useEffect(() => {
         document.getElementById('top').scrollIntoView();
@@ -41,57 +44,74 @@ function VideoPage(props) {
     }
 
 
-
-
-
+    function isEmpty(obj) {
+        for (var key in obj) {
+            if (obj.hasOwnProperty(key))
+                return false;
+        }
+        return true;
+    }
 
     return (
-        <div className='videopage_background' id='top'>
-            <div className="videopage_wrapper">
+        <>
 
-                <Space direction="vertical" size='large' style={{ width: '100%' }}>
-                    <div className="videopage_top">
-                        <Row gutter={[16, 8]}>
-                            <Col span={16}>
-                                <VideoPlayer url={video.url} onSeek={timeSeek} />
-                            </Col>
-                            <Col span={8} >
-                                <AutoTranscript subtitles={video.subtitles} onSeek={handleOnSeek} />
-                            </Col>
+            {!isEmpty(video) ?
+                <div className='videopage_background' id='top'>
+                    <div className="videopage_wrapper">
 
-                        </Row>
+                        <Space direction="vertical" size='large' style={{ width: '100%' }}>
+                            <div className="videopage_top">
+                                <Row gutter={[16, 8]}>
+                                    <Col xl={{ span: 16 }} lg={{ span: 16 }} md={{ span: 24 }} sm={{ span: 24 }} xs={{ span: 24 }}>
+                                        <VideoPlayer url={video.url} onSeek={timeSeek} />
+                                    </Col>
+                                    <Col xl={{ span: 8 }} lg={{ span: 8 }} md={{ span: 24 }} sm={{ span: 24 }} xs={{ span: 24 }} >
+                                        <AutoTranscript subtitles={video.subtitles} onSeek={handleOnSeek} />
+                                    </Col>
+
+                                </Row>
+                            </div>
+
+                            <div className="videopage_bottom">
+                                <Row gutter={[16, 8]}>
+                                    <Col xl={{ span: 16 }} lg={{ span: 16 }} md={{ span: 24 }} sm={{ span: 24 }} xs={{ span: 24 }}>
+                                        <VideoInfo
+                                            slugCategory={slugCategory}
+                                            videoWords={video.videoWords}
+                                            name={video.name}
+                                            description={video.description}
+                                            level={video.level}
+                                            categoryName={video.categoryName}
+                                            onSeek={handleOnSeekWord}
+                                        />
+
+                                    </Col>
+                                    <Col xl={{ span: 8 }} lg={{ span: 8 }} md={{ span: 24 }} sm={{ span: 24 }} xs={{ span: 24 }} >
+                                        <MoreVideo />
+                                    </Col>
+
+                                </Row>
+                            </div>
+
+                        </Space>
+
+
                     </div>
+                </div>
+                : <div id='top'>
+                    <Result
+                        status="404"
+                        title="404"
+                        subTitle="Sorry, the page you visited does not exist."
 
-                    <div className="videopage_bottom">
-                        <Row gutter={[16, 8]}>
-                            <Col span={16}>
-                                <VideoInfo
-                                    slugCategory={slugCategory}
-                                    videoWords={video.videoWords}
-                                    name={video.name}
-                                    description={video.description}
-                                    level={video.level}
-                                    categoryName={video.categoryName}
-                                    onSeek={handleOnSeekWord}
-                                />
-
-                            </Col>
-                            <Col span={8} >
-                                <MoreVideo />
-                            </Col>
-
-                        </Row>
-                    </div>
-
-                </Space>
+                    />
+                </div>
+            }
 
 
 
+        </>
 
-
-
-            </div>
-        </div>
 
     );
 }

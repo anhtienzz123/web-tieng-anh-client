@@ -1,11 +1,11 @@
-import { Col, Modal, Row } from 'antd';
+import { Col, Row } from 'antd';
 import AnswerSheet from 'features/OnlineExam/components/AnswerSheet';
 import Timer from 'features/OnlineExam/components/Timer';
 import ToeicPart from 'features/OnlineExam/components/ToeicPart';
+import { refreshStore } from 'features/OnlineExam/onlineExamSlice';
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Prompt, useParams } from 'react-router';
-import { refreshStore } from 'features/OnlineExam/onlineExamSlice'
 import './style.scss';
 
 
@@ -13,34 +13,11 @@ import './style.scss';
 
 function Examining(props) {
 
-
-    const ReachableContext = React.createContext();
     const { testId } = useParams();
     const dispatch = useDispatch();
 
-    // const [modal, contextHolder] = Modal.useModal();
-
-    // let checkPass;
-    // const config = {
-    //     title: 'Do you really want to leave the test ?',
-    //     onOk() {
-    //         checkPass = true;
-    //     },
-
-    //     onCancel() {
-    //         checkPass = false;
-    //     }
-    // };
-
-    useEffect(() => {
-
-        return () => {
-            dispatch(refreshStore())
-        }
-    }, []);
 
 
-    console.log(testId)
     const { isSubmit } = useSelector(state => state.exam);
 
 
@@ -66,11 +43,11 @@ function Examining(props) {
             </Row>
             <div className='examining'>
                 <Row gutter={[16, 16]}>
-                    <Col span={17} >
+                    <Col xl={{ span: 17 }} lg={{ span: 16 }} md={{ span: 24 }} sm={{ span: 24 }} xs={{ span: 24 }} >
                         <ToeicPart />
 
                     </Col>
-                    <Col span={7} >
+                    <Col xl={{ span: 7 }} lg={{ span: 8 }} md={{ span: 0 }} sm={{ span: 0 }} xs={{ span: 0 }} >
                         <AnswerSheet />
                     </Col>
                 </Row>

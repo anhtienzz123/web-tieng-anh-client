@@ -8,13 +8,16 @@ import {
 	Pagination,
 	Radio,
 	Row,
-	Space,
+	Space
 } from "antd";
 import CourseList from "features/Courses/components/CourseList";
 import { fetchCourses, fetchTopics } from "features/Courses/courseSlice";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./style.scss";
+
+
+
 
 function MainPage(props) {
 	const [courseSelected, setCourseSelected] = useState("All");
@@ -62,35 +65,38 @@ function MainPage(props) {
 	);
 
 	return (
-		<div id="course-main-page">
-			<Row justify="end">
-				<Col>
-					Filter by &nbsp;
-					<Dropdown overlay={menu}>
-						<Button>
-							Topic <DownOutlined />
-						</Button>
-					</Dropdown>
-				</Col>
-			</Row>
+		// <div className='course-wrapper'>
+			<div id="course-main-page">
 
-			<Divider />
-
-			<CourseList courses={data} />
-
-			{totalPages > 1 && (
-				<Row justify="center">
-					<Pagination
-						total={totalPages * size}
-						showQuickJumper
-						pageSize={size}
-						onChange={handleOnPageChange}
-						showSizeChanger={false}
-						current={page + 1}
-					/>
+				<Row justify="end">
+					<Col>
+						Filter by &nbsp;
+						<Dropdown overlay={menu}>
+							<Button>
+								Topic <DownOutlined />
+							</Button>
+						</Dropdown>
+					</Col>
 				</Row>
-			)}
-		</div>
+
+				<Divider />
+
+				<CourseList courses={data} />
+
+				{totalPages > 1 && (
+					<Row justify="center">
+						<Pagination
+							total={totalPages * size}
+							showQuickJumper
+							pageSize={size}
+							onChange={handleOnPageChange}
+							showSizeChanger={false}
+							current={page + 1}
+						/>
+					</Row>
+				)}
+			</div>
+		// </div>
 	);
 }
 

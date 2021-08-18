@@ -62,7 +62,9 @@ function TopicPage(props) {
 			</Affix>
 
 			<Divider orientation="left" style={{ fontSize: 32 }}>
-				{name}
+				<div className='name_of_topic'>
+					{name}
+				</div>
 			</Divider>
 			<div className="topic-page__content">
 				<WordList data={data} />

@@ -23,9 +23,9 @@ function EmptyButton({ number, onAnswerClick }) {
       const char = STT_CHAR[i];
 
       const isRenderColumn24 = number === 3 && i === 2;
-
+      
       result.push(
-        <Col span={isRenderColumn24 ? 24 : 12} key={i}>
+        <Col xl={isRenderColumn24 ? { span: 24 } : { span: 12 }} lg={isRenderColumn24 ? { span: 24 } : { span: 12 }} md={{ span: 24 }} sm={{ span: 24 }} xs={{ span: 24 }} key={i}>
           <ButtonCustom
             type="default"
             content={char}

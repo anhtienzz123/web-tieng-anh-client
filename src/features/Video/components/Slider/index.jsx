@@ -28,9 +28,11 @@ function Slider(props) {
     }, [slug])
 
     const responsive = {
-        0: { items: 1 },
-        568: { items: 2 },
-        1024: { items: 3 },
+        0: { items: 1, dot: false },
+        568: { items: 1 },
+        768: { items: 1 },
+        992: { items: 2 },
+        1200: { items: 3 },
     };
 
     let items = [];
@@ -43,7 +45,7 @@ function Slider(props) {
     if (moviesSlider.length > 0) {
         for (let index = 0; index < 5; index++) {
             items.push(
-                <VideoCard onClick={handleClick} data={moviesSlider[index]} height='300px' padding='10px' />
+                <VideoCard onClick={handleClick} data={moviesSlider[index]} height='300px'  />
             )
 
         }
@@ -59,7 +61,7 @@ function Slider(props) {
             responsive={responsive}
             controlsStrategy="alternate"
             autoPlay={true}
-            animationDuration={3000}
+            animationDuration={4000}
             disableButtonsControls={true}
             infinite={true}
             paddingLeft={30}
