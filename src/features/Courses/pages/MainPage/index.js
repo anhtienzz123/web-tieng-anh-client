@@ -42,6 +42,9 @@ function MainPage(props) {
 	};
 
 	useEffect(() => {
+		document.title = "Khóa học từ vựng";
+	}, []);
+	useEffect(() => {
 		window.scrollTo(0, 0);
 		dispatch(fetchCourses(query));
 		dispatch(fetchTopics());
