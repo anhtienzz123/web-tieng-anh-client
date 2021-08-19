@@ -14,6 +14,9 @@ function BlogDetailPage(props) {
 
 	const { blogDetail } = useSelector((state) => state.blog);
 
+	const { domToReact } = Parser;
+	const style = require("style-to-object");
+
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -51,7 +54,21 @@ function BlogDetailPage(props) {
 					<Row justify="center">
 						<Col span={16}>
 							<div className="content-blog">
-								{blogDetail?.content && Parser(blogDetail?.content)}
+								{blogDetail?.content &&
+									Parser(blogDetail?.content, {
+										replace: (domNode) => {
+											if (domNode.attribs && domNode.attribs.style) {
+												try {
+													style(domNode.attribs.style);
+												} catch (error) {
+													// delete the attribute that's causing the error
+													// then convert the dom node to react
+													delete domNode.attribs.style;
+													return domToReact(domNode);
+												}
+											}
+										},
+									})}
 							</div>
 						</Col>
 					</Row>
