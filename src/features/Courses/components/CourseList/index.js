@@ -1,4 +1,4 @@
-import { Col, Row } from "antd";
+import { Col, Result, Row } from "antd";
 import BackToTopButton from "components/BackToTopButton";
 import TopicCard from "components/TopicCard";
 import PropTypes from "prop-types";
@@ -8,7 +8,7 @@ import "./style.scss";
 function CourseList(props) {
 	const { courses } = props;
 
-	return (
+	return courses.length > 0 ? (
 		<Row justify="start" gutter={[36, 24]}>
 			{courses.map((course, index) => {
 				const topic = {
@@ -23,6 +23,8 @@ function CourseList(props) {
 			})}
 			<BackToTopButton />
 		</Row>
+	) : (
+		<Result status="404" title="Không tìm thấy" />
 	);
 }
 

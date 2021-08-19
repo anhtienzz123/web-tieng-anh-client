@@ -7,7 +7,7 @@ import BlogDetailPage from "./pages/BlogDetailPage";
 import MainPage from "./pages/MainPage";
 
 function Blog(props) {
-	const { isLoading } = useSelector((state) => state.global);
+	const { isLoading } = useSelector((state) => state.blog);
 	const { url } = useRouteMatch();
 
 	return (

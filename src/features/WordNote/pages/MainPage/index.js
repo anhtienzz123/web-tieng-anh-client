@@ -21,6 +21,7 @@ function MainPage(props) {
 
 	useEffect(() => {
 		dispatch(fetchWordNotes());
+		document.title = "Wordnote";
 	}, []);
 	return (
 		<div id="word-note-main-page">

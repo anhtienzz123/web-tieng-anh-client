@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import React, { useState } from "react";
 import { Link, useRouteMatch } from "react-router-dom";
 import "./style.scss";
+import imageNotFound from "assets/images/image-not-found.svg";
 
 function TopicCard(props) {
 	const { topic, maxCharacterCount } = props;
@@ -20,7 +21,11 @@ function TopicCard(props) {
 		<div className="topic-card">
 			<div className="topic-card__image">
 				<Link to={`${url}/${slug}`}>
-					<img src={image} alt="Oops ... Not found" />
+					<img
+						src={image}
+						alt="Oops ... Not found"
+						onError={(e) => (e.target.src = imageNotFound)}
+					/>
 				</Link>
 			</div>
 			<div className="topic-card__content">

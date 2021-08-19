@@ -7,7 +7,7 @@ import MainPage from "./pages/MainPage";
 import TopicPage from "./pages/TopicPage";
 
 function Course(props) {
-	const { isLoading } = useSelector((state) => state.global);
+	const { isLoading } = useSelector((state) => state.course);
 	const { url } = useRouteMatch();
 
 	return (
@@ -15,8 +15,7 @@ function Course(props) {
 			<div>
 				<Switch>
 					<Route exact path={url} component={MainPage} />
-					<Route path={`${url}/:slug`} component={TopicPage} />
-
+					<Route exact path={`${url}/:slug`} component={TopicPage} />
 					<Route component={NotFoundPage} />
 				</Switch>
 			</div>

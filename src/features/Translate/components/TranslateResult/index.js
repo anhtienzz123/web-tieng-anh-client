@@ -1,4 +1,4 @@
-import { Result, Space, Tabs, Typography } from "antd";
+import { Col, Result, Row, Space, Tabs, Typography } from "antd";
 import AudioButton from "components/AudioButton";
 import BackToTopButton from "components/BackToTopButton";
 import PropTypes from "prop-types";
@@ -28,17 +28,33 @@ function TranslateResult(props) {
 					{/* Header */}
 					<div className="header-result">
 						<Title level={2}>
-							<Space align="start" size="middle" wrap>
-								<span className="header-result__word">{name}</span>
-								<span className="header-result__pronounce">
-									{pronounce && `/${pronounce}/`}
-								</span>
-								<AudioButton audioUrl={usSound} toolTip={"Nghe"} title={"US"} />
-							</Space>
-							<AudioButton audioUrl={ukSound} toolTip={"Nghe"} title={"UK"} />
+							<Row>
+								<Space align="start" size="middle" wrap>
+									<Col>
+										<span className="header-result__word">{name}</span>
+									</Col>
+									<Col>
+										<span className="header-result__pronounce">
+											{pronounce && `/${pronounce}/`}
+										</span>
+									</Col>
+
+									<Col>
+										<AudioButton
+											audioUrl={usSound}
+											toolTip={"Nghe"}
+											title={"US"}
+										/>
+										<AudioButton
+											audioUrl={ukSound}
+											toolTip={"Nghe"}
+											title={"UK"}
+										/>
+									</Col>
+								</Space>
+							</Row>
 						</Title>
 					</div>
-
 					{/* Result */}
 					<Tabs defaultActiveKey="1" type="line" size="large">
 						{/* Common */}
@@ -80,8 +96,7 @@ function TranslateResult(props) {
 							)}
 						</TabPane>
 					</Tabs>
-
-					<BackToTopButton />
+					<BackToTopButton />)
 				</>
 			)}
 		</div>

@@ -91,6 +91,7 @@ function ReviewPage(props) {
 		const values = { type: questionType, ids: null };
 		dispatch(getWordNoteDetail(wordnoteId));
 		dispatch(getWordNoteReview({ wordnoteId, values }));
+		document.title = "Ôn tập từ vựng";
 	}, []);
 
 	return (

@@ -4,7 +4,7 @@ import { Button, Col, Divider, Row, Tag, Typography } from "antd";
 import InputField from "customfield/InputField";
 import { login, setLoading } from "features/Login/loginSlice";
 import { FastField, Form, Formik } from "formik";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as Yup from "yup";
@@ -26,6 +26,10 @@ function MainPage(props) {
 
 	const { isLogin } = useSelector((state) => state.global);
 	const [isError, setError] = useState(false);
+
+	useEffect(() => {
+		document.title = "Đăng nhập";
+	}, []);
 
 	const validationSchema = Yup.object().shape({
 		username: Yup.string().required("Tài khoản không được bỏ trống."),
