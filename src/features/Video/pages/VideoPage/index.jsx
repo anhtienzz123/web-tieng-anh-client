@@ -1,9 +1,10 @@
 import { Col, Result, Row, Space } from "antd";
+import BackToTopButton from "components/BackToTopButton";
 import AutoTranscript from "features/Video/components/AutoTranscript";
 import MoreVideo from "features/Video/components/MoreVideo";
 import VideoInfo from "features/Video/components/VideoInfo";
 import VideoPlayer from "features/Video/components/VideoPlayer";
-import { fetchVideo } from "features/Video/videoSlice";
+import { fetchVideo, setSttInSub } from "features/Video/videoSlice";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
@@ -33,6 +34,10 @@ function VideoPage(props) {
 
 	useEffect(() => {
 		document.getElementById("top").scrollIntoView();
+	}, [slugVideo]);
+
+	useEffect(() => {
+		dispatch(setSttInSub(""));
 	}, [slugVideo]);
 
 	const handleOnSeek = (timeSeek) => {
@@ -114,6 +119,7 @@ function VideoPage(props) {
 							</div>
 						</Space>
 					</div>
+					<BackToTopButton />
 				</div>
 			) : (
 				<div id="top">

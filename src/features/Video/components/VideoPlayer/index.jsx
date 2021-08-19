@@ -22,7 +22,7 @@ VideoPlayer.defaultProps = {
 
 function VideoPlayer(props) {
     // seekTo,
-    const { transcript, isPlay, scriptPanes, sttInSub } = useSelector((state) => state.video);
+    const { transcript, isPlay, sttInSub } = useSelector((state) => state.video);
     const [textPane, setTextPane] = useState(". . .");
     const { onSeek } = props;
 
@@ -36,6 +36,11 @@ function VideoPlayer(props) {
     }
 
     useEffect(() => {
+        if (sttInSub === "") {
+            setTextPane(". . .");
+            return;
+        }
+
         let tempScript = transcript.find(x => x.stt === sttInSub);
         if (tempScript) {
             setTextPane(tempScript.content);
@@ -62,6 +67,7 @@ function VideoPlayer(props) {
             });
 
             if (subSelected) {
+                console.log(subSelected);
                 dispatch(setSubActive(subSelected.id));
                 dispatch(setSttInSub(subSelected.stt));
             }
