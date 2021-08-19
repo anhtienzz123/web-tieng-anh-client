@@ -1,18 +1,8 @@
-import { DownOutlined } from "@ant-design/icons";
-import {
-	Button,
-	Col,
-	Divider,
-	Dropdown,
-	Menu,
-	Pagination,
-	Radio,
-	Row,
-	Space,
-} from "antd";
+import { Col, Divider, Pagination, Result, Row } from "antd";
 import BackToTopButton from "components/BackToTopButton";
 import TopicCard from "components/TopicCard";
 import { fetchBlogCategories, fetchBlogs } from "features/Blog/blogSlice";
+import BlogSearch from "features/Blog/components/BlogSearch";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./style.scss";
@@ -24,81 +14,61 @@ function MainPage(props) {
 	const { blogs, blogCategories } = useSelector((state) => state.blog);
 
 	const { data = [], page = 1, size = 1, totalPages = 1 } = blogs;
-	const filterSelected =
-		blogCategorySelected !== "-1" ? blogCategorySelected : "";
 
-	const handleOnChange = (e) => {
-		const blogCategorySelected = e.target.value;
-		setBlogCategorySelected(blogCategorySelected);
-		blogCategorySelected === "-1"
-			? dispatch(fetchBlogs({ page: 0 }))
-			: dispatch(fetchBlogs({ categorySlug: blogCategorySelected }));
+	const [query, setQuery] = useState({
+		name: "",
+		categorySlug: "",
+		page: 0,
+		size: 12,
+	});
+
+	const handleSearchChange = (queryValue) => {
+		const { name, categorySlug } = queryValue;
+		setQuery({ page: 0, size: 12, name, categorySlug });
 	};
 
-	const handleOnPageChange = (page) => {
-		window.scrollTo(0, 0);
-		dispatch(fetchBlogs({ categorySlug: filterSelected, page: page - 1 }));
+	const handlePageChange = (page, pageSize) => {
+		setQuery({ ...query, page: page - 1 });
 	};
 
 	useEffect(() => {
-		dispatch(fetchBlogs({ page: 0, categorySlug: filterSelected }));
-		dispatch(fetchBlogCategories());
+		document.title = "Blog";
 	}, []);
 
-	const menu = (
-		<Menu>
-			<Menu.Item key="1">
-				<Radio.Group
-					onChange={handleOnChange}
-					defaultValue={blogCategorySelected}
-				>
-					<Space direction="vertical">
-						<Radio value={"-1"}>Tất cả</Radio>
-						{blogCategories.map((category, index) => (
-							<Radio key={index} value={category.slug}>
-								{category.name}
-							</Radio>
-						))}
-					</Space>
-				</Radio.Group>
-			</Menu.Item>
-		</Menu>
-	);
+	useEffect(() => {
+		window.scrollTo(0, 0);
+		dispatch(fetchBlogs(query));
+		dispatch(fetchBlogCategories());
+	}, [query]);
 
 	return (
 		<div id="blog-main-page">
-			<Row justify="end">
-				<Col>
-					Lọc theo &nbsp;
-					<Dropdown overlay={menu}>
-						<Button>
-							Loại <DownOutlined />
-						</Button>
-					</Dropdown>
-				</Col>
+			<Row justify="start" gutter={[8, 8]}>
+				<BlogSearch categories={blogCategories} onChange={handleSearchChange} />
 			</Row>
-
 			<Divider />
-
-			<Row justify="start" gutter={[36, 24]}>
-				{data.map((blog, index) => {
-					const topic = { ...blog, additionalInfo: blog.createDate };
-					return (
-						<Col key={index} xs={24} sm={12} md={8} lg={6}>
-							<TopicCard topic={topic} />
-						</Col>
-					);
-				})}
-				<BackToTopButton />
-			</Row>
-
+			{data.length > 0 ? (
+				<Row justify="start" gutter={[36, 24]}>
+					{data.map((blog, index) => {
+						const topic = { ...blog, additionalInfo: blog.createDate };
+						return (
+							<Col key={index} xs={24} sm={12} md={8} lg={6}>
+								<TopicCard topic={topic} />
+							</Col>
+						);
+					})}
+					<BackToTopButton />
+				</Row>
+			) : (
+				<Result status="404" title="Không tìm thấy" />
+			)}
 			{totalPages > 1 && (
 				<Row justify="center">
 					<Pagination
 						total={totalPages * size}
 						showQuickJumper
 						pageSize={size}
-						onChange={handleOnPageChange}
+						onChange={handlePageChange}
 						showSizeChanger={false}
 						current={page + 1}
 					/>

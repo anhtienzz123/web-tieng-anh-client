@@ -11,26 +11,29 @@ const { Text, Title } = Typography;
 MainPage.propTypes = {};
 
 function MainPage(props) {
-  const dispatch = useDispatch();
-  const match = useRouteMatch();
-  const { numberPart } = match.params;
-  const { books } = useSelector((state) => state.perPart);
+	const dispatch = useDispatch();
+	const match = useRouteMatch();
+	const { numberPart } = match.params;
+	const { books } = useSelector((state) => state.perPart);
 
-  useEffect(() => {
-    if (books.length > 0) return;
+	useEffect(() => {
+		document.title = `Đề thi part ${numberPart}`;
+	});
 
-    dispatch(fetchBooks());
-  }, []);
+	useEffect(() => {
+		if (books.length > 0) return;
+		dispatch(fetchBooks());
+	}, []);
 
-  return (
-    <div id="per-part-main-page">
-      <div className="main">
-        <Title level={3}>Đề Thi Part {numberPart}</Title>
-        <Divider></Divider>
-        <TestPartList books={books} numberPart={numberPart} />
-      </div>
-    </div>
-  );
+	return (
+		<div id="per-part-main-page">
+			<div className="main">
+				<Title level={3}>Đề Thi Part {numberPart}</Title>
+				<Divider></Divider>
+				<TestPartList books={books} numberPart={numberPart} />
+			</div>
+		</div>
+	);
 }
 
 export default MainPage;

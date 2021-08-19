@@ -48,39 +48,52 @@ const courseSlice = createSlice({
 	},
 	extraReducers: {
 		// Courses
-		[fetchCourses.pending]: (state, action) => {},
+		[fetchCourses.pending]: (state, action) => {
+			state.isLoading = true;
+		},
 		[fetchCourses.fulfilled]: (state, action) => {
 			state.courses = action.payload;
+			state.isLoading = false;
 		},
 		[fetchCourses.rejected]: (state, action) => {
-			// state.courses = {};
+			state.isLoading = false;
 		},
 
 		// Course words
-		[fetchCourseWords.pending]: (state, action) => {},
+		[fetchCourseWords.pending]: (state, action) => {
+			state.isLoading = true;
+		},
 		[fetchCourseWords.fulfilled]: (state, action) => {
 			state.courseWords = action.payload;
+			state.isLoading = false;
 		},
 		[fetchCourseWords.rejected]: (state, action) => {
-			// state.courseWords = {};
+			state.isLoading = false;
 		},
 
 		// Topics
-		[fetchTopics.pending]: (state, action) => {},
+		[fetchTopics.pending]: (state, action) => {
+			state.isLoading = true;
+		},
 		[fetchTopics.fulfilled]: (state, action) => {
 			state.topics = action.payload;
+			state.isLoading = false;
 		},
 		[fetchTopics.rejected]: (state, action) => {
-			// state.topics = [];
+			state.isLoading = false;
 		},
 
 		// Course detail
-		[fetchCourseDetail.pending]: (state, action) => {},
+		[fetchCourseDetail.pending]: (state, action) => {
+			state.isLoading = true;
+		},
 		[fetchCourseDetail.fulfilled]: (state, action) => {
 			state.courseDetail = action.payload;
+			state.isLoading = false;
 		},
 		[fetchCourseDetail.rejected]: (state, action) => {
 			state.courseDetail = action.payload;
+			state.isLoading = false;
 		},
 	},
 });

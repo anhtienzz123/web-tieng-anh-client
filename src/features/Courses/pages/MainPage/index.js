@@ -1,101 +1,76 @@
-import { DownOutlined } from "@ant-design/icons";
-import {
-	Button,
-	Col,
-	Divider,
-	Dropdown,
-	Menu,
-	Pagination,
-	Radio,
-	Row,
-	Space
-} from "antd";
+import { Divider, Pagination, Row } from "antd";
 import CourseList from "features/Courses/components/CourseList";
+import CourseSearch from "features/Courses/components/CourseSearch";
 import { fetchCourses, fetchTopics } from "features/Courses/courseSlice";
+import queryString from "query-string";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import "./style.scss";
 
-
-
-
 function MainPage(props) {
-	const [courseSelected, setCourseSelected] = useState("All");
+	const history = useHistory();
+
+	const [query, setQuery] = useState({
+		name: "",
+		topicSlug: "",
+		page: 0,
+		size: 12,
+	});
 
 	const dispatch = useDispatch();
 	const { courses, topics } = useSelector((state) => state.course);
 
 	const { data = [], page = 1, size = 1, totalPages = 1 } = courses;
-	const filterSelected = courseSelected !== "All" ? courseSelected : "";
 
-	const handleOnChange = (e) => {
-		const courseSelected = e.target.value;
-		setCourseSelected(courseSelected);
-		courseSelected === "All"
-			? dispatch(fetchCourses({ page: 0 }))
-			: dispatch(fetchCourses({ topicSlug: courseSelected }));
+	const handleSearchChange = (queryValue) => {
+		const { name, topicSlug } = queryValue;
+		let params = {};
+		if (name !== "") {
+			params.name = encodeURIComponent(name);
+		}
+		if (topicSlug !== "") {
+			params.topic = topicSlug;
+		}
+		history.replace({ search: queryString.stringify(params) });
+
+		setQuery({ page: 0, size: 12, name, topicSlug });
 	};
 
-	const handleOnPageChange = (page) => {
-		window.scrollTo(0, 0);
-		dispatch(fetchCourses({ topicSlug: filterSelected, page: page - 1 }));
+	const handlePageChange = (page, pageSize) => {
+		setQuery({ ...query, page: page - 1 });
 	};
 
 	useEffect(() => {
-		// window.scrollTo(0, 0);
-		dispatch(fetchCourses({ page: 0, topicSlug: filterSelected }));
+		window.scrollTo(0, 0);
+		dispatch(fetchCourses(query));
 		dispatch(fetchTopics());
-	}, []);
-
-	const menu = (
-		<Menu>
-			<Menu.Item key="1">
-				<Radio.Group onChange={handleOnChange} defaultValue={courseSelected}>
-					<Space direction="vertical">
-						<Radio value={"All"}>All</Radio>
-						{topics.map((topic, index) => (
-							<Radio key={index} value={topic.slug}>
-								{topic.name}
-							</Radio>
-						))}
-					</Space>
-				</Radio.Group>
-			</Menu.Item>
-		</Menu>
-	);
+	}, [query]);
 
 	return (
 		// <div className='course-wrapper'>
-			<div id="course-main-page">
+		<div id="course-main-page">
+			<Row justify="start" gutter={[8, 8]}>
+				<CourseSearch topics={topics} onChange={handleSearchChange} />
+			</Row>
 
-				<Row justify="end">
-					<Col>
-						Filter by &nbsp;
-						<Dropdown overlay={menu}>
-							<Button>
-								Topic <DownOutlined />
-							</Button>
-						</Dropdown>
-					</Col>
+			<Divider />
+
+			<CourseList courses={data} />
+
+			{totalPages > 1 && (
+				<Row justify="center">
+					<Pagination
+						total={totalPages * size}
+						showQuickJumper
+						pageSize={size}
+						onChange={handlePageChange}
+						showSizeChanger={false}
+						current={page + 1}
+					/>
 				</Row>
-
-				<Divider />
-
-				<CourseList courses={data} />
-
-				{totalPages > 1 && (
-					<Row justify="center">
-						<Pagination
-							total={totalPages * size}
-							showQuickJumper
-							pageSize={size}
-							onChange={handleOnPageChange}
-							showSizeChanger={false}
-							current={page + 1}
-						/>
-					</Row>
-				)}
-			</div>
+			)}
+		</div>
 		// </div>
 	);
 }

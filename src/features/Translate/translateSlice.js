@@ -43,7 +43,7 @@ const translateSlice = createSlice({
 		},
 		// khi thất bại
 		[fetchTranslates.rejected]: (state, action) => {
-			state.translateResult = {};
+			state.isLoading = false;
 			state.isNotFound = true;
 		},
 	},
