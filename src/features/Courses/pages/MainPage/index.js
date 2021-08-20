@@ -25,15 +25,6 @@ function MainPage(props) {
 
 	const handleSearchChange = (queryValue) => {
 		const { name, topicSlug } = queryValue;
-		let params = {};
-		if (name !== "") {
-			params.name = encodeURIComponent(name);
-		}
-		if (topicSlug !== "") {
-			params.topic = topicSlug;
-		}
-		history.replace({ search: queryString.stringify(params) });
-
 		setQuery({ page: 0, size: 12, name, topicSlug });
 	};
 
