@@ -1,3 +1,4 @@
+
 import { Divider, Pagination, Row } from "antd";
 import CourseList from "features/Courses/components/CourseList";
 import CourseSearch from "features/Courses/components/CourseSearch";
@@ -7,6 +8,9 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import "./style.scss";
+
+
+
 
 function MainPage(props) {
 	const history = useHistory();
@@ -43,6 +47,8 @@ function MainPage(props) {
 
 	return (
 		// <div className='course-wrapper'>
+
+
 		<div id="course-main-page">
 			<Row justify="start" gutter={[8, 8]}>
 				<CourseSearch topics={topics} onChange={handleSearchChange} />
@@ -65,6 +71,7 @@ function MainPage(props) {
 				</Row>
 			)}
 		</div>
+
 		// </div>
 	);
 }

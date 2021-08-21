@@ -22,6 +22,7 @@ SearchBar.defaultProps = {
 };
 
 function SearchBar(props) {
+
 	const { onSelectedLevel, onSelectedDuration, onDurationSelected, level } =
 		props;
 	const { categories } = useSelector((state) => state.video);
@@ -138,6 +139,7 @@ function SearchBar(props) {
 			</Row>
 		</div>
 	);
+
 }
 
 export default SearchBar;

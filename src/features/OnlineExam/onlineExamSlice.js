@@ -129,6 +129,16 @@ const examSlice = createSlice({
             state.part7MaxPage = part7.length - 1;
         },
 
+        [fetchResult.pending]: (state, action) => {
+            state.isLoading = true;
+
+        },
+
+        [fetchResult.rejected]: (state, action) => {
+            state.isLoading = false;
+
+        },
+
         [fetchResult.fulfilled]: (state, action) => {
             state.result = action.payload;
 
@@ -143,6 +153,8 @@ const examSlice = createSlice({
 
             localStorage.setItem('answers', JSON.stringify(newSheet));
             localStorage.setItem('transcript', JSON.stringify(newTranscript));
+
+            state.isLoading = false;
 
 
         }

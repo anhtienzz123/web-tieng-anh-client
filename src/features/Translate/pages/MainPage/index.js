@@ -29,8 +29,13 @@ function MainPage(props) {
 	return (
 		<div id="translate-main-page">
 			<Row justify="center">
-				<Col>
-					<img src={logoDict} alt="Oops ... Notfound" />
+
+				<Col flex>
+					<img 
+              src={logoDict} alt="Oops ... Notfound" 
+	            style={{ filter: "brightness(0) invert(1)" }}
+          />
+
 				</Col>
 			</Row>
 			<Row justify="center">

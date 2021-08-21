@@ -30,6 +30,7 @@ function BlogDetailPage(props) {
 
 	return (
 		<div id="blog-detail-page">
+
 			{blogDetail && Object.keys(blogDetail).length > 0 ? (
 				<>
 					{console.log(blogDetail)}
@@ -77,6 +78,7 @@ function BlogDetailPage(props) {
 			) : (
 				<Result status="404" title="không tìm thấy" />
 			)}
+
 		</div>
 	);
 }

@@ -1,3 +1,5 @@
+
+
 import { Col, Result, Row, Space } from "antd";
 import BackToTopButton from "components/BackToTopButton";
 import AutoTranscript from "features/Video/components/AutoTranscript";
@@ -9,11 +11,13 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 
+
 import "./style.scss";
 
 VideoPage.propTypes = {};
 
 function VideoPage(props) {
+
 	const { slugCategory, slugVideo } = useParams();
 	const { video } = useSelector((state) => state.video);
 	const [timeSeek, setTimeSeek] = useState(0);
@@ -132,6 +136,7 @@ function VideoPage(props) {
 			)}
 		</>
 	);
+
 }
 
 export default VideoPage;

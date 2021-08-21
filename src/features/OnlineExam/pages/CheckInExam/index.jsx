@@ -14,9 +14,11 @@ function CheckInExam(props) {
 	const [examTitle, setExamTitle] = useState("");
 	const { testId } = useParams();
 
+
 	useEffect(() => {
 		document.title = examTitle;
 	});
+
 
 	useEffect(() => {
 		if (setExam.length > 0) {
@@ -43,6 +45,7 @@ function CheckInExam(props) {
 				<div className="checkin-exam_title">
 					<span>{examTitle}</span>
 				</div>
+
 
 				<div className="checkin-exam_info">
 					<Space direction="vertical">

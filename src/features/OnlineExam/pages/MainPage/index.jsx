@@ -1,3 +1,4 @@
+
 import { Spin } from "antd";
 import ListExam from "features/OnlineExam/components/ListExam";
 import React, { useEffect } from "react";
@@ -18,6 +19,7 @@ function MainPage(props) {
 			</div>
 		</Spin>
 	);
+
 }
 
 export default MainPage;

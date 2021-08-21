@@ -216,6 +216,8 @@ function Checkout(props) {
 			<div className="checkout_wrapper">
 				<Space direction="vertical" style={{ width: "100%" }} size="large">
 					<div className="checkout_listening">
+
+
 						<span className="topic">Listening</span>
 						<Table
 							dataSource={data_listening}
@@ -252,8 +254,10 @@ function Checkout(props) {
 								>
 									Back
 								</Button>
+
 							</div>
 						</Col>
+
 
 						<Col
 							xl={{ span: 3 }}
@@ -264,6 +268,7 @@ function Checkout(props) {
 						>
 							<ReachableContext.Provider value="">
 								<div className="button_align">
+
 									<Button
 										block
 										type="primary"

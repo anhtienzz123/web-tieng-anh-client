@@ -1,3 +1,4 @@
+
 import { Col, Row } from "antd";
 import AnswerSheet from "features/OnlineExam/components/AnswerSheet";
 import Timer from "features/OnlineExam/components/Timer";
@@ -53,9 +54,7 @@ function Examining(props) {
 					</Col>
 				</Row>
 			</div>
-			{/* <ReachableContext.Provider value=''>
-                {contextHolder}
-            </ReachableContext.Provider> */}
+	
 		</>
 	);
 }

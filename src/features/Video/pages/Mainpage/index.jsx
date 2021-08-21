@@ -18,6 +18,7 @@ import "./style.scss";
 MainPage.propTypes = {};
 
 function MainPage(props) {
+
 	const { slugCategory } = useParams();
 	const dispatch = useDispatch();
 	const { movies, page, totalPages } = useSelector((state) => state.video);
@@ -159,6 +160,7 @@ function MainPage(props) {
 			<BackToTopButton />
 		</div>
 	);
+
 }
 
 export default MainPage;

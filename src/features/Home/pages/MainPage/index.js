@@ -1,3 +1,4 @@
+
 import {
 	AppstoreOutlined,
 	CarryOutOutlined,
@@ -209,6 +210,7 @@ function MainPage(props) {
 			<BackToTopButton />
 		</>
 	);
+
 }
 
 export default MainPage;

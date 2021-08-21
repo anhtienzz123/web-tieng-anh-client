@@ -77,10 +77,12 @@ function TopicPage(props) {
 					<div className="topic-page__content">
 						<WordList data={data} />
 					</div>
+
 				</>
 			) : (
 				<Result status="404" title="không tìm thấy" />
 			)}
+
 		</div>
 	);
 }
