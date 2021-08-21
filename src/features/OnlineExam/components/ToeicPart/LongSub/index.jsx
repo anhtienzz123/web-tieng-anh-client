@@ -1,5 +1,5 @@
 
-import { CheckCircleTwoTone, CheckOutlined, CloseOutlined } from '@ant-design/icons';
+import { CheckCircleTwoTone, CheckOutlined, CloseOutlined, WarningTwoTone } from '@ant-design/icons';
 
 import { Radio, Space } from 'antd';
 import Text from 'antd/lib/typography/Text';
