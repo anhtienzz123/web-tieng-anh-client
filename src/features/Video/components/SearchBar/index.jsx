@@ -3,7 +3,7 @@ import BlockLevel from "components/BlockLevel";
 import { dataSelectDuration, dataSelectLevel } from "constants/dataSelectLevel";
 import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router";
 import "./style.scss";
 
@@ -22,7 +22,6 @@ SearchBar.defaultProps = {
 };
 
 function SearchBar(props) {
-
 	const { onSelectedLevel, onSelectedDuration, onDurationSelected, level } =
 		props;
 	const { categories } = useSelector((state) => state.video);
@@ -35,7 +34,6 @@ function SearchBar(props) {
 			if (categories.length > 0) {
 				let temp = categories.find((element) => element.slug === slugCategory);
 				if (temp != null) {
-					console.log(temp);
 					setSubject(temp.name);
 				}
 			}
@@ -139,7 +137,6 @@ function SearchBar(props) {
 			</Row>
 		</div>
 	);
-
 }
 
 export default SearchBar;

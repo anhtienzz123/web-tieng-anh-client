@@ -1,10 +1,8 @@
 import {
-	CheckCircleTwoTone,
 	CheckOutlined,
 	CloseOutlined,
-    WarningTwoTone,
+	WarningTwoTone,
 } from "@ant-design/icons";
-
 import { Radio, Space } from "antd";
 import Text from "antd/lib/typography/Text";
 import PropTypes from "prop-types";
@@ -30,7 +28,6 @@ function LongSub(props) {
 	const { data, onAnswerSheetClick, name } = props;
 
 	useEffect(() => {
-		console.log("effect", scrollId);
 		document.getElementById(`${scrollId}`).scrollIntoView();
 	}, [scrollId]);
 
