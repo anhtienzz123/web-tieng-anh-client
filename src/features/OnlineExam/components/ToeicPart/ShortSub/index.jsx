@@ -1,4 +1,4 @@
-import { CheckCircleTwoTone, CheckOutlined, CloseOutlined } from '@ant-design/icons';
+import { CheckCircleTwoTone, CheckOutlined, CloseOutlined, WarningTwoTone } from '@ant-design/icons';
 import { Radio, Space } from 'antd';
 import CustomAudioControl from 'components/CustomAudioControl';
 import Text from 'antd/lib/typography/Text';
@@ -111,7 +111,7 @@ function ShortSub(props) {
 
 
 
-                            <div id={element.stt} className='title_question' >{element.content}</div>
+                            <div id={element.stt} className='title_question' >{element.content} &nbsp;{(answers[element.stt - 1].selected === "" && isSubmit) ? <Text type="warning"><WarningTwoTone twoToneColor='#f1b815' /> Chưa chọn đáp án</Text> : ''} </div>
                             {isSubmit
 
                                 ? (
@@ -126,10 +126,10 @@ function ShortSub(props) {
                                     <Radio.Group onChange={(e) => handleSelected(element.stt, e)} value={answers[element.stt - 1].selected}>
 
                                         <Space direction="vertical">
-                                            <Radio value={'A'}>Option A</Radio>
-                                            <Radio value={'B'}>Option B</Radio>
-                                            <Radio value={'C'}>Option C</Radio>
-                                            <Radio value={'D'}>Option D</Radio>
+                                            <Radio value={'A'}>{element.a}</Radio>
+                                            <Radio value={'B'}>{element.b}</Radio>
+                                            <Radio value={'C'}>{element.c}</Radio>
+                                            <Radio value={'D'}>{element.d}</Radio>
                                         </Space>
                                     </Radio.Group>)}
                         </Space>

@@ -24,8 +24,9 @@ function MainPage(props) {
 	return (
 		<div id="translate-main-page">
 			<Row justify="center">
-				<Col>
+				<Col flex>
 					<img
+						style={{ filter: "brightness(0) invert(1)" }}
 						src="https://stc-laban.zdn.vn/dictionary/images/logo_dict_1.2.png"
 						alt="Oops ... Notfound"
 					/>

@@ -1,5 +1,5 @@
 import { HomeOutlined, StarTwoTone } from '@ant-design/icons';
-import { Button, Space, Table } from 'antd';
+import { Button, Space, Spin, Table } from 'antd';
 import { fetchResult, refreshStore, setExamSelected, setScrollId, setsubPartSelected, writeResultToExam } from 'features/OnlineExam/onlineExamSlice';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -19,7 +19,7 @@ function ResultPage(props) {
 
     const { testId } = useParams();
     const dispatch = useDispatch();
-    const { answers, result } = useSelector(state => state.exam);
+    const { answers, result, isLoading } = useSelector(state => state.exam);
     const { listenPoint, readPoint, listenNumber, readNumber, part1Number
         , part2Number, part3Number, part4Number, part5Number, part6Number, part7Number } = result
     const answerToPost = handleAnswer(answers);
@@ -164,58 +164,60 @@ function ResultPage(props) {
 
 
     return (
-        <div id='top'>
+        <Spin spinning={isLoading}>
+            <div id='top'>
 
-            <div className="result_wrapper">
-                <Space direction="vertical" style={{ width: "100%" }} size="large">
+                <div className="result_wrapper">
+                    <Space direction="vertical" style={{ width: "100%" }} size="large">
 
-                    <div className='result_infomation'>
-                        <span className="result_title_test">ETS - 2020</span>
-                        <span className="result_info_additional">Thank you for completing the trial tests on TOEIC Exam Store.</span>
-                    </div>
-
-                    <div className="result_total_score">
-
-                        <span> <StarTwoTone /> Total Score: </span>
-                        <span>{listenPoint + readPoint}</span>
-
-                    </div>
-
-                    <div className="result_listening">
-
-                        <div className='result_header'>
-                            <span className='topic'>Listening({listenNumber}/100)</span>
-                            <span className='topic sub-score'>Score {listenPoint}/495</span>
+                        <div className='result_infomation'>
+                            <span className="result_title_test">ETS - 2020</span>
+                            <span className="result_info_additional">Thank you for completing the trial tests on TOEIC Exam Store.</span>
                         </div>
 
-                        <Table dataSource={data_listening} columns={columns} pagination={false} scroll={{ x: true }} />
-                    </div>
+                        <div className="result_total_score">
 
-                    <div className="result_reading">
-                        <div className='result_header'>
-                            <span className='topic'>Reading({readNumber}/100)</span>
-                            <span className='topic sub-score'>Score {readPoint}/495</span>
+                            <span> <StarTwoTone /> Total Score: </span>
+                            <span>{listenPoint + readPoint}</span>
+
                         </div>
-                        <Table dataSource={data_reading} columns={columns} pagination={false} scroll={{ x: true }} />
-                    </div>
+
+                        <div className="result_listening">
+
+                            <div className='result_header'>
+                                <span className='topic'>Listening({listenNumber}/100)</span>
+                                <span className='topic sub-score'>Score {listenPoint}/495</span>
+                            </div>
+
+                            <Table dataSource={data_listening} columns={columns} pagination={false} scroll={{ x: true }} />
+                        </div>
+
+                        <div className="result_reading">
+                            <div className='result_header'>
+                                <span className='topic'>Reading({readNumber}/100)</span>
+                                <span className='topic sub-score'>Score {readPoint}/495</span>
+                            </div>
+                            <Table dataSource={data_reading} columns={columns} pagination={false} scroll={{ x: true }} />
+                        </div>
 
 
 
-                    <div className='result_button'>
-                        <Button type="primary" onClick={handleExitClick} icon={<HomeOutlined />} size='large' style={{ padding: '0 3rem' }}>
-                            Exit
-                        </Button>
-                    </div>
+                        <div className='result_button'>
+                            <Button type="primary" onClick={handleExitClick} icon={<HomeOutlined />} size='large' style={{ padding: '0 3rem' }}>
+                                Exit
+                            </Button>
+                        </div>
 
 
 
-                </Space>
+                    </Space>
 
 
+
+                </div>
 
             </div>
-
-        </div>
+        </Spin>
     );
 }
 

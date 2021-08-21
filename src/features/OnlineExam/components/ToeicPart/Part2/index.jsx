@@ -1,4 +1,4 @@
-import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
+import { CheckOutlined, CloseOutlined, WarningTwoTone } from '@ant-design/icons';
 import { Divider, Radio, Space } from 'antd';
 import Text from 'antd/lib/typography/Text';
 import CustomAudioControl from 'components/CustomAudioControl';
@@ -89,7 +89,7 @@ function Part2(props) {
                                     isSubmit ? <CustomAudioControl audio={answers[question.stt - 1].audio} onPlay={false} /> : ''
                                 }
 
-                                <p className='title_question' >{question.stt} : Select the answer</p>
+                                <p className='title_question' >{question.stt} : Select the answer&nbsp;{(answers[question.stt - 1].selected === "" && isSubmit) ? <Text type="warning"><WarningTwoTone twoToneColor='#f1b815' /> Chưa chọn đáp án</Text> : ''}</p>
 
 
 

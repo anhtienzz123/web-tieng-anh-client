@@ -24,3 +24,14 @@
         }
     }
 }
+@media only screen and (min-width: 740px) and (max-width: 1024px) {
+    .list_exam--head-title {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 739px) {
+    .list_exam--head-title {
+        font-size: 2rem;
+    }
+}

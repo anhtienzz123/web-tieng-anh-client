@@ -1,4 +1,4 @@
-import { CheckCircleTwoTone, CheckOutlined, CloseOutlined } from '@ant-design/icons';
+import { CheckCircleTwoTone, CheckOutlined, CloseOutlined, WarningTwoTone } from '@ant-design/icons';
 import { Radio, Space } from 'antd';
 import Text from 'antd/lib/typography/Text';
 import PropTypes from 'prop-types';
@@ -65,7 +65,7 @@ function LongSub(props) {
                     data.map((question, index) => (
 
                         <Space direction="vertical" >
-                            <div id={question.stt} key={index}>{question.stt}. {question.content}</div>
+                            <div id={question.stt} key={index}>{question.stt}. {question.content} &nbsp;{(answers[question.stt - 1].selected === "" && isSubmit) ? <Text type="warning"><WarningTwoTone twoToneColor='#f1b815' /> Chưa chọn đáp án</Text> : ''}</div>
 
 
                             {isSubmit

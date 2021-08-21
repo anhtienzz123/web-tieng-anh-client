@@ -1,4 +1,4 @@
-import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
+import { CheckOutlined, CloseOutlined, WarningTwoTone } from '@ant-design/icons';
 import { Divider, Radio, Space } from 'antd';
 import Text from 'antd/lib/typography/Text';
 import PropTypes from 'prop-types';
@@ -68,7 +68,7 @@ function Part5(props) {
 
                             <Space direction="vertical">
 
-                                <p className='title_question' id={question.stt} >{question.content}</p>
+                                <p className='title_question' id={question.stt} >{question.content} &nbsp;{(answers[question.stt - 1].selected === "" && isSubmit) ? <Text type="warning"><WarningTwoTone twoToneColor='#f1b815' /> Chưa chọn đáp án</Text> : ''}</p>
 
                                 {isSubmit
 
@@ -85,10 +85,10 @@ function Part5(props) {
                                         <Radio.Group onChange={(e) => handleSelected(question.stt, e)} value={answers[question.stt - 1].selected}>
 
                                             <Space direction="vertical">
-                                                <Radio value={'A'}>Option A</Radio>
-                                                <Radio value={'B'}>Option B</Radio>
-                                                <Radio value={'C'}>Option C</Radio>
-                                                <Radio value={'D'}>Option D</Radio>
+                                                <Radio value={'A'}>{question.a}</Radio>
+                                                <Radio value={'B'}>{question.b} </Radio>
+                                                <Radio value={'C'}>{question.c} </Radio>
+                                                <Radio value={'D'}>{question.d} </Radio>
                                             </Space>
                                         </Radio.Group>)}
                             </Space>
