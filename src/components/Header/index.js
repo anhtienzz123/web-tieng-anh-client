@@ -4,22 +4,17 @@ import {
     FileSearchOutlined,
     FormOutlined,
     HomeOutlined,
-    LoginOutlined,
-    ScheduleOutlined,
-    PlayCircleOutlined,
-    UserOutlined,
+    LoginOutlined, PlayCircleOutlined, ScheduleOutlined, UserOutlined
 } from "@ant-design/icons";
 import { faBlog } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import useWindowUnloadEffect from 'utils/useWindowUnloadEffect';
 import { Menu, message } from "antd";
 import { setLogin } from "app/globalSlice";
 import { fetchCategoriesVideo } from "features/Video/videoSlice";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import auth from "utils/auth";
-import logo from 'images/logo/logo.png';
 import "./style.scss";
 
 const { SubMenu } = Menu;
@@ -31,14 +26,9 @@ function Header(props) {
     const { categories } = useSelector((state) => state.video);
     const dispatch = useDispatch();
     const [keyMenu, setKeyMenu] = useState(1);
+    
 
-    useEffect(() => {
-        let key = localStorage.getItem("menuSelected");
-        if (key !== undefined || key == null) {
-            setKeyMenu(key);
-        }
-
-    }, [])
+  
 
     useEffect(() => {
         dispatch(fetchCategoriesVideo());
@@ -50,9 +40,7 @@ function Header(props) {
         setKeyMenu(e.key);
     };
 
-    useWindowUnloadEffect(() => {
-        localStorage.setItem('menuSelected', keyMenu);
-    }, true);
+
 
 
     const headerStyle = {
