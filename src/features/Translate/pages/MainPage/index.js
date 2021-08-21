@@ -2,9 +2,10 @@ import { Col, Row } from "antd";
 import SearchBar from "features/Translate/components/SearchBar";
 import TranslateResult from "features/Translate/components/TranslateResult";
 import { fetchTranslates } from "features/Translate/translateSlice";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./style.scss";
+import logoDict from "assets/images/logo_dict.png";
 
 function MainPage(props) {
 	const dispatch = useDispatch();
@@ -21,15 +22,20 @@ function MainPage(props) {
 		);
 	};
 
+	useEffect(() => {
+		document.title = "Tra từ";
+	}, []);
+
 	return (
 		<div id="translate-main-page">
 			<Row justify="center">
+
 				<Col flex>
-					<img
-						style={{ filter: "brightness(0) invert(1)" }}
-						src="https://stc-laban.zdn.vn/dictionary/images/logo_dict_1.2.png"
-						alt="Oops ... Notfound"
-					/>
+					<img 
+              src={logoDict} alt="Oops ... Notfound" 
+	            style={{ filter: "brightness(0) invert(1)" }}
+          />
+
 				</Col>
 			</Row>
 			<Row justify="center">

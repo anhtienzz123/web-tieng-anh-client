@@ -1,3 +1,4 @@
+
 import { HomeOutlined, StarTwoTone } from '@ant-design/icons';
 import { Button, Space, Spin, Table } from 'antd';
 import { fetchResult, refreshStore, setExamSelected, setScrollId, setsubPartSelected, writeResultToExam } from 'features/OnlineExam/onlineExamSlice';
@@ -36,18 +37,7 @@ function ResultPage(props) {
     }, []);
 
 
-    // useEffect(() => {
-    //     let newSheet, newTranscript;
-    //     if (!(Object.keys(result).length === 0 && result.constructor === Object)) {
-    //         newSheet = result && writeResultToAnswerSheet(result);
-    //         newTranscript = result && writeTranScript(result);
-    //         dispatch(writeResultToExam(newSheet));
-    //         dispatch(writeTranScript(newTranscript));
-    //         localStorage.setItem('answers', JSON.stringify(newSheet));
-    //         localStorage.setItem('transcript', JSON.stringify(newTranscript));
-
-    //     }
-    // }, [result])
+ 
 
 
     useEffect(() => {
@@ -219,6 +209,7 @@ function ResultPage(props) {
             </div>
         </Spin>
     );
+
 }
 
 export default ResultPage;

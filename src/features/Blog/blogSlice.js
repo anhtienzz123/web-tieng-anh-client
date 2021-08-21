@@ -43,25 +43,40 @@ const courseSlice = createSlice({
 	},
 	extraReducers: {
 		// Blogs
-		[fetchBlogs.pending]: (state, action) => {},
+		[fetchBlogs.pending]: (state, action) => {
+			state.isLoading = true;
+		},
 		[fetchBlogs.fulfilled]: (state, action) => {
 			state.blogs = action.payload;
+			state.isLoading = false;
 		},
-		[fetchBlogs.rejected]: (state, action) => {},
+		[fetchBlogs.rejected]: (state, action) => {
+			state.isLoading = false;
+		},
 
 		// Blog detail
-		[fetchBlogDetail.pending]: (state, action) => {},
+		[fetchBlogDetail.pending]: (state, action) => {
+			state.isLoading = true;
+		},
 		[fetchBlogDetail.fulfilled]: (state, action) => {
 			state.blogDetail = action.payload;
+			state.isLoading = false;
 		},
-		[fetchBlogDetail.rejected]: (state, action) => {},
+		[fetchBlogDetail.rejected]: (state, action) => {
+			state.isLoading = false;
+		},
 
 		// Blog categories
-		[fetchBlogCategories.pending]: (state, action) => {},
+		[fetchBlogCategories.pending]: (state, action) => {
+			state.isLoading = true;
+		},
 		[fetchBlogCategories.fulfilled]: (state, action) => {
 			state.blogCategories = action.payload;
+			state.isLoading = false;
 		},
-		[fetchBlogCategories.rejected]: (state, action) => {},
+		[fetchBlogCategories.rejected]: (state, action) => {
+			state.isLoading = false;
+		},
 	},
 });
 

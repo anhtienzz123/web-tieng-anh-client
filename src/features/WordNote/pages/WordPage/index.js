@@ -11,6 +11,10 @@ function WordPage(props) {
 	const { isError, wordNoteDetail } = useSelector((state) => state.wordNote);
 
 	useEffect(() => {
+		document.title = wordNoteDetail.name || "Wordnote";
+	});
+
+	useEffect(() => {
 		window.scrollTo(0, 0);
 		dispatch(getWordNoteDetail(wordnoteId));
 	}, []);
